@@ -13,7 +13,15 @@
         <!-- <link rel="shortcut icon" href="./assets/images/favicon.ico" /> -->
 
         <!--Morris Chart CSS -->
-        <!-- <link rel="stylesheet" href="./assets/plugins/morris/morris.css" /> -->
+        <?php 
+        if (isset($css_to_load)) {
+          foreach ($css_to_load as $link) { 
+        ?>
+            <link rel="stylesheet" href="<?= $link?>">
+        <?php 
+          } 
+        }
+        ?>
 
         <!-- App css -->
         <link href="<?php echo base_url('assets/admin')?>/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -127,6 +135,13 @@
                             <li>
                                 <a class="<?= (isset($active) && $active=='users') ? 'active':''?>" href="<?= site_url('admin/users')?>"><i class="ti-user"></i>Users</a>
                             </li>
+
+                            <li class="has-submenu <?= (isset($active) && $active=='masterdata') ? 'active':''?>">
+                                <a href="#"><i class="ti-server"></i>Master Data</a>
+                                <ul class="submenu">
+                                    <li><a href="<?= site_url('admin/kategoriProduct')?>">Kategori Product</a></li>
+                                </ul>
+                            </li>
                             
                         </ul>
                         <!-- End navigation menu -->
@@ -193,6 +208,16 @@
 
         <!-- App js -->
         <script src="<?php echo base_url('assets/admin')?>/js/app.js"></script>
+
+        <?php 
+        if (isset($js_to_load)) {
+          foreach ($js_to_load as $link) { 
+        ?>
+            <script src="<?= $link?>"></script>
+        <?php 
+          } 
+        }
+        ?>
 
     </body>
 </html>

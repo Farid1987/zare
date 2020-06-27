@@ -32,9 +32,49 @@
       $this->data['breadcrumb'] = [
         ['Users', site_url('admin/users')]
       ];
+      $this->data['js_to_load'] = [
+        base_url('assets/admin/plugins/datatables/jquery.dataTables.min.js'),
+        base_url('assets/admin/plugins/datatables/dataTables.bootstrap4.min.js'),
+        base_url('assets/admin/plugins/datatables/dataTables.buttons.min.js'),
+        base_url('assets/admin/plugins/datatables/buttons.bootstrap4.min.js'),
+        base_url('assets/admin/plugins/datatables/buttons.colVis.min.js'),
+        base_url('assets/admin/plugins/datatables/dataTables.responsive.min.js'),
+        base_url('assets/admin/plugins/datatables/responsive.bootstrap4.min.js'),
+        base_url('assets/admin/pages/datatables.init.js')
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/admin/plugins/datatables/dataTables.bootstrap4.min.css'),
+        base_url('assets/admin/plugins/datatables/buttons.bootstrap4.min.css'),
+        base_url('assets/admin/plugins/datatables/responsive.bootstrap4.min.css')
+      ];
 
       $this->template->load('admin/tempAdmin', 'admin/users', $this->data);
 
+    }
+
+    public function kategoriProduct() {
+      $this->load->model('MKategoriProduct');
+
+      $this->data['kategori'] = $this->MKategoriProduct->getAll();
+      $this->data['active'] = "masterdata";
+      $this->data['breadcrumb'] = [
+        ['Master Data', '#'],
+        ['Kategori Product', site_url('admin/kategoriProduct')]
+      ];
+      $this->data['js_to_load'] = [
+        base_url('assets/admin/plugins/datatables/jquery.dataTables.min.js'),
+        base_url('assets/admin/plugins/datatables/dataTables.bootstrap4.min.js'),
+        base_url('assets/admin/plugins/datatables/dataTables.buttons.min.js'),
+        base_url('assets/admin/plugins/datatables/buttons.bootstrap4.min.js'),
+        base_url('assets/admin/plugins/datatables/buttons.colVis.min.js'),
+        base_url('assets/admin/pages/datatables.init.js')
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/admin/plugins/datatables/dataTables.bootstrap4.min.css'),
+        base_url('assets/admin/plugins/datatables/buttons.bootstrap4.min.css'),
+      ];
+
+      $this->template->load('admin/tempAdmin', 'admin/master_kategoriProduct', $this->data);
     }
 
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
