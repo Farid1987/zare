@@ -173,7 +173,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-12">
-                      zare.id © 2020 - Crafted with <i class="mdi mdi-heart text-danger"></i>
+                      zare.id © 2020 - Crafted with <i class="mdi mdi-heart text-success"></i>
                     </div>
                 </div>
             </div>
