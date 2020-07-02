@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card m-b-30">
       <div class="card-body">
-        <button data-toggle="modal" data-target=".modal-add" class="mb-4 btn btn-outline-dark waves-effect   waves-light">Add Kategori</button>
+        <button data-type="add" class="mb-4 btn btn-outline-dark waves-effect waves-light btn-add">Add Kategori</button>
         <table id="datatable-buttons" class="table table-striped table-bordered" cellspacing="0" width="100%">
           <thead>
             <tr>
@@ -19,20 +19,23 @@
                 <td><?= $i?></td>
                 <td><?= $value->nama_kategori?></td>
                 <td>
-                  <span data-toggle="tooltip"
+                  <button 
+                    data-toggle="tooltip"
                     data-placement="bottom" 
-                    title="Edit kategori" >
-                    <button 
-                      class="btn btn-sm btn-primary btn-edit"
-                      style=" cursor: pointer;">
-                      <i class="ti-pencil-alt"></i>
-                    </button>
-                  </span>
+                    title="Edit kategori"
+                    data-type="edit"
+                    class="btn btn-sm btn-primary btn-edit"
+                    data-kategori="<?= $value->nama_kategori?>"
+                    data-id="<?= $value->id_kategori?>"
+                    style=" cursor: pointer;">
+                    <i class="ti-pencil-alt"></i>
+                  </button>
                   <button
                     class="btn btn-sm btn-danger btn-delete"
                     data-toggle="tooltip" 
                     data-placement="bottom"
                     title="Delete Kategori"
+                    data-id="<?= $value->id_kategori?>"
                     style=" cursor: pointer;">
                     <i class="ti-trash"></i>
                   </button>
@@ -48,3 +51,5 @@
     </div>
   </div> <!-- end col -->
 </div> <!-- end row -->
+
+<?php include('modalKategoriProduct.php');?>

@@ -12,7 +12,6 @@
         <!-- App Icons -->
         <!-- <link rel="shortcut icon" href="./assets/images/favicon.ico" /> -->
 
-        <!--Morris Chart CSS -->
         <?php 
         if (isset($css_to_load)) {
           foreach ($css_to_load as $link) { 
@@ -29,9 +28,9 @@
         <link href="<?php echo base_url('assets/admin')?>/css/style.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/admin')?>/css/custom-admin.min.css" rel="stylesheet" type="text/css" />
 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
-
-
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="<?php echo base_url('assets/admin')?>/js/jquery.min.js"></script>
+    </head>
     <body>
 
         <!-- Loader -->
@@ -195,9 +194,7 @@
         </footer>
         <!-- End Footer -->
 
-
-        <!-- jQuery  -->
-        <script src="<?php echo base_url('assets/admin')?>/js/jquery.min.js"></script>
+                                      
         <script src="<?php echo base_url('assets/admin')?>/js/popper.min.js"></script>
         <script src="<?php echo base_url('assets/admin')?>/js/bootstrap.min.js"></script>
         <!-- <script src="<?php echo base_url('assets/admin')?>/js/modernizr.min.js"></script> -->
