@@ -1,15 +1,15 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class MKategoriProduct extends CI_Model {
+class MProductKategori extends CI_Model {
   
   /**
 	 * 	get all data
-	 *	@return array data user
+	 *	@return array data kategori
 	 */
 	public function getAll(){
 		$this->db->select('*');
-		$query = $this->db->get('kategori_product');
+		$query = $this->db->get('product_kategori');
 		return $query->result();
   }
   
@@ -18,7 +18,7 @@ class MKategoriProduct extends CI_Model {
    *	@return boolean
 	 */
 	public function add($data){
-		$query = $this->db->insert('kategori_product', $data);
+		$query = $this->db->insert('product_kategori', $data);
 		return $query;
   }
   
@@ -28,7 +28,7 @@ class MKategoriProduct extends CI_Model {
 	 */
 	public function edit($id, $data){
     $this->db->where('id_kategori', $id);                   
-    $query = $this->db->update('kategori_product', $data);
+    $query = $this->db->update('product_kategori', $data);
 		return $query;
   }
   
@@ -37,7 +37,7 @@ class MKategoriProduct extends CI_Model {
    *	@return boolean
 	 */
 	public function delete($data){
-    $query = $this->db->delete('kategori_product', $data);
+    $query = $this->db->delete('product_kategori', $data);
 		return $query;
 	}
 }

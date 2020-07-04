@@ -2,6 +2,14 @@
 $clr-primary: #4DAD52;
 $clr-secondary: #5F6368;
 
+// general
+body {
+  font-size: 14px;
+}
+.card-footer {
+  background-color: #fff;
+}
+
 // Header
 #topnav {
   .topbar-main {
@@ -79,5 +87,28 @@ $clr-secondary: #5F6368;
         z-index: 9;
       }
     }
+  }
+}
+
+// form
+.form-control {
+  font-size: 14px;
+
+  & + .select2-container--default .select2-selection--single {
+    border: 1px solid #ced4da;
+    .select2-selection__rendered {
+      line-height: 35px;
+    }
+    .select2-selection__arrow {
+      height: 33px;
+    }
+  }
+  & + .select2-container .select2-selection--single {
+    height: 35px;
+  }
+}
+.help-block {
+  p {
+    margin: 0;
   }
 }
