@@ -27,7 +27,7 @@
     public function users() {
       $this->load->model('MUsers');
 
-      $this->data['users'] = $this->MUsers->getAllUsers();
+      $this->data['users'] = $this->MUsers->getAll();
       $this->data['active'] = "users";
       $this->data['breadcrumb'] = [
         ['Users', site_url('admin/users')]
@@ -111,10 +111,49 @@
       $this->template->load('admin/tempAdmin', 'admin/datamaster/master_kategoriProduct', $this->data);
     }
 
+    public function product() {
+      $this->load->model('MProduct');
+      
+      $this->data['products'] = $this->MProduct->getAll();
+      $this->data['active'] = "product";
+      $this->data['breadcrumb'] = [
+        ['Product', site_url('admin/product')]
+      ];
+      $this->data['js_to_load'] = array_merge($this->datatableAssets()['js'], [
+        base_url('assets/admin/plugins/sweet-alert2/sweetalert2.min.js'),
+      ]);
+      $this->data['css_to_load'] = array_merge($this->datatableAssets()['css'], [
+        base_url('assets/admin/plugins/sweet-alert2/sweetalert2.min.css'),
+      ]);
+
+      $this->template->load('admin/tempAdmin', 'admin/product/products', $this->data);
+    }
+
+    public function productAdd() {
+      $this->load->model('MProductKategori');
+
+      $this->data['breadcrumb'] = [
+        ['Product', site_url('admin/product')],
+        ['Add Product', site_url('admin/productAdd')]
+      ];
+      $this->data['js_to_load'] = [
+        base_url('assets/admin/js/accounting.min.js'),
+        base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+        base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+      ];
+      $this->data['allKategori'] = $this->MProductKategori->getAll();
+
+      $this->template->load('admin/tempAdmin', 'admin/product/productAdd', $this->data);
+    }
+
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
 
     ////////////////////////////////////// FUNCT ///////////////////////////////////////////
 
+    // User ============
     public function addUser() {
       $this->form_validation->set_rules('fullname', 'Nama Lengkap', 'required');
       $this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
@@ -227,15 +266,22 @@
           die(json_encode($data));
       }
     }
+    // User ============
 
+    // Kategori Product ============
     public function addKategori() {
       $this->form_validation->set_rules('kategori', 'Kategori', 'required');
+      $this->form_validation->set_rules('satuan_harga', 'Satuan Harga', 'required');
 
       if ($this->form_validation->run()) {
         $this->load->model('MProductKategori');
 
         $kategori = $this->input->post('kategori');
-        $dataInsert = array('nama_kategori' => $kategori);
+        $satuan = $this->input->post('satuan_harga');
+        $dataInsert = array(
+          'nama_kategori' => $kategori,
+          'satuan_harga' => $satuan,
+        );
         
         $this->MProductKategori->add($dataInsert);
         $data['status'] = 'success';
@@ -249,13 +295,18 @@
 
     public function editKategori() {
       $this->form_validation->set_rules('kategori', 'Kategori', 'required');
+      $this->form_validation->set_rules('satuan_harga', 'Satuan Harga', 'required');
 
       if ($this->form_validation->run()) {
         $this->load->model('MProductKategori');
 
         $kategori = $this->input->post('kategori');
         $id = $this->input->post('id_kategori');
-        $dataUpdate = array('nama_kategori' => $kategori);
+        $satuan = $this->input->post('satuan_harga');
+        $dataUpdate = array(
+          'nama_kategori' => $kategori,
+          'satuan_harga' => $satuan,
+        );
         
         $this->MProductKategori->edit($id, $dataUpdate);
         $data['status'] = 'success';
@@ -275,16 +326,18 @@
 
       $res = $this->MProductKategori->delete($dataDelete);
       if ($res) {
-          $data['status'] = 'success';
-          $data['message'] = 'Delete kategori product success!';
-          die(json_encode($data));
+        $data['status'] = 'success';
+        $data['message'] = 'Delete kategori product success!';
+        die(json_encode($data));
       }else{
-          $data['status'] = 'error';
-          $data['message'] = 'Delete kategori product Failed!';
-          die(json_encode($data));
+        $data['status'] = 'error';
+        $data['message'] = 'Delete kategori product Failed!';
+        die(json_encode($data));
       }
     }
+    // Kategori Product ============
 
+    // Regencies/city ============
     public function getRegencies() {
       $this->load->model('MRegencies');
       
@@ -294,7 +347,141 @@
       
       die(json_encode($result));
     }
+    // Regencies/city ============
+
+    // Product ============
+    public function addProduct() {
+      $this->form_validation->set_rules('nama_product', 'Nama Product', 'required');
+      $this->form_validation->set_rules('kategori_product', 'Kategori Product', 'required');
+      $this->form_validation->set_rules('short_desc', 'Short Description', 'required');
+      $this->form_validation->set_rules('desc', 'Description', 'required');
+      $this->form_validation->set_rules('stock', 'Stock', 'required');
+      $this->form_validation->set_rules('price', 'Price', 'required');
+      $this->form_validation->set_rules('featured_img', 'Featured Image', 'required');
+      if ($this->form_validation->run()) {
+        $this->load->model('MProduct');
+        $this->load->model('MProductImages');
+
+        $dataInsert = array(
+          'nama_product' => $this->input->post('nama_product'),
+          'id_kategori' => $this->input->post('kategori_product'),
+          'stock' => $this->input->post('stock'),
+          'featured_img' => $this->input->post('featured_img'),
+          'short_description' => $this->input->post('short_desc'),
+          'description' => $this->input->post('desc'),
+          'price' => str_replace('.','',$this->input->post('price')),
+        );
+        
+        $insertProduct = $this->MProduct->add($dataInsert);
+        if ($insertProduct) {
+          $last_id = $this->db->insert_id();
+          $gallery = $this->input->post('gallery[]');
+          if (count($gallery) > 0) {
+            foreach ($gallery as $link) {
+              $dataInsertImg = array(
+                'id_product' => $last_id,
+                'url' => $link,
+              );
+              $insertImg = $this->MProductImages->add($dataInsertImg);
+            }
+          }
+        }
+        
+        if ($insertProduct) {
+          $this->session->set_flashdata('status', 'success');
+          $this->session->set_flashdata('message', 'Add Product success!');
+        } else {
+          $this->session->set_flashdata('status', 'error');
+          $this->session->set_flashdata('message', 'Add Product failed!');
+        }
+
+        redirect(site_url('admin/product'));
+      } else {
+        $this->load->model('MProductKategori');
+
+        $this->data['breadcrumb'] = [
+          ['Product', site_url('admin/product')],
+          ['Add Product', site_url('admin/productAdd')]
+        ];
+        $this->data['js_to_load'] = [
+          base_url('assets/admin/js/accounting.min.js'),
+          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+        ];
+        $this->data['css_to_load'] = [
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+        ];
+        $this->data['allKategori'] = $this->MProductKategori->getAll();
+  
+        $this->template->load('admin/tempAdmin', 'admin/product/productAdd', $this->data);
+      }
+    }
+
+    public function deleteProduct() {
+      $this->load->model('MProduct');
+      $this->load->model('MProductImages');
+
+      $id_product = $this->input->post('id');
+      $dataDelete = array('id_product' => $id_product);
+      $product = $this->MProduct->getWhere($dataDelete);
+      $relatedImg = $this->MProductImages->getWhere($dataDelete);
+
+      foreach ($relatedImg as $key => $value) {
+        unlink($value->url);
+      }
+      unlink($product[0]->featured_img);
+
+      $resImg = $this->MProductImages->delete($dataDelete);
+      $res = $this->MProduct->delete($dataDelete);
+      if ($res) {
+        $data['status'] = 'success';
+        $data['message'] = 'Delete product success!';
+        die(json_encode($data));
+      }else{
+        $data['status'] = 'error';
+        $data['message'] = 'Delete product Failed!';
+        die(json_encode($data));
+      }
+    }
+    // Product ============
+
+    // Upload Img ============
+    public function uploadImg() {
+      $config['upload_path'] = 'assets/upload/product';
+      $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
+      $countFile = count($_FILES['files']['name']);
+      
+      $this->load->library('upload',$config);
+      $data['img'] = [];
+      for ($i=0; $i < $countFile; $i++) { 
+        $_FILES['file']['name'] = time().str_replace(' ', '_', $_FILES['files']['name'][$i]);
+        $_FILES['file']['type'] = $_FILES['files']['type'][$i];
+        $_FILES['file']['tmp_name'] = $_FILES['files']['tmp_name'][$i];
+        $_FILES['file']['error'] = $_FILES['files']['error'][$i];
+        $_FILES['file']['size'] = $_FILES['files']['size'][$i];
+        if($this->upload->do_upload('file')) {
+          $temp = [
+            "name" => $_FILES['files']['name'][$i],
+            "size" => $_FILES['files']['size'][$i],
+            "link" => $config['upload_path'].'/'.$_FILES['file']['name'],
+          ];
+          array_push($data['img'], $temp);
+          // $this->output->set_status_header(500);
+          // $this->output->set_output(strip_tags($this->upload->display_errors()));  
+        }
+      }
+      die(json_encode($data));
+    }
+    public function removeImg() {
+      if (unlink($this->input->post('imgLink'))) {
+        die(json_encode(['status' => 'success']));
+      } else {
+        die(json_encode(['status' => 'failed']));
+      }
+    }
+    // Upload Img ============
     
+    // Private function ============
     private function datatableAssets() {
       $js = [
         base_url('assets/admin/plugins/datatables/jquery.dataTables.min.js'),
@@ -316,6 +503,7 @@
 
       return $data;
     }
+    // Private function ============
     /////////////////////////////////// END OF FUNCT ///////////////////////////////////////
   }
 ?>

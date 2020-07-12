@@ -141,6 +141,10 @@
                                     <li><a href="<?= site_url('admin/kategoriProduct')?>">Kategori Product</a></li>
                                 </ul>
                             </li>
+
+                            <li>
+                                <a class="<?= (isset($active) && $active=='product') ? 'active':''?>" href="<?= site_url('admin/product')?>"><i class="ti-user"></i>Product</a>
+                            </li>
                             
                         </ul>
                         <!-- End navigation menu -->

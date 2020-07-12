@@ -18,6 +18,14 @@
               <span class="help-block text-danger" id="errors-kategori"></span>
             </div>
           </div>
+          <div class="form-group" id="satuan-harga">
+            <label class="control-label">Satuan Harga</label>
+            <div class="controls">
+              <input class="form-control" type="text" name="satuan_harga" placeholder="Masukkan Satuan Harga"
+                id="val-satuan">
+              <span class="help-block text-danger" id="errors-satuan"></span>
+            </div>
+          </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -38,7 +46,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
   $('.modal-kategori').on('shown.bs.modal', function () {
-    $(this).find('input[type!=hidden]').focus();
+    $(this).find('input[type!=hidden]:first').focus();
   })
 
   // Add Kategori
@@ -62,8 +70,8 @@ $(document).ready(function() {
   // Delete Kategori
   $('.btn-delete').click(function(e) {
     e.preventDefault();
-    var url = '<?= site_url('admin/deleteKategori')?>';
-    var id = $(this).data('id');
+    let url = '<?= site_url('admin/deleteKategori')?>';
+    let id = $(this).data('id');
     swal({
       title: 'Are you sure want to delete?',
       type: 'warning',
@@ -112,6 +120,8 @@ $(document).ready(function() {
       beforeSend: function() {
         $("#errors-kategori").html("");
         $("#nama-kategori").removeClass("has-error");
+        $("#errors-satuan").html("");
+        $("#satuan-harga").removeClass("has-error");
         $form.parents('.modal').addClass('loading');
       },
       success: function(res) {
@@ -132,6 +142,9 @@ $(document).ready(function() {
             if (data.message.kategori) {
               $("#errors-kategori").html(data.message.kategori);
               $("#nama-kategori").addClass("has-error");
+            } else if (data.message.satuan_harga) {
+              $("#errors-satuan").html(data.message.satuan_harga);
+              $("#satuan-harga").addClass("has-error");
             }
           }
         } catch (error) {
@@ -156,15 +169,18 @@ $(document).ready(function() {
       $('.modal-kategori').find('.modal-title:first').text(title);
       $('#val-id').val('').attr('disabled', true);
       $('#val-kategori').val('');
+      $('#val-satuan').val('');
       $('.modal-kategori').find('.submit-form').data('type', 'add');
     } else if (type == 'edit') {
       let title = 'Edit Data';
       let kategori = $(this).data('kategori');
+      let satuan = $(this).data('satuan');
       let id = $(this).data('id');
 
       $('.modal-kategori').find('.modal-title:first').text(title);
       $('#val-id').val(id).attr('disabled', false);
       $('#val-kategori').val(kategori);
+      $('#val-satuan').val(satuan);
       $('.modal-kategori').find('.submit-form').data('type', 'edit');
     }
     $('.modal-kategori').modal('show');

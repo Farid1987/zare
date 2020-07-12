@@ -8,6 +8,7 @@
             <tr>
               <th width="10">No</th>
               <th>Nama Kategori</th>
+              <th>Satuan Harga</th>
               <th width="80">Action</th>
             </tr>
           </thead>
@@ -18,6 +19,7 @@
               <tr>
                 <td><?= $i?></td>
                 <td><?= $value->nama_kategori?></td>
+                <td><?= $value->satuan_harga?></td>
                 <td>
                   <button 
                     data-toggle="tooltip"
@@ -26,6 +28,7 @@
                     data-type="edit"
                     class="btn btn-sm btn-primary btn-edit"
                     data-kategori="<?= $value->nama_kategori?>"
+                    data-satuan="<?= $value->satuan_harga?>"
                     data-id="<?= $value->id_kategori?>"
                     style=" cursor: pointer;">
                     <i class="ti-pencil-alt"></i>

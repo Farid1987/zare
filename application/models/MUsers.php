@@ -18,7 +18,7 @@ class MUsers extends CI_Model {
 	 * 	get all data user
 	 *	@return array data user
 	 */
-	public function getAllUsers(){
+	public function getAll(){
     $this->db->select('users.*, provinces.name as province_name, regencies.name as city_name');
     $this->db->from('users');
     $this->db->join('provinces', 'users.province = provinces.id', 'left');

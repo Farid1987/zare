@@ -90,11 +90,11 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-   // Delete Kategori
+   // Delete User
    $('.btn-delete').click(function(e) {
     e.preventDefault();
-    var url = '<?= site_url('admin/deleteUser')?>';
-    var id = $(this).data('id');
+    let url = '<?= site_url('admin/deleteUser')?>';
+    let id = $(this).data('id');
     swal({
       title: 'Are you sure want to delete?',
       type: 'warning',

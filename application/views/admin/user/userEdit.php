@@ -90,9 +90,9 @@ $(document).ready(function() {
   $('.js-telp').on('change', validateTelp);
 
   function validateTelp(e) {
-    var amount = $(this).val().replace(/[^\d\+]/g,'');
+    let amount = $(this).val().replace(/[^\d\+]/g,'');
     if (amount.length > 1) {
-      var arr = [...amount];
+      let arr = [...amount];
       arr = arr.filter((value, index) => {
         return !(value=='+' && index >0)
       })
