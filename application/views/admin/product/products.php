@@ -54,11 +54,12 @@
                 <td><?= $value->kategori?></td>
                 <td>
                   <a
-                    href="" 
+                    href="<?= site_url('admin/productEdit/'.$value->id_product.'')?>" 
                     class="btn btn-sm btn-primary btn-edit"
                     style=" cursor: pointer;"
                     data-toggle="tooltip"
-                    data-placement="bottom" 
+                    data-placement="bottom"
+                    data-id="<?= $value->id_product?>" 
                     title="Edit Product">
                     <i class="ti-pencil-alt"></i>
                   </a>

@@ -165,3 +165,28 @@ body {
     }
   }
 }
+
+// img preview
+.img-preview {
+  position: relative;
+  max-width: 250px;
+  margin: 0 auto;
+  img {
+    max-width: 100%;
+  }
+  &__remove {
+    position: absolute;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.45);
+    line-height: 1;
+    padding: 5px;
+    cursor: pointer;
+    right: 0;
+  }
+  &:hover {
+    .img-preview__remove {
+      background: rgba(0, 0, 0, 0.8);
+    }
+  }
+}
+

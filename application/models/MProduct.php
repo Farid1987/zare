@@ -26,11 +26,33 @@ class MProduct extends CI_Model {
   
   /**
 	 * 	get data with specific condition
-	 *	@return array data regencies
+	 *	@return array data product
 	 */
 	public function getWhere($condition) {
 		$query = $this->db->get_where('product', $condition);
 		return $query->result();
+  }
+
+  /**
+	 * 	get featured img
+	 *	@return array data product featured img
+	 */
+	public function getFeaturedImg($id) {
+    $this->db->select('product.featured_img');
+    $this->db->from('product');
+    $this->db->where(['id_product' => $id]);
+		$query = $this->db->get();
+		return $query->row();
+  }
+
+  /**
+	 * 	edit data product
+   *	@return boolean
+	 */
+	public function edit($id, $data){
+    $this->db->where('id_product', $id);                   
+    $query = $this->db->update('product', $data);
+		return $query;
   }
 
   /**

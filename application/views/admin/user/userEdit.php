@@ -23,6 +23,7 @@
             <label class="col-sm-2 col-form-label">Role</label>
             <div class="col-sm-10">
               <input class="form-control" type="text" name="role" readonly value="<?= $user->role?>" required>
+              <span class="help-block text-danger"><?php echo form_error('role'); ?></span>
             </div>
           </div>
 
@@ -30,6 +31,7 @@
             <label class="col-sm-2 col-form-label">Alamat</label>
             <div class="col-sm-10">
               <textarea name="address" rows="3" class="form-control"><?= $user->address; ?></textarea>
+              <span class="help-block text-danger"><?php echo form_error('address'); ?></span>
             </div>
           </div>
 
@@ -37,6 +39,7 @@
             <label class="col-sm-2 col-form-label">No Telp</label>
             <div class="col-sm-10">
               <input type="text" class="form-control js-telp" name="no_telp" value="<?= $user->phone; ?>">
+              <span class="help-block text-danger"><?php echo form_error('no_telp'); ?></span>
             </div>
           </div>
 
@@ -44,6 +47,7 @@
             <label class="col-sm-2 col-form-label">Kode Pos</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" name="kode_pos" value="<?= $user->zip_code; ?>">
+              <span class="help-block text-danger"><?php echo form_error('kode_pos'); ?></span>
             </div>
           </div>
 
@@ -58,6 +62,7 @@
                 <?php }
                 } ?>
               </select>
+              <span class="help-block text-danger"><?php echo form_error('provinsi'); ?></span>
             </div>
           </div>
 
@@ -67,6 +72,7 @@
               <select name="kota" class="form-control select2 js-kota" data-placeholder="Pilih Kota">
                 <option value=""></option>
               </select>
+              <span class="help-block text-danger"><?php echo form_error('kota'); ?></span>
             </div>
           </div>
         </div>

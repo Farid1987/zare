@@ -41,7 +41,6 @@
 
       $this->template->load('admin/tempAdmin', 'admin/user/users', $this->data);
     }
-
     public function userAdd() {
       $this->load->model('MProvinces');
 
@@ -60,7 +59,6 @@
 
       $this->template->load('admin/tempAdmin', 'admin/user/userAdd', $this->data);
     }
-
     public function userEdit($idUser) {
       $this->load->model('MUsers');
       
@@ -128,10 +126,10 @@
 
       $this->template->load('admin/tempAdmin', 'admin/product/products', $this->data);
     }
-
     public function productAdd() {
       $this->load->model('MProductKategori');
 
+      $this->data['active'] = "product";
       $this->data['breadcrumb'] = [
         ['Product', site_url('admin/product')],
         ['Add Product', site_url('admin/productAdd')]
@@ -147,6 +145,40 @@
       $this->data['allKategori'] = $this->MProductKategori->getAll();
 
       $this->template->load('admin/tempAdmin', 'admin/product/productAdd', $this->data);
+    }
+    public function productEdit($idProduct) {
+      $this->load->model('MProduct');
+      
+      $condition = array('id_product' => $idProduct);
+      $result = $this->MProduct->getWhere($condition);
+      
+      if (count($result) > 0) {
+        $this->load->model('MProductImages');
+        $this->load->model('MProductKategori');
+
+        $this->data['product'] = $result[0];
+        $this->data['productGallery'] = $this->MProductImages->getWhere($condition);
+        $this->data['allKategori'] = $this->MProductKategori->getAll();
+        $this->data['active'] = 'product';
+        $this->data['breadcrumb'] = [
+          ['Product', site_url('admin/product')],
+          ['Edit Product', site_url('admin/productEdit')]
+        ];
+        $this->data['js_to_load'] = [
+          base_url('assets/admin/js/accounting.min.js'),
+          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+        ];
+        $this->data['css_to_load'] = [
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+        ];
+
+        $this->template->load('admin/tempAdmin', 'admin/product/productEdit', $this->data);
+      } else {
+        $this->session->set_flashdata('status', 'warning');
+        $this->session->set_flashdata('message', 'Product not found. Please check your database.');
+        redirect('admin/product');
+      }
     }
 
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
@@ -201,7 +233,6 @@
         $this->template->load('admin/tempAdmin', 'admin/user/userAdd', $this->data);
       }
     }
-    
     public function editUser($idUser) {
       $this->form_validation->set_rules('fullname', 'Nama Lengkap', 'required');
       $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -248,7 +279,6 @@
         $this->template->load('admin/tempAdmin', 'admin/user/userEdit', $this->data);
       }
     }
-
     public function deleteUser() {
       $this->load->model('MUsers');
 
@@ -292,7 +322,6 @@
         die(json_encode($data));
       }
     }
-
     public function editKategori() {
       $this->form_validation->set_rules('kategori', 'Kategori', 'required');
       $this->form_validation->set_rules('satuan_harga', 'Satuan Harga', 'required');
@@ -317,7 +346,6 @@
         die(json_encode($data));
       }
     }
-
     public function deleteKategori() {
       $this->load->model('MProductKategori');
 
@@ -416,7 +444,100 @@
         $this->template->load('admin/tempAdmin', 'admin/product/productAdd', $this->data);
       }
     }
+    public function editProduct($idProduct) {
+      $this->form_validation->set_rules('nama_product', 'Nama Product', 'required');
+      $this->form_validation->set_rules('kategori_product', 'Kategori Product', 'required');
+      $this->form_validation->set_rules('short_desc', 'Short Description', 'required');
+      $this->form_validation->set_rules('desc', 'Description', 'required');
+      $this->form_validation->set_rules('stock', 'Stock', 'required');
+      $this->form_validation->set_rules('price', 'Price', 'required');
+      if (!$this->input->post('featured_img_old')) {
+        $this->form_validation->set_rules('featured_img_new', 'Featured Image', 'required');
+      }
 
+      if ($this->form_validation->run()) {
+        $this->load->model('MProduct');
+        $this->load->model('MProductImages');
+
+        $featuredImg = ($this->input->post('featured_img_old')) ? $this->input->post('featured_img_old'):$this->input->post('featured_img_new');
+        $dataEdit = array(
+          'nama_product' => $this->input->post('nama_product'),
+          'id_kategori' => $this->input->post('kategori_product'),
+          'stock' => $this->input->post('stock'),
+          'featured_img' => $featuredImg,
+          'short_description' => $this->input->post('short_desc'),
+          'description' => $this->input->post('desc'),
+          'price' => str_replace('.','',$this->input->post('price')),
+        );
+        $oldFeaturedImg = $this->MProduct->getFeaturedImg($idProduct);
+
+        $updateProduct = $this->MProduct->edit($idProduct, $dataEdit);
+        if ($updateProduct) {
+          if (!$this->input->post('featured_img_old')) unlink($oldFeaturedImg->featured_img);
+
+          $deletedGallery = $this->input->post('deletedGallery[]');
+          if (count($deletedGallery) > 0) {
+            foreach ($deletedGallery as $idGallery) {
+              $urlImg = $this->MProductImages->getUrlImg($idGallery);
+              unlink($urlImg->url);
+
+              $dataDelete = array(
+                'id_product_images' => $idGallery,
+                'id_product' => $idProduct
+              );
+              $this->MProductImages->delete($dataDelete);
+            }
+          }
+
+          $gallery = $this->input->post('gallery[]');
+          if (count($gallery) > 0) {
+            foreach ($gallery as $link) {
+              $dataInsertImg = array(
+                'id_product' => $idProduct,
+                'url' => $link,
+              );
+              $insertImg = $this->MProductImages->add($dataInsertImg);
+            }
+          }
+        }
+        
+        if ($updateProduct) {
+          $this->session->set_flashdata('status', 'success');
+          $this->session->set_flashdata('message', 'Update Product success!');
+        } else {
+          $this->session->set_flashdata('status', 'error');
+          $this->session->set_flashdata('message', 'Update Product failed!');
+        }
+
+        redirect(site_url('admin/product'));
+      } else {
+        $this->load->model('MProduct');
+        $this->load->model('MProductImages');
+        $this->load->model('MProductKategori');
+      
+        $condition = array('id_product' => $idProduct);
+        $result = $this->MProduct->getWhere($condition);
+        
+        $this->data['product'] = $result[0];
+        $this->data['productGallery'] = $this->MProductImages->getWhere($condition);
+        $this->data['allKategori'] = $this->MProductKategori->getAll();
+        $this->data['active'] = 'product';
+        $this->data['breadcrumb'] = [
+          ['Product', site_url('admin/product')],
+          ['Edit Product', site_url('admin/productEdit')]
+        ];
+        $this->data['js_to_load'] = [
+          base_url('assets/admin/js/accounting.min.js'),
+          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+        ];
+        $this->data['css_to_load'] = [
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+        ];
+
+        $this->template->load('admin/tempAdmin', 'admin/product/productEdit', $this->data);
+      }
+    }
     public function deleteProduct() {
       $this->load->model('MProduct');
       $this->load->model('MProductImages');
