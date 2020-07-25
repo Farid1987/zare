@@ -190,3 +190,19 @@ body {
   }
 }
 
+// bs datetimepicker
+.bootstrap-datetimepicker-widget {
+  .datepicker {
+    padding: 0;
+    border: none;
+  }
+  .table-sm td {
+    padding: 0.3rem;
+  }
+  &.dropdown-menu {
+    padding: 10px 20px;
+    &.timepicker-sbs {
+      width: 30em;
+    }
+  }
+}

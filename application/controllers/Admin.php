@@ -181,6 +181,67 @@
       }
     }
 
+    public function typeProject() {
+      $this->load->model('MTypeProject');
+
+      $this->data['typeProject'] = $this->MTypeProject->getAll();
+      $this->data['active'] = "masterdata";
+      $this->data['breadcrumb'] = [
+        ['Master Data', '#'],
+        ['Type Project', site_url('admin/typeProject')]
+      ];
+      $this->data['js_to_load'] = array_merge($this->datatableAssets()['js'], [
+        base_url('assets/admin/plugins/sweet-alert2/sweetalert2.min.js'),
+      ]);
+      $this->data['css_to_load'] = array_merge($this->datatableAssets()['css'], [
+        base_url('assets/admin/plugins/sweet-alert2/sweetalert2.min.css'),
+      ]);
+
+      $this->template->load('admin/tempAdmin', 'admin/datamaster/master_typeProject', $this->data);
+    }
+
+    public function event() {
+      $this->load->model('MEvent');
+      
+      $this->data['events'] = $this->MEvent->getAll();
+      $this->data['active'] = "event";
+      $this->data['breadcrumb'] = [
+        ['Event', site_url('admin/event')]
+      ];
+      $this->data['js_to_load'] = array_merge($this->datatableAssets()['js'], [
+        base_url('assets/admin/plugins/sweet-alert2/sweetalert2.min.js'),
+      ]);
+      $this->data['css_to_load'] = array_merge($this->datatableAssets()['css'], [
+        base_url('assets/admin/plugins/sweet-alert2/sweetalert2.min.css'),
+      ]);
+
+      $this->template->load('admin/tempAdmin', 'admin/event/events', $this->data);
+    }
+    public function eventAdd() {
+      $this->load->model('MTypeProject');
+
+      $this->data['active'] = "event";
+      $this->data['breadcrumb'] = [
+        ['Event', site_url('admin/event')],
+        ['Add Event', site_url('admin/eventAdd')]
+      ];
+      $this->data['js_to_load'] = [
+        base_url('assets/admin/js/accounting.min.js'),
+        base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+        base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+        base_url('assets/admin/plugins/bootstrap-datetimepicker/moment.js'),
+        base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.js'),
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+        base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.css'),
+        'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css'
+      ];
+      $this->data['allType'] = $this->MTypeProject->getAll();
+
+      $this->template->load('admin/tempAdmin', 'admin/event/eventAdd', $this->data);
+    }
+
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
 
     ////////////////////////////////////// FUNCT ///////////////////////////////////////////
@@ -364,6 +425,67 @@
       }
     }
     // Kategori Product ============
+
+    // Type Project ============
+    public function addTypeProject() {
+      $this->form_validation->set_rules('type', 'Type Project', 'required');
+
+      if ($this->form_validation->run()) {
+        $this->load->model('MTypeProject');
+
+        $typeProject = $this->input->post('type');
+        $dataInsert = array(
+          'type_project' => $typeProject
+        );
+        
+        $this->MTypeProject->add($dataInsert);
+        $data['status'] = 'success';
+        die(json_encode($data));
+      } else {
+        $data['status'] = 'error';
+        $data['message'] = $this->form_validation->error_array();
+        die(json_encode($data));
+      }
+    }
+    public function editTypeProject() {
+      $this->form_validation->set_rules('type', 'Type Project', 'required');
+
+      if ($this->form_validation->run()) {
+        $this->load->model('MTypeProject');
+
+        $typeProject = $this->input->post('type');
+        $id = $this->input->post('id_type_project');
+        $dataUpdate = array(
+          'type_project' => $typeProject
+        );
+        
+        $this->MTypeProject->edit($id, $dataUpdate);
+        $data['status'] = 'success';
+        die(json_encode($data));
+      } else {
+        $data['status'] = 'error';
+        $data['message'] = $this->form_validation->error_array();
+        die(json_encode($data));
+      }
+    }
+    public function deleteTypeProject() {
+      $this->load->model('MTypeProject');
+
+      $id_type_project = $this->input->post('id');
+      $dataDelete = array('id_type_project' => $id_type_project);
+
+      $res = $this->MTypeProject->delete($dataDelete);
+      if ($res) {
+        $data['status'] = 'success';
+        $data['message'] = 'Delete kategori product success!';
+        die(json_encode($data));
+      }else{
+        $data['status'] = 'error';
+        $data['message'] = 'Delete kategori product Failed!';
+        die(json_encode($data));
+      }
+    }
+    // Type Project ============
 
     // Regencies/city ============
     public function getRegencies() {
@@ -566,9 +688,97 @@
     }
     // Product ============
 
+    // Event ============
+    public function addEvent() {
+      $this->form_validation->set_rules('title', 'Title', 'required');
+      $this->form_validation->set_rules('type_project', 'Event Type', 'required');
+      $this->form_validation->set_rules('deadline', 'Deadline', 'required');
+      $this->form_validation->set_rules('start_regis', 'Start Registration', 'required');
+      $this->form_validation->set_rules('end_regis', 'End Registration', 'required');
+      $this->form_validation->set_rules('short_desc', 'Short Description', 'required');
+      $this->form_validation->set_rules('desc', 'Description', 'required');
+      $this->form_validation->set_rules('note', 'Notes', 'required');
+      $this->form_validation->set_rules('location', 'Location', 'required');
+      $this->form_validation->set_rules('long', 'Longitude', 'required');
+      $this->form_validation->set_rules('lat', 'Latitude', 'required');
+      $this->form_validation->set_rules('price', 'Price', 'required');
+      $this->form_validation->set_rules('featured_img', 'Featured Image', 'required');
+      if ($this->form_validation->run()) {
+        $this->load->model('MEvent');
+        $this->load->model('MEventPhotos');
+
+        $dataInsert = array(
+          'title' => $this->input->post('title'),
+          'id_type_project' => $this->input->post('type_project'),
+          'featured_img' => $this->input->post('featured_img'),
+          'deadline' => $this->input->post('deadline'),
+          'start_registration' => $this->input->post('start_regis'),
+          'finish_registration' => $this->input->post('end_regis'),
+          'short_description' => $this->input->post('short_desc'),
+          'description' => $this->input->post('desc'),
+          'note' => $this->input->post('note'),
+          'price' => str_replace('.','',$this->input->post('price')),
+          'location' => $this->input->post('location'),
+          'latitude' => $this->input->post('lat'),
+          'longitude' => $this->input->post('long'),
+          'registration_link' => $this->input->post('regis_link'),
+          'status' => $this->input->post('status'),
+        );
+        
+        $insertEvent = $this->MEvent->add($dataInsert);
+        if ($insertEvent) {
+          $last_id = $this->db->insert_id();
+          $gallery = $this->input->post('gallery[]');
+          if (count($gallery) > 0) {
+            foreach ($gallery as $link) {
+              $dataInsertImg = array(
+                'id_event' => $last_id,
+                'url' => $link,
+              );
+              $insertImg = $this->MEventPhotos->add($dataInsertImg);
+            }
+          }
+        }
+        
+        if ($insertEvent) {
+          $this->session->set_flashdata('status', 'success');
+          $this->session->set_flashdata('message', 'Add Event success!');
+        } else {
+          $this->session->set_flashdata('status', 'error');
+          $this->session->set_flashdata('message', 'Add Event failed!');
+        }
+
+        redirect(site_url('admin/event'));
+      } else {
+        $this->load->model('MTypeProject');
+
+        $this->data['active'] = "event";
+        $this->data['breadcrumb'] = [
+          ['Event', site_url('admin/event')],
+          ['Add Event', site_url('admin/eventAdd')]
+        ];
+        $this->data['js_to_load'] = [
+          base_url('assets/admin/js/accounting.min.js'),
+          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/moment.js'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.js'),
+        ];
+        $this->data['css_to_load'] = [
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.css'),
+          'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css'
+        ];
+        $this->data['allType'] = $this->MTypeProject->getAll();
+
+        $this->template->load('admin/tempAdmin', 'admin/event/eventAdd', $this->data);
+      }
+    }
+    // Event ============
+
     // Upload Img ============
     public function uploadImg() {
-      $config['upload_path'] = 'assets/upload/product';
+      $config['upload_path'] = 'assets/upload';
       $config['allowed_types'] = 'gif|jpg|png|jpeg|bmp';
       $countFile = count($_FILES['files']['name']);
       

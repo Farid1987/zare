@@ -131,19 +131,24 @@
                                 <a class="<?= (isset($active) && $active=='dashboard') ? 'active':''?>" href="<?= site_url('admin')?>"><i class="ti-home"></i>Dashboard</a>
                             </li>
 
-                            <li>
-                                <a class="<?= (isset($active) && $active=='users') ? 'active':''?>" href="<?= site_url('admin/users')?>"><i class="ti-user"></i>Users</a>
-                            </li>
-
                             <li class="has-submenu <?= (isset($active) && $active=='masterdata') ? 'active':''?>">
                                 <a href="#"><i class="ti-server"></i>Master Data</a>
                                 <ul class="submenu">
                                     <li><a href="<?= site_url('admin/kategoriProduct')?>">Kategori Product</a></li>
+                                    <li><a href="<?= site_url('admin/typeProject')?>">Type Project</a></li>
                                 </ul>
                             </li>
 
                             <li>
-                                <a class="<?= (isset($active) && $active=='product') ? 'active':''?>" href="<?= site_url('admin/product')?>"><i class="ti-user"></i>Product</a>
+                                <a class="<?= (isset($active) && $active=='users') ? 'active':''?>" href="<?= site_url('admin/users')?>"><i class="ti-user"></i>Users</a>
+                            </li>
+
+                            <li>
+                                <a class="<?= (isset($active) && $active=='product') ? 'active':''?>" href="<?= site_url('admin/product')?>"><i class="ti-package"></i>Product</a>
+                            </li>
+
+                            <li>
+                                <a class="<?= (isset($active) && $active=='event') ? 'active':''?>" href="<?= site_url('admin/event')?>"><i class="ti-map-alt"></i>Event</a>
                             </li>
                             
                         </ul>
