@@ -42,52 +42,10 @@
       $this->template->load('admin/tempAdmin', 'admin/user/users', $this->data);
     }
     public function userAdd() {
-      $this->load->model('MProvinces');
-
-      $this->data['active'] = "users";
-      $this->data['breadcrumb'] = [
-        ['Users', site_url('admin/users')],
-        ['Add Users', '#']
-      ];
-      $this->data['provinces'] = $this->MProvinces->getAll();
-      $this->data['js_to_load'] = [
-        base_url('assets/admin/js/select2.full.min.js'),
-      ];
-      $this->data['css_to_load'] = [
-        base_url('assets/admin/css/select2.min.css'),
-      ];
-
-      $this->template->load('admin/tempAdmin', 'admin/user/userAdd', $this->data);
+      $this->loadUserAddView();
     }
     public function userEdit($idUser) {
-      $this->load->model('MUsers');
-      
-      $condition = array('id_user' => $idUser);
-      $result = $this->MUsers->getWhere($condition);
-      
-      if (count($result) > 0) {
-        $this->load->model('MProvinces');
-
-        $this->data['active'] = "users";
-        $this->data['breadcrumb'] = [
-          ['Users', site_url('admin/users')],
-          ['Edit Users', '#']
-        ];
-        $this->data['user'] = $result[0];
-        $this->data['provinces'] = $this->MProvinces->getAll();
-        $this->data['js_to_load'] = [
-          base_url('assets/admin/js/select2.full.min.js'),
-        ];
-        $this->data['css_to_load'] = [
-          base_url('assets/admin/css/select2.min.css'),
-        ];
-
-        $this->template->load('admin/tempAdmin', 'admin/user/userEdit', $this->data);
-      } else {
-        $this->session->set_flashdata('status', 'warning');
-        $this->session->set_flashdata('message', 'User not found. Please check your database.');
-        redirect('admin/users');
-      }
+      $this->loadUserEditView($idUser);
     }
 
     public function kategoriProduct() {
@@ -127,58 +85,10 @@
       $this->template->load('admin/tempAdmin', 'admin/product/products', $this->data);
     }
     public function productAdd() {
-      $this->load->model('MProductKategori');
-
-      $this->data['active'] = "product";
-      $this->data['breadcrumb'] = [
-        ['Product', site_url('admin/product')],
-        ['Add Product', site_url('admin/productAdd')]
-      ];
-      $this->data['js_to_load'] = [
-        base_url('assets/admin/js/accounting.min.js'),
-        base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
-        base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
-      ];
-      $this->data['css_to_load'] = [
-        base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
-      ];
-      $this->data['allKategori'] = $this->MProductKategori->getAll();
-
-      $this->template->load('admin/tempAdmin', 'admin/product/productAdd', $this->data);
+      $this->loadProductAddView();
     }
     public function productEdit($idProduct) {
-      $this->load->model('MProduct');
-      
-      $condition = array('id_product' => $idProduct);
-      $result = $this->MProduct->getWhere($condition);
-      
-      if (count($result) > 0) {
-        $this->load->model('MProductImages');
-        $this->load->model('MProductKategori');
-
-        $this->data['product'] = $result[0];
-        $this->data['productGallery'] = $this->MProductImages->getWhere($condition);
-        $this->data['allKategori'] = $this->MProductKategori->getAll();
-        $this->data['active'] = 'product';
-        $this->data['breadcrumb'] = [
-          ['Product', site_url('admin/product')],
-          ['Edit Product', site_url('admin/productEdit')]
-        ];
-        $this->data['js_to_load'] = [
-          base_url('assets/admin/js/accounting.min.js'),
-          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
-        ];
-        $this->data['css_to_load'] = [
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
-        ];
-
-        $this->template->load('admin/tempAdmin', 'admin/product/productEdit', $this->data);
-      } else {
-        $this->session->set_flashdata('status', 'warning');
-        $this->session->set_flashdata('message', 'Product not found. Please check your database.');
-        redirect('admin/product');
-      }
+      $this->loadProductEditView($idProduct);
     }
 
     public function typeProject() {
@@ -218,65 +128,10 @@
       $this->template->load('admin/tempAdmin', 'admin/event/events', $this->data);
     }
     public function eventAdd() {
-      $this->load->model('MTypeProject');
-
-      $this->data['active'] = "event";
-      $this->data['breadcrumb'] = [
-        ['Event', site_url('admin/event')],
-        ['Add Event', site_url('admin/eventAdd')]
-      ];
-      $this->data['js_to_load'] = [
-        base_url('assets/admin/js/accounting.min.js'),
-        base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
-        base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
-        base_url('assets/admin/plugins/bootstrap-datetimepicker/moment.js'),
-        base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.js'),
-      ];
-      $this->data['css_to_load'] = [
-        base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
-        base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.css'),
-      ];
-      $this->data['allType'] = $this->MTypeProject->getAll();
-
-      $this->template->load('admin/tempAdmin', 'admin/event/eventAdd', $this->data);
+      $this->loadEventAddView();
     }
     public function eventEdit($idEvent) {
-      $this->load->model('MEvent');
-      
-      $condition = array('id_event' => $idEvent);
-      $result = $this->MEvent->getWhere($condition);
-
-      if (count($result) > 0) {
-        $this->load->model('MEventPhotos');
-        $this->load->model('MTypeProject');
-
-        $this->data['event'] = $result[0];
-        $this->data['eventPhotos'] = $this->MEventPhotos->getWhere($condition);
-        $this->data['allType'] = $this->MTypeProject->getAll();
-        $this->data['eventStatus'] = EVENT_STATUS;
-        $this->data['active'] = 'event';
-        $this->data['breadcrumb'] = [
-          ['Event', site_url('admin/event')],
-          ['Edit Event', site_url('admin/eventEdit')]
-        ];
-        $this->data['js_to_load'] = [
-          base_url('assets/admin/js/accounting.min.js'),
-          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
-          base_url('assets/admin/plugins/bootstrap-datetimepicker/moment.js'),
-          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.js'),
-        ];
-        $this->data['css_to_load'] = [
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
-          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.css'),
-        ];
-
-        $this->template->load('admin/tempAdmin', 'admin/event/eventEdit', $this->data);
-      } else {
-        $this->session->set_flashdata('status', 'warning');
-        $this->session->set_flashdata('message', 'Event not found. Please check your database.');
-        redirect('admin/event');
-      }
+      $this->loadEventEditView($idEvent);
     }
 
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
@@ -314,21 +169,7 @@
         }
         redirect(site_url('admin/users'));
       } else {
-        $this->load->model('MProvinces');
-
-        $this->data['active'] = "users";
-        $this->data['breadcrumb'] = [
-          ['Users', site_url('admin/users')],
-          ['Add Users', '#']
-        ];
-        $this->data['provinces'] = $this->MProvinces->getAll();
-        $this->data['js_to_load'] = [
-          base_url('assets/admin/js/select2.full.min.js'),
-        ];
-        $this->data['css_to_load'] = [
-          base_url('assets/admin/css/select2.min.css'),
-        ];
-        $this->template->load('admin/tempAdmin', 'admin/user/userAdd', $this->data);
+        $this->loadUserAddView();
       }
     }
     public function editUser($idUser) {
@@ -356,25 +197,7 @@
         }
         redirect(site_url('admin/users'));
       } else {
-        $this->load->model('MProvinces');
-      
-        $condition = array('id_user' => $idUser);
-        $result = $this->MUsers->getWhere($condition);
-
-        $this->data['active'] = "users";
-        $this->data['breadcrumb'] = [
-          ['Users', site_url('admin/users')],
-          ['Add Users', '#']
-        ];
-        $this->data['user'] = $result[0];
-        $this->data['provinces'] = $this->MProvinces->getAll();
-        $this->data['js_to_load'] = [
-          base_url('assets/admin/js/select2.full.min.js'),
-        ];
-        $this->data['css_to_load'] = [
-          base_url('assets/admin/css/select2.min.css'),
-        ];
-        $this->template->load('admin/tempAdmin', 'admin/user/userEdit', $this->data);
+        $this->loadUserEditView($idUser);
       }
     }
     public function deleteUser() {
@@ -584,23 +407,7 @@
 
         redirect(site_url('admin/product'));
       } else {
-        $this->load->model('MProductKategori');
-
-        $this->data['breadcrumb'] = [
-          ['Product', site_url('admin/product')],
-          ['Add Product', site_url('admin/productAdd')]
-        ];
-        $this->data['js_to_load'] = [
-          base_url('assets/admin/js/accounting.min.js'),
-          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
-        ];
-        $this->data['css_to_load'] = [
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
-        ];
-        $this->data['allKategori'] = $this->MProductKategori->getAll();
-  
-        $this->template->load('admin/tempAdmin', 'admin/product/productAdd', $this->data);
+        $this->loadProductAddView();
       }
     }
     public function editProduct($idProduct) {
@@ -670,31 +477,7 @@
 
         redirect(site_url('admin/product'));
       } else {
-        $this->load->model('MProduct');
-        $this->load->model('MProductImages');
-        $this->load->model('MProductKategori');
-      
-        $condition = array('id_product' => $idProduct);
-        $result = $this->MProduct->getWhere($condition);
-        
-        $this->data['product'] = $result[0];
-        $this->data['productGallery'] = $this->MProductImages->getWhere($condition);
-        $this->data['allKategori'] = $this->MProductKategori->getAll();
-        $this->data['active'] = 'product';
-        $this->data['breadcrumb'] = [
-          ['Product', site_url('admin/product')],
-          ['Edit Product', site_url('admin/productEdit')]
-        ];
-        $this->data['js_to_load'] = [
-          base_url('assets/admin/js/accounting.min.js'),
-          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
-        ];
-        $this->data['css_to_load'] = [
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
-        ];
-
-        $this->template->load('admin/tempAdmin', 'admin/product/productEdit', $this->data);
+        $this->loadProductEditView($idProduct);
       }
     }
     public function deleteProduct() {
@@ -787,28 +570,7 @@
 
         redirect(site_url('admin/event'));
       } else {
-        $this->load->model('MTypeProject');
-
-        $this->data['active'] = "event";
-        $this->data['breadcrumb'] = [
-          ['Event', site_url('admin/event')],
-          ['Add Event', site_url('admin/eventAdd')]
-        ];
-        $this->data['js_to_load'] = [
-          base_url('assets/admin/js/accounting.min.js'),
-          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
-          base_url('assets/admin/plugins/bootstrap-datetimepicker/moment.js'),
-          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.js'),
-        ];
-        $this->data['css_to_load'] = [
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
-          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.css'),
-          'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css'
-        ];
-        $this->data['allType'] = $this->MTypeProject->getAll();
-
-        $this->template->load('admin/tempAdmin', 'admin/event/eventAdd', $this->data);
+        $this->loadEventAddView();
       }
     }
     public function editEvent($idEvent) {
@@ -892,36 +654,7 @@
 
         redirect(site_url('admin/event'));
       } else {
-        $this->load->model('MEvent');
-      
-        $condition = array('id_event' => $idEvent);
-        $result = $this->MEvent->getWhere($condition);
-
-        $this->load->model('MEventPhotos');
-        $this->load->model('MTypeProject');
-
-        $this->data['event'] = $result[0];
-        $this->data['eventPhotos'] = $this->MEventPhotos->getWhere($condition);
-        $this->data['allType'] = $this->MTypeProject->getAll();
-        $this->data['eventStatus'] = EVENT_STATUS;
-        $this->data['active'] = 'event';
-        $this->data['breadcrumb'] = [
-          ['Event', site_url('admin/event')],
-          ['Edit Event', site_url('admin/eventEdit')]
-        ];
-        $this->data['js_to_load'] = [
-          base_url('assets/admin/js/accounting.min.js'),
-          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
-          base_url('assets/admin/plugins/bootstrap-datetimepicker/moment.js'),
-          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.js'),
-        ];
-        $this->data['css_to_load'] = [
-          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
-          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.css'),
-        ];
-
-        $this->template->load('admin/tempAdmin', 'admin/event/eventEdit', $this->data);
+        $this->loadEventEditView($idEvent);
       }
     }
     public function deleteEvent() {
@@ -1009,6 +742,172 @@
       $data = array('js' => $js, 'css' => $css);
 
       return $data;
+    }
+
+    private function loadUserAddView() {
+      $this->load->model('MProvinces');
+
+      $this->data['active'] = "users";
+      $this->data['breadcrumb'] = [
+        ['Users', site_url('admin/users')],
+        ['Add Users', '#']
+      ];
+      $this->data['provinces'] = $this->MProvinces->getAll();
+      $this->data['js_to_load'] = [
+        base_url('assets/admin/js/select2.full.min.js'),
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/admin/css/select2.min.css'),
+      ];
+
+      $this->template->load('admin/tempAdmin', 'admin/user/userAdd', $this->data);
+    }
+    private function loadUserEditView($idUser) {
+      $this->load->model('MUsers');
+      
+      $condition = array('id_user' => $idUser);
+      $result = $this->MUsers->getWhere($condition);
+      
+      if (count($result) > 0) {
+        $this->load->model('MProvinces');
+
+        $this->data['active'] = "users";
+        $this->data['breadcrumb'] = [
+          ['Users', site_url('admin/users')],
+          ['Edit Users', '#']
+        ];
+        $this->data['user'] = $result[0];
+        $this->data['provinces'] = $this->MProvinces->getAll();
+        $this->data['js_to_load'] = [
+          base_url('assets/admin/js/select2.full.min.js'),
+        ];
+        $this->data['css_to_load'] = [
+          base_url('assets/admin/css/select2.min.css'),
+        ];
+
+        $this->template->load('admin/tempAdmin', 'admin/user/userEdit', $this->data);
+      } else {
+        $this->session->set_flashdata('status', 'warning');
+        $this->session->set_flashdata('message', 'User not found. Please check your database.');
+        redirect('admin/users');
+      }
+    }
+
+    private function loadProductAddView() {
+      $this->load->model('MProductKategori');
+
+      $this->data['active'] = "product";
+      $this->data['breadcrumb'] = [
+        ['Product', site_url('admin/product')],
+        ['Add Product', site_url('admin/productAdd')]
+      ];
+      $this->data['js_to_load'] = [
+        base_url('assets/admin/js/accounting.min.js'),
+        base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+        base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+      ];
+      $this->data['allKategori'] = $this->MProductKategori->getAll();
+
+      $this->template->load('admin/tempAdmin', 'admin/product/productAdd', $this->data);
+    }
+    private function loadProductEditView($idProduct) {
+      $this->load->model('MProduct');
+      
+      $condition = array('id_product' => $idProduct);
+      $result = $this->MProduct->getWhere($condition);
+      
+      if (count($result) > 0) {
+        $this->load->model('MProductImages');
+        $this->load->model('MProductKategori');
+
+        $this->data['product'] = $result[0];
+        $this->data['productGallery'] = $this->MProductImages->getWhere($condition);
+        $this->data['allKategori'] = $this->MProductKategori->getAll();
+        $this->data['active'] = 'product';
+        $this->data['breadcrumb'] = [
+          ['Product', site_url('admin/product')],
+          ['Edit Product', site_url('admin/productEdit')]
+        ];
+        $this->data['js_to_load'] = [
+          base_url('assets/admin/js/accounting.min.js'),
+          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+        ];
+        $this->data['css_to_load'] = [
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+        ];
+
+        $this->template->load('admin/tempAdmin', 'admin/product/productEdit', $this->data);
+      } else {
+        $this->session->set_flashdata('status', 'warning');
+        $this->session->set_flashdata('message', 'Product not found. Please check your database.');
+        redirect('admin/product');
+      }
+    }
+
+    private function loadEventAddView() {
+      $this->load->model('MTypeProject');
+
+      $this->data['active'] = "event";
+      $this->data['breadcrumb'] = [
+        ['Event', site_url('admin/event')],
+        ['Add Event', site_url('admin/eventAdd')]
+      ];
+      $this->data['js_to_load'] = [
+        base_url('assets/admin/js/accounting.min.js'),
+        base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+        base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+        base_url('assets/admin/plugins/bootstrap-datetimepicker/moment.js'),
+        base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.js'),
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+        base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.css'),
+      ];
+      $this->data['allType'] = $this->MTypeProject->getAll();
+
+      $this->template->load('admin/tempAdmin', 'admin/event/eventAdd', $this->data);
+    }
+    private function loadEventEditView($idEvent) {
+      $this->load->model('MEvent');
+      
+      $condition = array('id_event' => $idEvent);
+      $result = $this->MEvent->getWhere($condition);
+
+      if (count($result) > 0) {
+        $this->load->model('MEventPhotos');
+        $this->load->model('MTypeProject');
+
+        $this->data['event'] = $result[0];
+        $this->data['eventPhotos'] = $this->MEventPhotos->getWhere($condition);
+        $this->data['allType'] = $this->MTypeProject->getAll();
+        $this->data['eventStatus'] = EVENT_STATUS;
+        $this->data['active'] = 'event';
+        $this->data['breadcrumb'] = [
+          ['Event', site_url('admin/event')],
+          ['Edit Event', site_url('admin/eventEdit')]
+        ];
+        $this->data['js_to_load'] = [
+          base_url('assets/admin/js/accounting.min.js'),
+          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/moment.js'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.js'),
+        ];
+        $this->data['css_to_load'] = [
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.css'),
+        ];
+
+        $this->template->load('admin/tempAdmin', 'admin/event/eventEdit', $this->data);
+      } else {
+        $this->session->set_flashdata('status', 'warning');
+        $this->session->set_flashdata('message', 'Event not found. Please check your database.');
+        redirect('admin/event');
+      }
     }
     // Private function ============
     /////////////////////////////////// END OF FUNCT ///////////////////////////////////////
