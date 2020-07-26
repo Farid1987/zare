@@ -235,11 +235,48 @@
       $this->data['css_to_load'] = [
         base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
         base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.css'),
-        'https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css'
       ];
       $this->data['allType'] = $this->MTypeProject->getAll();
 
       $this->template->load('admin/tempAdmin', 'admin/event/eventAdd', $this->data);
+    }
+    public function eventEdit($idEvent) {
+      $this->load->model('MEvent');
+      
+      $condition = array('id_event' => $idEvent);
+      $result = $this->MEvent->getWhere($condition);
+
+      if (count($result) > 0) {
+        $this->load->model('MEventPhotos');
+        $this->load->model('MTypeProject');
+
+        $this->data['event'] = $result[0];
+        $this->data['eventPhotos'] = $this->MEventPhotos->getWhere($condition);
+        $this->data['allType'] = $this->MTypeProject->getAll();
+        $this->data['eventStatus'] = EVENT_STATUS;
+        $this->data['active'] = 'event';
+        $this->data['breadcrumb'] = [
+          ['Event', site_url('admin/event')],
+          ['Edit Event', site_url('admin/eventEdit')]
+        ];
+        $this->data['js_to_load'] = [
+          base_url('assets/admin/js/accounting.min.js'),
+          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/moment.js'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.js'),
+        ];
+        $this->data['css_to_load'] = [
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.css'),
+        ];
+
+        $this->template->load('admin/tempAdmin', 'admin/event/eventEdit', $this->data);
+      } else {
+        $this->session->set_flashdata('status', 'warning');
+        $this->session->set_flashdata('message', 'Event not found. Please check your database.');
+        redirect('admin/event');
+      }
     }
 
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
@@ -772,6 +809,145 @@
         $this->data['allType'] = $this->MTypeProject->getAll();
 
         $this->template->load('admin/tempAdmin', 'admin/event/eventAdd', $this->data);
+      }
+    }
+    public function editEvent($idEvent) {
+      $this->form_validation->set_rules('title', 'Title', 'required');
+      $this->form_validation->set_rules('type_project', 'Event Type', 'required');
+      $this->form_validation->set_rules('deadline', 'Deadline', 'required');
+      $this->form_validation->set_rules('start_regis', 'Start Registration', 'required');
+      $this->form_validation->set_rules('end_regis', 'End Registration', 'required');
+      $this->form_validation->set_rules('short_desc', 'Short Description', 'required');
+      $this->form_validation->set_rules('desc', 'Description', 'required');
+      $this->form_validation->set_rules('note', 'Notes', 'required');
+      $this->form_validation->set_rules('location', 'Location', 'required');
+      $this->form_validation->set_rules('long', 'Longitude', 'required');
+      $this->form_validation->set_rules('lat', 'Latitude', 'required');
+      $this->form_validation->set_rules('price', 'Price', 'required');
+      if (!$this->input->post('featured_img_old')) {
+        $this->form_validation->set_rules('featured_img_new', 'Featured Image', 'required');
+      }
+      
+      if ($this->form_validation->run()) {
+        $this->load->model('MEvent');
+        $this->load->model('MEventPhotos');
+
+        $featuredImg = ($this->input->post('featured_img_old')) ? $this->input->post('featured_img_old'):$this->input->post('featured_img_new');
+        $dataEdit = array(
+          'title' => $this->input->post('title'),
+          'id_type_project' => $this->input->post('type_project'),
+          'featured_img' => $featuredImg,
+          'deadline' => $this->input->post('deadline'),
+          'start_registration' => $this->input->post('start_regis'),
+          'finish_registration' => $this->input->post('end_regis'),
+          'short_description' => $this->input->post('short_desc'),
+          'description' => $this->input->post('desc'),
+          'note' => $this->input->post('note'),
+          'price' => str_replace('.','',$this->input->post('price')),
+          'location' => $this->input->post('location'),
+          'latitude' => $this->input->post('lat'),
+          'longitude' => $this->input->post('long'),
+          'registration_link' => $this->input->post('regis_link'),
+          'status' => $this->input->post('status'),
+        );
+        $oldFeaturedImg = $this->MEvent->getFeaturedImg($idEvent);
+
+        $updateEvent = $this->MEvent->edit($idEvent, $dataEdit);
+        if ($updateEvent) {
+          if (!$this->input->post('featured_img_old')) unlink($oldFeaturedImg->featured_img);
+
+          $deletedGallery = $this->input->post('deletedGallery[]');
+          if (count($deletedGallery) > 0) {
+            foreach ($deletedGallery as $idGallery) {
+              $urlImg = $this->MEventPhotos->getUrlImg($idGallery);
+              unlink($urlImg->url);
+
+              $dataDelete = array(
+                'id_event_photos' => $idGallery,
+                'id_event' => $idEvent
+              );
+              $this->MEventPhotos->delete($dataDelete);
+            }
+          }
+
+          $gallery = $this->input->post('gallery[]');
+          if (count($gallery) > 0) {
+            foreach ($gallery as $link) {
+              $dataInsertImg = array(
+                'id_event' => $idEvent,
+                'url' => $link,
+              );
+              $insertImg = $this->MEventPhotos->add($dataInsertImg);
+            }
+          }
+        }
+        
+        if ($updateEvent) {
+          $this->session->set_flashdata('status', 'success');
+          $this->session->set_flashdata('message', 'Update Event success!');
+        } else {
+          $this->session->set_flashdata('status', 'error');
+          $this->session->set_flashdata('message', 'Update Event failed!');
+        }
+
+        redirect(site_url('admin/event'));
+      } else {
+        $this->load->model('MEvent');
+      
+        $condition = array('id_event' => $idEvent);
+        $result = $this->MEvent->getWhere($condition);
+
+        $this->load->model('MEventPhotos');
+        $this->load->model('MTypeProject');
+
+        $this->data['event'] = $result[0];
+        $this->data['eventPhotos'] = $this->MEventPhotos->getWhere($condition);
+        $this->data['allType'] = $this->MTypeProject->getAll();
+        $this->data['eventStatus'] = EVENT_STATUS;
+        $this->data['active'] = 'event';
+        $this->data['breadcrumb'] = [
+          ['Event', site_url('admin/event')],
+          ['Edit Event', site_url('admin/eventEdit')]
+        ];
+        $this->data['js_to_load'] = [
+          base_url('assets/admin/js/accounting.min.js'),
+          base_url('assets/admin/plugins/ckeditor/ckeditor.js'),
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.js'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/moment.js'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.js'),
+        ];
+        $this->data['css_to_load'] = [
+          base_url('assets/admin/plugins/dropzone/dist/dropzone.css'),
+          base_url('assets/admin/plugins/bootstrap-datetimepicker/tempusdominus-bootstrap-4.min.css'),
+        ];
+
+        $this->template->load('admin/tempAdmin', 'admin/event/eventEdit', $this->data);
+      }
+    }
+    public function deleteEvent() {
+      $this->load->model('MEvent');
+      $this->load->model('MEventPhotos');
+
+      $id_event = $this->input->post('id');
+      $dataDelete = array('id_event' => $id_event);
+      $event = $this->MEvent->getWhere($dataDelete);
+      $relatedImg = $this->MEventPhotos->getWhere($dataDelete);
+
+      foreach ($relatedImg as $key => $value) {
+        unlink($value->url);
+      }
+      unlink($event[0]->featured_img);
+
+      $resImg = $this->MEventPhotos->delete($dataDelete);
+      $res = $this->MEvent->delete($dataDelete);
+      if ($res) {
+        $data['status'] = 'success';
+        $data['message'] = 'Delete event success!';
+        die(json_encode($data));
+      }else{
+        $data['status'] = 'error';
+        $data['message'] = 'Delete event Failed!';
+        die(json_encode($data));
       }
     }
     // Event ============

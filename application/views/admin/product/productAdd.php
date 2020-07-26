@@ -140,7 +140,6 @@ $(document).ready(function() {
   })
 
   Dropzone.autoDiscover = false;
-  let galleryUploaded = [];
 
   let featuredImg = new Dropzone("#featured_img", { 
     url: "<?= site_url('admin/uploadImg')?>",

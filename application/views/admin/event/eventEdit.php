@@ -1,4 +1,4 @@
-<form action="<?= site_url('admin/addEvent')?>" method="POST">
+<form action="<?= site_url('admin/editEvent/'.$event->id_event)?>" method="POST">
   <div class="row">
     <div class="col-md-8 col-12">
       <div class="card mb-4">
@@ -9,7 +9,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Event Title</label>
             <div class="col-sm-9">
-              <input class="form-control" type="text" name="title" value="<?= set_value('title'); ?>" required>
+              <input class="form-control" type="text" name="title" value="<?= $event->title ?>" required>
               <span class="help-block text-danger"><?php echo form_error('title'); ?></span>
             </div>
           </div>
@@ -19,7 +19,7 @@
             <div class="col-sm-9">
               <select name="type_project" class="form-control" required>
               <?php foreach ($allType as $type) { ?>
-                  <option value="<?= $type->id_type_project?>" ><?= $type->type_project?></option>
+                  <option value="<?= $type->id_type_project?>" <?= ($event->id_type_project == $type->id_type_project)? 'selected':''?>><?= $type->type_project?></option>
                 <?php } ?>
               </select>
               <span class="help-block text-danger"><?php echo form_error('type_project'); ?></span>
@@ -30,7 +30,7 @@
             <label class="col-sm-3 col-form-label">Deadline Event</label>
             <div class="col-sm-9">
               <div class="input-group">
-                <input name="deadline" type="text" class="form-control datetimepicker-input" value="<?= set_value('deadline'); ?>" required readonly data-toggle="datetimepicker" data-target="#deadline" id="deadline">
+                <input name="deadline" type="text" class="form-control datetimepicker-input" value="2020-08-20 02:50" required readonly data-toggle="datetimepicker" data-target="#deadline" id="deadline">
                 <div class="input-group-append bg-custom b-0"><span class="input-group-text"><i class="mdi mdi-calendar"></i></span></div>
               </div>
               <span class="help-block text-danger"><?php echo form_error('deadline'); ?></span>
@@ -56,10 +56,11 @@
               <span class="help-block text-danger"><?php echo form_error('end_regis'); ?></span>
             </div>
           </div>
+
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Registration Link (optional)</label>
             <div class="col-sm-9">
-              <input type="url" class="form-control" name="regis_link" value="<?= set_value('regis_link'); ?>">
+              <input type="url" class="form-control" name="regis_link" value="<?= $event->registration_link ?>">
               <span class="help-block text-danger"><?php echo form_error('regis_link'); ?></span>
             </div>
           </div>
@@ -67,7 +68,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Short Description</label>
             <div class="col-sm-9">
-              <textarea name="short_desc" rows="3" class="form-control" required><?= set_value('short_desc'); ?></textarea>
+              <textarea name="short_desc" rows="3" class="form-control" required><?= $event->short_description ?></textarea>
               <span class="help-block text-danger"><?php echo form_error('short_desc'); ?></span>
             </div>
           </div>
@@ -75,7 +76,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Description</label>
             <div class="col-sm-9">
-              <textarea name="desc" id="ckeditor" rows="4" class="form-control" required><?= set_value('desc'); ?></textarea>
+              <textarea name="desc" id="ckeditor" rows="4" class="form-control" required><?= $event->description ?></textarea>
               <span class="help-block text-danger"><?php echo form_error('desc'); ?></span>
             </div>
           </div>
@@ -83,7 +84,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Notes</label>
             <div class="col-sm-9">
-              <textarea name="note" rows="3" class="form-control" required><?= set_value('note'); ?></textarea>
+              <textarea name="note" rows="3" class="form-control" required><?= $event->note ?></textarea>
               <span class="help-block text-danger"><?php echo form_error('note'); ?></span>
             </div>
           </div>
@@ -91,7 +92,7 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Location</label>
             <div class="col-sm-9">
-              <textarea name="location" rows="2" class="form-control" required><?= set_value('location'); ?></textarea>
+              <textarea name="location" rows="2" class="form-control" required><?= $event->location ?></textarea>
               <span class="help-block text-danger"><?php echo form_error('location'); ?></span>
             </div>
           </div>
@@ -99,13 +100,13 @@
           <div class="form-group row">
             <label class="col-sm-3 col-form-label">Longitude</label>
             <div class="col-sm-4">
-              <input name="long" type="text" class="form-control" value="<?= set_value('long'); ?>" required>
+              <input name="long" type="text" class="form-control" value="<?= $event->longitude ?>" required>
               <span class="help-block text-danger"><?php echo form_error('long'); ?></span>
             </div>
 
             <label class="col-sm-2 col-form-label text-center">Latitude</label>
             <div class="col-sm-3">
-              <input name="lat" type="text" class="form-control" value="<?= set_value('lat'); ?>" required>
+              <input name="lat" type="text" class="form-control" value="<?= $event->latitude ?>" required>
               <span class="help-block text-danger"><?php echo form_error('lat'); ?></span>
             </div>
           </div>
@@ -115,7 +116,7 @@
             <div class="col-sm-9">
               <div class="input-group">
                 <div class="input-group-append bg-custom b-0"><span class="input-group-text" style="font-size: 14px">Rp.</span></div>
-                <input type="text" class="form-control currency-format" name="price" required value="<?= set_value('price'); ?>">
+                <input type="text" class="form-control currency-format" name="price" required value="<?= $event->price ?>">
               </div>
               <span class="help-block text-danger"><?php echo form_error('price'); ?></span>
             </div>
@@ -130,9 +131,9 @@
         </div>
         <div class="card-body">
           <select name="status" class="form-control" required>
-            <option value="process">Process</option>
-            <option value="complete">Complete</option>
-            <option value="draft">Draft</option>
+            <?php foreach ($eventStatus as $key => $value) { ?>
+              <option value="<?= $value['id']?>" <?= ($event->status == $value['id']) ? 'selected':''?>><?= $value['name']?></option>
+            <?php } ?>
           </select>
           <span class="help-block text-danger"><?php echo form_error('status'); ?></span>
         </div>
@@ -149,13 +150,20 @@
           <strong>Featured Image</strong>
         </div>
         <div class="card-body">
-          <div class="dropzone mb-1" id="featured_img">
+          <?php if ($event->featured_img) { ?>
+            <div class="img-preview" data-featured="true">
+              <span class="img-preview__remove"><i class="ti-close"></i></span>
+              <img src="<?= base_url().'/'.$event->featured_img?>" alt="">
+              <input type="hidden" value="<?= $event->featured_img?>" name="featured_img_old">
+            </div>
+          <?php } ?>
+          <div class="dropzone mb-1" id="featured_img" style="display:none">
             <div class="fallback">
               <input name="files" type="file" multiple/>
             </div>
           </div>
 
-          <span class="help-block text-danger"><?php echo form_error('featured_img'); ?></span>
+          <span class="help-block text-danger"><?php echo form_error('featured_img_new'); ?></span>
         </div>
       </div>
       <div class="card mb-4">
@@ -163,6 +171,19 @@
           <strong>Event Photos</strong>
         </div>
         <div class="card-body">
+          <?php if (count($eventPhotos) > 0) { ?>
+            <div class="row mb-3">
+              <?php for ($i=0; $i < count($eventPhotos); $i++) { ?>
+                <div class="col-sm-6">
+                  <div class="img-preview">
+                    <span class="img-preview__remove"><i class="ti-close"></i></span>
+                    <img data-id="<?= $eventPhotos[$i]->id_event_photos?>" src="<?= base_url().'/'.$eventPhotos[$i]->url?>" alt="">
+                  </div>
+                </div>
+              <?php } ?>
+            </div>
+          <?php } ?>
+
           <div class="dropzone" id="gallery">
             <div class="fallback">
               <input name="files" type="file" multiple/>
@@ -206,7 +227,9 @@ $(document).ready(function() {
     $(this).val(accounting.formatMoney(amount, "", 0, "."));
   });
 
-  // datetimepicker
+  /**
+    DateTimePicker ==================================
+  */
   $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
     icons: {
         time: 'ti-time',
@@ -221,6 +244,10 @@ $(document).ready(function() {
     } 
   });
   var currentDate = new Date();
+  var deadline = '<?= $event->deadline?>';
+  var startRegis = '<?= $event->start_registration?>';
+  var endRegis = '<?= $event->finish_registration?>';
+
   $('#deadline').datetimepicker({
     useCurrent: false,
     collapse: false,
@@ -243,25 +270,25 @@ $(document).ready(function() {
     format: 'YYYY-MM-DD HH:mm',
     ignoreReadonly: true,
   })
+
+  if (deadline) $('#deadline').datetimepicker('date', deadline);
+  if (startRegis) $('#regis-start').datetimepicker('date', startRegis);
+  if (endRegis) $('#regis-end').datetimepicker('date', endRegis);
   
   var deadlineVal = '<?= set_value('deadline')?>';
-  if ($('#deadline').val() == '' && !deadlineVal) {
-    $('#deadline').datetimepicker('date', new Date(currentDate.getTime() + 3600000));
-  }
-  if ($('#deadline').val() != '') {
-    if ($('#regis-end').val() == '') {
-      $('#regis-start').datetimepicker('maxDate', $('#deadline').val())
-    } 
+  if ($('#deadline').val() == '' && !deadlineVal) $('#deadline').datetimepicker('date', new Date(currentDate.getTime() + 3600000));
 
+  if ($('#deadline').val() != '') {
+    if ($('#regis-end').val() == '') $('#regis-start').datetimepicker('maxDate', $('#deadline').val());
     $('#regis-end').datetimepicker('maxDate', $('#deadline').val())
-  } 
-  
-  
+  }
   if ($('#regis-end').val() != '') {
     $('#regis-start').datetimepicker('maxDate', $('#regis-end').val());
+    $('#deadline').datetimepicker('minDate', $('#regis-end').val());
   }
   if ($('#regis-start').val() != '') {
     $('#regis-end').datetimepicker('minDate', $('#regis-start').val());
+    if ($('#regis-end').val() == '') $('#deadline').datetimepicker('minDate', $('#regis-start').val());
   }
 
   $('#regis-start').on('change.datetimepicker', function(e) {
@@ -286,7 +313,34 @@ $(document).ready(function() {
     } 
     $('#regis-end').datetimepicker('maxDate', e.date)
   })
+  /**
+    DateTimePicker ==================================
+  */
 
+  /**
+    Handle Img upload ==================================
+  */  
+  $('.img-preview__remove').on('click', function(e) {
+    e.preventDefault();
+
+    if (window.confirm('Are you sore want yo delete this image ?')) {
+      let $parent = $(this).parents('.img-preview');
+      if (!$parent.data('featured')) {
+        let $form = $(this).parents('form');
+        let input = document.createElement('input');
+        input.name = 'deletedGallery[]';
+        input.value = $parent.find('img').data('id');
+        input.type = 'hidden';
+
+        $form.append(input);
+      } else {
+        $('#featured_img').show();
+      }
+
+      $parent.remove();
+    }
+  })
+  
   Dropzone.autoDiscover = false;
 
   let featuredImg = new Dropzone("#featured_img", { 
@@ -368,6 +422,9 @@ $(document).ready(function() {
   function enabledSubmit() {
     $('#submit-footer').removeClass('disabled');
   }
+  /**
+    Handle Img upload ==================================
+  */
 
   $('#submit-form').on('click', function(e) {
     e.preventDefault();
@@ -377,7 +434,7 @@ $(document).ready(function() {
     let inputFeatured = document.createElement('input');
 
     if ($form.find('input[name=featured_img]').length <= 0) {
-      inputFeatured.setAttribute('name', 'featured_img');
+      inputFeatured.setAttribute('name', 'featured_img_new');
       inputFeatured.setAttribute('hidden', true);
       inputFeatured.value = ($featured.data('url')) ? $featured.data('url'):'';
       

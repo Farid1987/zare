@@ -54,7 +54,7 @@
                 <td><?= $value->type?></td>
                 <td>
                   <a
-                    href="" 
+                    href="<?= site_url('admin/eventEdit/'.$value->id_event)?>" 
                     class="btn btn-sm btn-primary btn-edit"
                     style=" cursor: pointer;"
                     data-toggle="tooltip"
@@ -87,48 +87,48 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-   // Delete Product
-  // $('.btn-delete').click(function(e) {
-  //   e.preventDefault();
-  //   var url = '<?= site_url('admin/deleteProduct')?>';
-  //   var id = $(this).data('id');
-  //   swal({
-  //     title: 'Are you sure want to delete product?',
-  //     type: 'warning',
-  //     showCancelButton: true,
-  //     confirmButtonColor: '#3085d6',
-  //     cancelButtonColor: '#d33',
-  //     confirmButtonText: 'Yes!'
-  //   }).then((result) => {
-  //     if (result) {
-  //       $.ajax({
-  //         type: "POST",
-  //         url,
-  //         data: {id},
-  //         success: function(res) {
-  //           data = $.parseJSON(res);
-  //           if (data.status == 'success') {
-  //             swal({
-  //               title: data.message,
-  //               type: 'success',
-  //               confirmButtonClass: 'btn btn-success',
-  //               allowOutsideClick: !1
-  //             }).then(function() {
-  //               location.reload(true);
-  //             })
-  //           } else if (data.status == 'error') {
-  //             swal({
-  //               title: 'Failed!',
-  //               text: data.message,
-  //               type: 'warning',
-  //               confirmButtonClass: 'btn btn-danger',
-  //               allowOutsideClick: !1
-  //             })
-  //           }
-  //         }
-  //       })
-  //     }
-  //   })
-  // })
+   // Delete Event
+  $('.btn-delete').click(function(e) {
+    e.preventDefault();
+    var url = '<?= site_url('admin/deleteEvent')?>';
+    var id = $(this).data('id');
+    swal({
+      title: 'Are you sure want to delete event?',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then((result) => {
+      if (result) {
+        $.ajax({
+          type: "POST",
+          url,
+          data: {id},
+          success: function(res) {
+            data = $.parseJSON(res);
+            if (data.status == 'success') {
+              swal({
+                title: data.message,
+                type: 'success',
+                confirmButtonClass: 'btn btn-success',
+                allowOutsideClick: !1
+              }).then(function() {
+                location.reload(true);
+              })
+            } else if (data.status == 'error') {
+              swal({
+                title: 'Failed!',
+                text: data.message,
+                type: 'warning',
+                confirmButtonClass: 'btn btn-danger',
+                allowOutsideClick: !1
+              })
+            }
+          }
+        })
+      }
+    })
+  })
 })
 </script>

@@ -98,7 +98,7 @@
           </div>
           <div class="card-body">
             <?php if (count($productGallery) > 0) { ?>
-              <div class="row">
+              <div class="row mb-3">
                 <?php for ($i=0; $i < count($productGallery); $i++) { ?>
                   <div class="col-sm-6">
                     <div class="img-preview">
@@ -188,7 +188,6 @@ $(document).ready(function() {
     }
   })
   Dropzone.autoDiscover = false;
-  let galleryUploaded = [];
 
   let featuredImg = new Dropzone("#featured_img", { 
     url: "<?= site_url('admin/uploadImg')?>",

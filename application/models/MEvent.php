@@ -24,7 +24,45 @@ class MEvent extends CI_Model {
 		return $query;
   }
 
+  /**
+	 * 	get data with specific condition
+	 *	@return array data event
+	 */
+	public function getWhere($condition) {
+		$query = $this->db->get_where('event', $condition);
+		return $query->result();
+  }
+
+  /**
+	 * 	get featured img
+	 *	@return array data event featured img
+	 */
+	public function getFeaturedImg($id) {
+    $this->db->select('event.featured_img');
+    $this->db->from('event');
+    $this->db->where(['id_event' => $id]);
+		$query = $this->db->get();
+		return $query->row();
+  }
+
+  /**
+	 * 	edit data event
+   *	@return boolean
+	 */
+	public function edit($id, $data){
+    $this->db->where('id_event', $id);                   
+    $query = $this->db->update('event', $data);
+		return $query;
+  }
   
+  /**
+	 * 	delete data event
+   *	@return boolean
+	 */
+	public function delete($data){
+    $query = $this->db->delete('event', $data);
+		return $query;
+	}
 }
 
 ?>
