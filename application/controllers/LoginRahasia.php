@@ -1,6 +1,6 @@
 <?php
   defined('BASEPATH') OR exit('No direct script access allowed');
-  class LoginAdmin extends CI_Controller {
+  class LoginRahasia extends CI_Controller {
     
     public function __construct() {
       parent::__construct();
@@ -45,13 +45,13 @@
       } else {
         $this->session->set_flashdata('errorlog', 'Incorrect username or password');
 				$this->session->set_flashdata('erroruser', $data['username']);
-				redirect('loginAdmin');
+				redirect('loginRahasia');
       }
     }
 
     public function logout(){
 			$this->session->sess_destroy();
-			redirect('loginAdmin');
+			redirect('loginRahasia');
     }
     
     /////////////////////////////////// END OF FUNCT ///////////////////////////////////////

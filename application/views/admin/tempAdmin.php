@@ -95,7 +95,7 @@
                                 <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                     <a class="dropdown-item" href="#"><i class="dripicons-user text-muted"></i> Profile</a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="<?php echo site_url('loginAdmin/logout')?>"><i class="dripicons-exit text-muted"></i> Logout</a>
+                                    <a class="dropdown-item" href="<?php echo site_url('loginRahasia/logout')?>"><i class="dripicons-exit text-muted"></i> Logout</a>
                                 </div>
                             </li>
                             <li class="menu-item list-inline-item">

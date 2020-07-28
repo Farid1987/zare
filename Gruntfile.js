@@ -13,6 +13,7 @@ module.exports = function(grunt) {
         },
         files: {
           'assets/admin/css/custom-admin.min.css': 'assets/scss/custom-admin.scss',
+          'assets/css/main.min.css': 'assets/scss/main.scss',
         }
       },
       dist: {
@@ -23,6 +24,7 @@ module.exports = function(grunt) {
         },
         files: {
           'assets/admin/css/custom-admin.min.css': 'assets/scss/custom-admin.scss',
+          'assets/css/main.min.css': 'assets/scss/main.scss',
         }
       }
     },
@@ -35,6 +37,7 @@ module.exports = function(grunt) {
         },
         files: {
           'assets/admin/css/custom-admin.min.css': 'assets/admin/css/custom-admin.min.css',
+          'assets/css/main.min.css': 'assets/css/main.min.css',
         }
       },
       dist: {
@@ -44,6 +47,7 @@ module.exports = function(grunt) {
         },
         files: {
           'assets/admin/css/custom-admin.min.css': 'assets/admin/css/custom-admin.min.css',
+          'assets/css/main.min.css': 'assets/css/main.min.css',
         }
       }
     },

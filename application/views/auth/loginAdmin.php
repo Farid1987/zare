@@ -22,7 +22,7 @@
 		<div class="limiter">
 			<div class="container-login100">
 				<div class="wrap-login100 p-l-35 p-r-35 p-t-35 p-b-50">
-					<form class="login100-form" action="<?php echo site_url('loginAdmin/checkLogin')?>" method="POST">
+					<form class="login100-form" action="<?php echo site_url('loginRahasia/checkLogin')?>" method="POST">
 						<span class="login100-form-title p-b-35"><img src="<?php echo base_url('assets')?>/img/zare.png"/></span>
 						<div class="wrap-input100 m-b-23" data-validate = "Email is required">
 							<span class="label-input100">Email</span>

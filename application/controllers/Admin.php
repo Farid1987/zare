@@ -6,7 +6,7 @@
     public function __construct() {
       parent::__construct();
       if ($this->session->userdata('role')!='admin') {
-        redirect('loginAdmin');
+        redirect('LoginRahasia');
       }
 
       $this->data['fullname'] = $this->session->userdata('fullname');
