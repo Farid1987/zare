@@ -1,0 +1,20 @@
+// --------------------------------
+
+// Align Items
+
+// --------------------------------
+
+.items-center { align-items: center ; }
+.items-start { align-items: flex-start ; }
+.items-end { align-items: flex-end ; }
+.items-baseline { align-items: baseline ; }
+
+@each $breakpoint, $value in $grid-breakpoints {
+  @include media-breakpoint-down(#{$breakpoint}) {
+    // align items
+    .items-center\@#{$breakpoint} { align-items: center; }
+    .items-start\@#{$breakpoint} { align-items: flex-start; }
+    .items-end\@#{$breakpoint} { align-items: flex-end; }
+    .items-baseline\@#{$breakpoint} { align-items: baseline; }
+    }
+}

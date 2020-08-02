@@ -1,0 +1,14 @@
+// --------------------------------
+
+// Z-Index
+
+// --------------------------------
+
+.zindex-1, .z-index-1 { z-index: 1 !important; }
+.zindex-2, .z-index-2 { z-index: 2 !important; }
+.zindex-3, .z-index-3 { z-index: 3 !important; }
+
+.z-index-header { z-index: var(--zindex-header) !important; }
+.z-index-popover { z-index: var(--zindex-popover) !important; }
+.z-index-fixed-element { z-index: var(--zindex-fixed-element) !important; }
+.z-index-overlay { z-index: var(--zindex-overlay) !important; }

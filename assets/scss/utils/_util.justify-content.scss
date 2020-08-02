@@ -1,0 +1,21 @@
+// --------------------------------
+
+// Justify Content
+
+// --------------------------------
+
+.justify-start { justify-content: flex-start ; }
+.justify-end { justify-content: flex-end ; }
+.justify-center { justify-content: center ; }
+.justify-between { justify-content: space-between ; }
+
+
+@each $breakpoint, $value in $grid-breakpoints {
+  @include media-breakpoint-down(#{$breakpoint}) {
+    // justify content
+    .justify-start\@#{$breakpoint} { justify-content: flex-start; }
+    .justify-end\@#{$breakpoint} { justify-content: flex-end; }
+    .justify-center\@#{$breakpoint} { justify-content: center; }
+    .justify-between\@#{$breakpoint} { justify-content: space-between; }
+  }
+}

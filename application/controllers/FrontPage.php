@@ -8,7 +8,15 @@
     }
 
     public function index() {
-      $this->template->load('front/tempFront', 'front/homepage');
+      
+      $this->data['js_to_load'] = [
+        base_url('assets/js/swiper-bundle.min.js'),
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/css/swiper-bundle.min.css'),
+      ];;
+
+      $this->template->load('front/tempFront', 'front/homepage', $this->data);
     }
   }
 

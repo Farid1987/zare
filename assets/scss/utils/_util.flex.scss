@@ -1,0 +1,40 @@
+// --------------------------------
+
+// Flexbox
+
+// --------------------------------
+
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.flex-wrap { flex-wrap: wrap; }
+.flex-column { flex-direction: column; }
+.flex-column-reverse { flex-direction: column-reverse; }
+.flex-row { flex-direction: row; }
+.flex-row-reverse { flex-direction: row-reverse; }
+.flex-center { justify-content: center; align-items: center; }
+
+// children
+.flex-grow-0 { flex-grow: 0; }
+.flex-grow { flex-grow: 1; }
+.flex-shrink-0 { flex-shrink: 0; }
+.flex-basis-0 { flex-basis: 0; }
+
+
+@each $breakpoint, $value in $grid-breakpoints {
+  @include media-breakpoint-down(#{$breakpoint}) {
+    // flexbox
+    .flex\@#{$breakpoint} { display: flex; }
+    .inline-flex\@#{$breakpoint} { display: inline-flex; }
+    .flex-wrap\@#{$breakpoint} { flex-wrap: wrap; }
+    .flex-column\@#{$breakpoint} { flex-direction: column; }
+    .flex-column-reverse\@#{$breakpoint} { flex-direction: column-reverse; }
+    .flex-row\@#{$breakpoint} { flex-direction: row; }
+    .flex-row-reverse\@#{$breakpoint} { flex-direction: row-reverse; }
+    .flex-center\@#{$breakpoint} { justify-content: center; align-items: center; }
+    
+    .flex-grow-0\@#{$breakpoint} { flex-grow: 0; }
+    .flex-grow\@#{$breakpoint} { flex-grow: 1; }
+    .flex-shrink-0\@#{$breakpoint} { flex-shrink: 0; }
+    .flex-shrink\@#{$breakpoint} { flex-shrink: 1; }
+  }
+}

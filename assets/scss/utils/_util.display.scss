@@ -1,0 +1,19 @@
+// --------------------------------
+
+// Display
+
+// --------------------------------
+
+.block { display: block !important; }
+.inline-block { display: inline-block !important; }
+.inline { display: inline !important; }
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    // display
+    .block\@#{$breakpoint} { display: block!important; }
+    .inline-block\@#{$breakpoint} { display: inline-block!important; }
+    .inline\@#{$breakpoint} { display: inline!important; }
+  }
+}
+

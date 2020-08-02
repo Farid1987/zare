@@ -1,0 +1,33 @@
+// --------------------------------
+
+// Font Size
+
+// --------------------------------
+
+.text-xs   { font-size: var(--text-xs, 0.694em)!important; }
+.text-sm   { font-size: var(--text-sm, 0.833em)!important; }
+.text-base { font-size: 1em !important; }
+.text-md   { font-size: var(--text-md, 1.2em)!important; }
+.text-lg   { font-size: var(--text-lg, 1.44em)!important; }
+.text-xl   { font-size: var(--text-xl, 1.728em)!important; }
+.text-xxl  { font-size: var(--text-xxl, 2.074em)!important; }
+.text-xxxl { font-size: var(--text-xxxl, 2.488em)!important; }
+.text-xxxxl { font-size: var(--text-xxxxl, 2.985em)!important; }
+
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    // font size
+    @supports (--css: variables) {
+      .text-xs\@#{$breakpoint}   { font-size: var(--text-xs, 0.694em)!important; }
+      .text-sm\@#{$breakpoint}   { font-size: var(--text-sm, 0.833em)!important; }
+      .text-base\@#{$breakpoint} { font-size: 1em !important; }
+      .text-md\@#{$breakpoint}   { font-size: var(--text-md, 1.2em)!important; }
+      .text-lg\@#{$breakpoint}   { font-size: var(--text-lg, 1.44em)!important; }
+      .text-xl\@#{$breakpoint}   { font-size: var(--text-xl, 1.728em)!important; }
+      .text-xxl\@#{$breakpoint}  { font-size: var(--text-xxl, 2.074em)!important; }
+      .text-xxxl\@#{$breakpoint} { font-size: var(--text-xxxl, 2.488em)!important; }
+      .text-xxxxl\@#{$breakpoint} { font-size: var(--text-xxxxl, 2.985em)!important; }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+// --------------------------------
+
+// Misc
+
+// --------------------------------
+
+.truncate,
+.text-truncate { // truncate text if it exceeds its parent
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.text-replace { // replace text with bg img
+  overflow: hidden !important;
+  color: transparent !important;
+  text-indent: 100% !important;
+  white-space: nowrap !important;
+}
+
+.font-smooth {
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+}

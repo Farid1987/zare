@@ -1,0 +1,137 @@
+.box {
+  background: #fff;
+  overflow: hidden;
+  &-thumb {
+    margin-bottom: 69px;
+    display: block;
+  }
+  &-title {
+    font-size: 18px;
+    line-height: (22/18);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  &-desc {
+    font-size: 14px;
+    line-height: (19/14);
+    letter-spacing: -0.02em;
+    margin-bottom: 27px;
+  }
+  &-info {
+    font-size: 12px;
+    line-height: (16/12);
+    margin-bottom: 12px;
+    &__cat {
+      color: #000000;
+      letter-spacing: 0.1em;
+    }
+    &__date {
+      letter-spacing: -0.02em;
+      color: #5F6368;
+      i {
+        margin-right: 9px;
+      }
+    }
+  }
+
+  &-transparent {
+    background: transparent;
+  }
+  &-hover {
+    transition: all 0.3s;
+    &:hover {
+      box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.07);
+    }
+  }
+  &-grey {
+    background: #EBEFF2;
+  }
+  &-rounded-15 {
+    border-radius: 15px;
+  }
+  &-rounded-20 {
+    border-radius: 20px;
+  }
+  &-journey {
+    padding: 50px 45px 19px;
+    height: 100%;
+    &__title {
+      font-size: 18px;
+      line-height: (22/18);
+      margin-bottom: 16px;
+    }
+    &__desc {
+      font-size: 14px;
+      line-height: (19/14);
+      margin: 0;
+    }
+  }
+  &-health-product  {
+    .box-content {
+      padding: 69px 0 74px 72px;
+    }
+    .box-img {
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &-product {
+    &--sm {
+      width: 259px;
+    }
+    .btn {
+      font-size: 12px;
+      line-height: (15/12);
+    }
+    &__info {
+      &-item {
+        &:nth-child(odd) {
+          margin-right: 10px;
+        }
+        letter-spacing: -0.02em;
+        color: #5F6368;
+        .product-price {
+          font-size: 14px;
+          line-height: (19/14);
+          margin: 0;
+        }
+        .product-stock {
+          font-size: 12px;
+          line-height: (16/12);
+        }
+      }
+    }
+  }
+
+  &-blog {
+    .box {
+      &-thumb {
+        margin-bottom: 24px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+    }
+  }
+  &-event {
+    .box {
+      &-thumb {
+        margin-bottom: 23px;
+      }
+    }
+    .event-status {
+      letter-spacing: 1;
+      margin-left: 9px;
+    }
+    .event-location {
+      font-size: 12px;
+      line-height: (16/12);
+      letter-spacing: -0.02em;
+      color: #A8A8A8;
+      margin-bottom: 10px;
+      display: block;
+    }
+  }
+}

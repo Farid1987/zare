@@ -1,0 +1,36 @@
+// --------------------------------
+
+// Visibility
+
+// --------------------------------
+
+
+:root {
+  --display: block;
+}
+
+.is-visible {
+  display: var(--display) !important;
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+html:not(.js) {
+  .no-js\:is-hidden {
+    display: none !important;
+  }
+}
+
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    // visibility
+    .hide\@#{$breakpoint} { display: none !important; }
+  }
+
+  @include breakpoint(#{$breakpoint}, "not all") {
+    .display\@#{$breakpoint} { display: none !important; }
+  }
+}

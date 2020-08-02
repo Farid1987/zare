@@ -1,0 +1,75 @@
+// --------------------------------
+
+// Color
+
+// --------------------------------
+
+[class*="color-"] { --color-o: 1 !important; }
+
+.color-inherit { color: inherit!important; }
+.color-bg { color: alpha(var(--color-bg), var(--color-o, 1))!important; }
+.color-contrast-lower { color: alpha(var(--color-contrast-lower), var(--color-o, 1))!important; }
+.color-contrast-low { color: alpha(var(--color-contrast-low), var(--color-o, 1))!important; }
+.color-contrast-medium { color: alpha(var(--color-contrast-medium), var(--color-o, 1))!important; }
+.color-contrast-high { color: alpha(var(--color-contrast-high), var(--color-o, 1))!important; }
+.color-contrast-higher { color: alpha(var(--color-contrast-higher), var(--color-o, 1))!important; }
+.color-primary-darker { color: alpha(var(--color-primary-darker), var(--color-o, 1))!important; }
+.color-primary-dark { color: alpha(var(--color-primary-dark), var(--color-o, 1))!important; }
+.color-primary { color: alpha(var(--color-primary), var(--color-o, 1))!important; }
+.color-primary-light { color: alpha(var(--color-primary-light), var(--color-o, 1))!important; }
+.color-primary-lighter { color: alpha(var(--color-primary-lighter), var(--color-o, 1))!important; }
+.color-accent-darker { color: alpha(var(--color-accent-darker), var(--color-o, 1))!important; }
+.color-accent-dark { color: alpha(var(--color-accent-dark), var(--color-o, 1))!important; }
+.color-accent { color: alpha(var(--color-accent), var(--color-o, 1))!important; }
+.color-accent-light { color: alpha(var(--color-accent-light), var(--color-o, 1))!important; }
+.color-accent-lighter { color: alpha(var(--color-accent-lighter), var(--color-o, 1))!important; }
+.color-success-darker { color: alpha(var(--color-success-darker), var(--color-o, 1))!important; }
+.color-success-dark { color: alpha(var(--color-success-dark), var(--color-o, 1))!important; }
+.color-success { color: alpha(var(--color-success), var(--color-o, 1))!important; }
+.color-success-light { color: alpha(var(--color-success-light), var(--color-o, 1))!important; }
+.color-success-lighter { color: alpha(var(--color-success-lighter), var(--color-o, 1))!important; }
+.color-warning-darker { color: alpha(var(--color-warning-darker), var(--color-o, 1))!important; }
+.color-warning-dark { color: alpha(var(--color-warning-dark), var(--color-o, 1))!important; }
+.color-warning { color: alpha(var(--color-warning), var(--color-o, 1))!important; }
+.color-warning-light { color: alpha(var(--color-warning-light), var(--color-o, 1))!important; }
+.color-warning-lighter { color: alpha(var(--color-warning-lighter), var(--color-o, 1))!important; }
+.color-error-darker { color: alpha(var(--color-error-darker), var(--color-o, 1))!important; }
+.color-error-dark { color: alpha(var(--color-error-dark), var(--color-o, 1))!important; }
+.color-error { color: alpha(var(--color-error), var(--color-o, 1))!important; }
+.color-error-light { color: alpha(var(--color-error-light), var(--color-o, 1))!important; }
+.color-error-lighter { color: alpha(var(--color-error-lighter), var(--color-o, 1))!important; }
+.color-white { color: alpha(var(--color-white), var(--color-o, 1))!important; }
+.color-black { color: alpha(var(--color-black), var(--color-o, 1))!important; }
+
+// Insert here generated color
+.color-secondary-darker { color: alpha(var(--color-secondary-darker), var(--color-o, 1))!important; }
+.color-secondary-dark { color: alpha(var(--color-secondary-dark), var(--color-o, 1))!important; }
+.color-secondary { color: alpha(var(--color-secondary), var(--color-o, 1))!important; }
+.color-secondary-light { color: alpha(var(--color-secondary-light), var(--color-o, 1))!important; }
+.color-secondary-lighter { color: alpha(var(--color-secondary-lighter), var(--color-o, 1))!important; }
+.color-info-darker { color: alpha(var(--color-info-darker), var(--color-o, 1))!important; }
+.color-info-dark { color: alpha(var(--color-info-dark), var(--color-o, 1))!important; }
+.color-info { color: alpha(var(--color-info), var(--color-o, 1))!important; }
+.color-info-light { color: alpha(var(--color-info-light), var(--color-o, 1))!important; }
+.color-info-lighter { color: alpha(var(--color-info-lighter), var(--color-o, 1))!important; }
+.color-pink-darker { color: alpha(var(--color-pink-darker), var(--color-o, 1))!important; }
+.color-pink-dark { color: alpha(var(--color-pink-dark), var(--color-o, 1))!important; }
+.color-pink { color: alpha(var(--color-pink), var(--color-o, 1))!important; }
+.color-pink-light { color: alpha(var(--color-pink-light), var(--color-o, 1))!important; }
+.color-pink-lighter { color: alpha(var(--color-pink-lighter), var(--color-o, 1))!important; }
+.color-gray-100 { color: alpha(var(--color-gray-100), var(--color-o, 1))!important; }
+.color-gray-200 { color: alpha(var(--color-gray-200), var(--color-o, 1))!important; }
+.color-gray-300 { color: alpha(var(--color-gray-300), var(--color-o, 1))!important; }
+.color-gray-400 { color: alpha(var(--color-gray-400), var(--color-o, 1))!important; }
+.color-gray-500 { color: alpha(var(--color-gray-500), var(--color-o, 1))!important; }
+//////////////////////////////////////////////////////////
+
+.color-opacity-10\% { --color-o: 0.1 !important; }
+.color-opacity-20\% { --color-o: 0.2 !important; }
+.color-opacity-30\% { --color-o: 0.3 !important; }
+.color-opacity-40\% { --color-o: 0.4 !important; }
+.color-opacity-50\% { --color-o: 0.5 !important; }
+.color-opacity-60\% { --color-o: 0.6 !important; }
+.color-opacity-70\% { --color-o: 0.7 !important; }
+.color-opacity-80\% { --color-o: 0.8 !important; }
+.color-opacity-90\% { --color-o: 0.9 !important; }

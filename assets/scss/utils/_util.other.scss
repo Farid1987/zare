@@ -1,0 +1,14 @@
+.row {
+  &.gap-50 {
+    margin-left: -25px;
+    margin-right: -25px;
+    [class*="col-"] {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+  }
+}
+
+.text-primary {
+  color: $clr-primary;
+}

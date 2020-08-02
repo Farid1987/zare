@@ -1,0 +1,212 @@
+// --------------------------------
+
+// Padding
+
+// --------------------------------
+
+.padding-xxxxs { padding: var(--space-xxxxs) !important; }
+.padding-xxxs { padding: var(--space-xxxs) !important; }
+.padding-xxs { padding: var(--space-xxs) !important; }
+.padding-xs { padding: var(--space-xs) !important; }
+.padding-sm { padding: var(--space-sm) !important; }
+.padding-md { padding: var(--space-md) !important; }
+.padding-lg { padding: var(--space-lg) !important; }
+.padding-xl { padding: var(--space-xl) !important; }
+.padding-xxl { padding: var(--space-xxl) !important; }
+.padding-xxxl { padding: var(--space-xxxl) !important; }
+.padding-xxxxl { padding: var(--space-xxxxl) !important; }
+.padding-component { padding: var(--component-padding) !important; }
+.padding-0 { padding: 0 !important; }
+
+.padding-top-xxxxs { padding-top: var(--space-xxxxs) !important; }
+.padding-top-xxxs { padding-top: var(--space-xxxs) !important; }
+.padding-top-xxs { padding-top: var(--space-xxs) !important; }
+.padding-top-xs { padding-top: var(--space-xs) !important; }
+.padding-top-sm { padding-top: var(--space-sm) !important; }
+.padding-top-md { padding-top: var(--space-md) !important; }
+.padding-top-lg { padding-top: var(--space-lg) !important; }
+.padding-top-xl { padding-top: var(--space-xl) !important; }
+.padding-top-xxl { padding-top: var(--space-xxl) !important; }
+.padding-top-xxxl { padding-top: var(--space-xxxl) !important; }
+.padding-top-xxxxl { padding-top: var(--space-xxxxl) !important; }
+.padding-top-component { padding-top: var(--component-padding) !important; }
+.padding-top-0 { padding-top: 0 !important; }
+
+.padding-bottom-xxxxs { padding-bottom: var(--space-xxxxs) !important; }
+.padding-bottom-xxxs { padding-bottom: var(--space-xxxs) !important; }
+.padding-bottom-xxs { padding-bottom: var(--space-xxs) !important; }
+.padding-bottom-xs { padding-bottom: var(--space-xs) !important; }
+.padding-bottom-sm { padding-bottom: var(--space-sm) !important; }
+.padding-bottom-md { padding-bottom: var(--space-md) !important; }
+.padding-bottom-lg { padding-bottom: var(--space-lg) !important; }
+.padding-bottom-xl { padding-bottom: var(--space-xl) !important; }
+.padding-bottom-xxl { padding-bottom: var(--space-xxl) !important; }
+.padding-bottom-xxxl { padding-bottom: var(--space-xxxl) !important; }
+.padding-bottom-xxxxl { padding-bottom: var(--space-xxxxl) !important; }
+.padding-bottom-component { padding-bottom: var(--component-padding) !important; }
+.padding-bottom-0 { padding-bottom: 0 !important; }
+
+.padding-right-xxxxs { padding-right: var(--space-xxxxs) !important; }
+.padding-right-xxxs { padding-right: var(--space-xxxs) !important; }
+.padding-right-xxs { padding-right: var(--space-xxs) !important; }
+.padding-right-xs { padding-right: var(--space-xs) !important; }
+.padding-right-sm { padding-right: var(--space-sm) !important; }
+.padding-right-md { padding-right: var(--space-md) !important; }
+.padding-right-lg { padding-right: var(--space-lg) !important; }
+.padding-right-xl { padding-right: var(--space-xl) !important; }
+.padding-right-xxl { padding-right: var(--space-xxl) !important; }
+.padding-right-xxxl { padding-right: var(--space-xxxl) !important; }
+.padding-right-xxxxl { padding-right: var(--space-xxxxl) !important; }
+.padding-right-component { padding-right: var(--component-padding) !important; }
+.padding-right-0 { padding-right: 0 !important; }
+
+.padding-left-xxxxs { padding-left: var(--space-xxxxs) !important; }
+.padding-left-xxxs { padding-left: var(--space-xxxs) !important; }
+.padding-left-xxs { padding-left: var(--space-xxs) !important; }
+.padding-left-xs { padding-left: var(--space-xs) !important; }
+.padding-left-sm { padding-left: var(--space-sm) !important; }
+.padding-left-md { padding-left: var(--space-md) !important; }
+.padding-left-lg { padding-left: var(--space-lg) !important; }
+.padding-left-xl { padding-left: var(--space-xl) !important; }
+.padding-left-xxl { padding-left: var(--space-xxl) !important; }
+.padding-left-xxxl { padding-left: var(--space-xxxl) !important; }
+.padding-left-xxxxl { padding-left: var(--space-xxxxl) !important; }
+.padding-left-component { padding-left: var(--component-padding) !important; }
+.padding-left-0 { padding-left: 0 !important; }
+
+.padding-x-xxxxs { padding-left: var(--space-xxxxs) !important; padding-right: var(--space-xxxxs) !important; }
+.padding-x-xxxs { padding-left: var(--space-xxxs) !important; padding-right: var(--space-xxxs) !important; }
+.padding-x-xxs { padding-left: var(--space-xxs) !important; padding-right: var(--space-xxs) !important; }
+.padding-x-xs { padding-left: var(--space-xs) !important; padding-right: var(--space-xs) !important; }
+.padding-x-sm { padding-left: var(--space-sm) !important; padding-right: var(--space-sm) !important; }
+.padding-x-md { padding-left: var(--space-md) !important; padding-right: var(--space-md) !important; }
+.padding-x-lg { padding-left: var(--space-lg) !important; padding-right: var(--space-lg) !important; }
+.padding-x-xl { padding-left: var(--space-xl) !important; padding-right: var(--space-xl) !important; }
+.padding-x-xxl { padding-left: var(--space-xxl) !important; padding-right: var(--space-xxl) !important; }
+.padding-x-xxxl { padding-left: var(--space-xxxl) !important; padding-right: var(--space-xxxl) !important; }
+.padding-x-xxxxl { padding-left: var(--space-xxxxl) !important; padding-right: var(--space-xxxxl) !important; }
+.padding-x-component { padding-left: var(--component-padding) !important; padding-right: var(--component-padding) !important; }
+.padding-x-0 { padding-left: 0 !important; padding-right: 0 !important; }
+
+.padding-y-xxxxs { padding-top: var(--space-xxxxs) !important; padding-bottom: var(--space-xxxxs) !important; }
+.padding-y-xxxs { padding-top: var(--space-xxxs) !important; padding-bottom: var(--space-xxxs) !important; }
+.padding-y-xxs { padding-top: var(--space-xxs) !important; padding-bottom: var(--space-xxs) !important; }
+.padding-y-xs { padding-top: var(--space-xs) !important; padding-bottom: var(--space-xs) !important; }
+.padding-y-sm { padding-top: var(--space-sm) !important; padding-bottom: var(--space-sm) !important; }
+.padding-y-md { padding-top: var(--space-md) !important; padding-bottom: var(--space-md) !important; }
+.padding-y-lg { padding-top: var(--space-lg) !important; padding-bottom: var(--space-lg) !important; }
+.padding-y-xl { padding-top: var(--space-xl) !important; padding-bottom: var(--space-xl) !important; }
+.padding-y-xxl { padding-top: var(--space-xxl) !important; padding-bottom: var(--space-xxl) !important; }
+.padding-y-xxxl { padding-top: var(--space-xxxl) !important; padding-bottom: var(--space-xxxl) !important; }
+.padding-y-xxxxl { padding-top: var(--space-xxxxl) !important; padding-bottom: var(--space-xxxxl) !important; }
+.padding-y-component { padding-top: var(--component-padding) !important; padding-bottom: var(--component-padding) !important; }
+.padding-y-0 { padding-top: 0 !important; padding-bottom: 0 !important; }
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    // padding
+    @supports (--css: variables) {
+      .padding-xxxxs\@#{$breakpoint} { padding: var(--space-xxxxs)!important; }
+      .padding-xxxs\@#{$breakpoint}  { padding: var(--space-xxxs)!important; }
+      .padding-xxs\@#{$breakpoint}   { padding: var(--space-xxs)!important; }
+      .padding-xs\@#{$breakpoint}    { padding: var(--space-xs)!important; }
+      .padding-sm\@#{$breakpoint}    { padding: var(--space-sm)!important; }
+      .padding-md\@#{$breakpoint}    { padding: var(--space-md)!important; }
+      .padding-lg\@#{$breakpoint}    { padding: var(--space-lg)!important; }
+      .padding-xl\@#{$breakpoint}    { padding: var(--space-xl)!important; }
+      .padding-xxl\@#{$breakpoint}   { padding: var(--space-xxl)!important; }
+      .padding-xxxl\@#{$breakpoint}  { padding: var(--space-xxxl)!important; }
+      .padding-xxxxl\@#{$breakpoint} { padding: var(--space-xxxxl)!important; }
+      .padding-0\@#{$breakpoint}     { padding: 0!important; }
+      .padding-component\@#{$breakpoint} { padding: var(--component-padding)!important; }
+    
+      .padding-top-xxxxs\@#{$breakpoint} { padding-top: var(--space-xxxxs)!important; }
+      .padding-top-xxxs\@#{$breakpoint}  { padding-top: var(--space-xxxs)!important; }
+      .padding-top-xxs\@#{$breakpoint}   { padding-top: var(--space-xxs)!important; }
+      .padding-top-xs\@#{$breakpoint}    { padding-top: var(--space-xs)!important; }
+      .padding-top-sm\@#{$breakpoint}    { padding-top: var(--space-sm)!important; }
+      .padding-top-md\@#{$breakpoint}    { padding-top: var(--space-md)!important; }
+      .padding-top-lg\@#{$breakpoint}    { padding-top: var(--space-lg)!important; }
+      .padding-top-xl\@#{$breakpoint}    { padding-top: var(--space-xl)!important; }
+      .padding-top-xxl\@#{$breakpoint}   { padding-top: var(--space-xxl)!important; }
+      .padding-top-xxxl\@#{$breakpoint}  { padding-top: var(--space-xxxl)!important; }
+      .padding-top-xxxxl\@#{$breakpoint} { padding-top: var(--space-xxxxl)!important; }
+      .padding-top-0\@#{$breakpoint}     { padding-top: 0!important; }
+      .padding-top-component\@#{$breakpoint} { padding-top: var(--component-padding)!important; }
+    
+      .padding-bottom-xxxxs\@#{$breakpoint} { padding-bottom: var(--space-xxxxs)!important; }
+      .padding-bottom-xxxs\@#{$breakpoint}  { padding-bottom: var(--space-xxxs)!important; }
+      .padding-bottom-xxs\@#{$breakpoint}   { padding-bottom: var(--space-xxs)!important; }
+      .padding-bottom-xs\@#{$breakpoint}    { padding-bottom: var(--space-xs)!important; }
+      .padding-bottom-sm\@#{$breakpoint}    { padding-bottom: var(--space-sm)!important; }
+      .padding-bottom-md\@#{$breakpoint}    { padding-bottom: var(--space-md)!important; }
+      .padding-bottom-lg\@#{$breakpoint}    { padding-bottom: var(--space-lg)!important; }
+      .padding-bottom-xl\@#{$breakpoint}    { padding-bottom: var(--space-xl)!important; }
+      .padding-bottom-xxl\@#{$breakpoint}   { padding-bottom: var(--space-xxl)!important; }
+      .padding-bottom-xxxl\@#{$breakpoint}  { padding-bottom: var(--space-xxxl)!important; }
+      .padding-bottom-xxxxl\@#{$breakpoint} { padding-bottom: var(--space-xxxxl)!important; }
+      .padding-bottom-0\@#{$breakpoint}     { padding-bottom: 0!important; }
+      .padding-bottom-component\@#{$breakpoint} { padding-bottom: var(--component-padding)!important; }
+  
+      .padding-right-xxxxs\@#{$breakpoint} { padding-right: var(--space-xxxxs)!important; }
+      .padding-right-xxxs\@#{$breakpoint}  { padding-right: var(--space-xxxs)!important; }
+      .padding-right-xxs\@#{$breakpoint}   { padding-right: var(--space-xxs)!important; }
+      .padding-right-xs\@#{$breakpoint}    { padding-right: var(--space-xs)!important; }
+      .padding-right-sm\@#{$breakpoint}    { padding-right: var(--space-sm)!important; }
+      .padding-right-md\@#{$breakpoint}    { padding-right: var(--space-md)!important; }
+      .padding-right-lg\@#{$breakpoint}    { padding-right: var(--space-lg)!important; }
+      .padding-right-xl\@#{$breakpoint}    { padding-right: var(--space-xl)!important; }
+      .padding-right-xxl\@#{$breakpoint}   { padding-right: var(--space-xxl)!important; }
+      .padding-right-xxxl\@#{$breakpoint}  { padding-right: var(--space-xxxl)!important; }
+      .padding-right-xxxxl\@#{$breakpoint} { padding-right: var(--space-xxxxl)!important; }
+      .padding-right-0\@#{$breakpoint}     { padding-right: 0!important; }
+      .padding-right-component\@#{$breakpoint} { padding-right: var(--component-padding)!important; }
+    
+      .padding-left-xxxxs\@#{$breakpoint} { padding-left: var(--space-xxxxs)!important; }
+      .padding-left-xxxs\@#{$breakpoint}  { padding-left: var(--space-xxxs)!important; }
+      .padding-left-xxs\@#{$breakpoint}   { padding-left: var(--space-xxs)!important; }
+      .padding-left-xs\@#{$breakpoint}    { padding-left: var(--space-xs)!important; }
+      .padding-left-sm\@#{$breakpoint}    { padding-left: var(--space-sm)!important; }
+      .padding-left-md\@#{$breakpoint}    { padding-left: var(--space-md)!important; }
+      .padding-left-lg\@#{$breakpoint}    { padding-left: var(--space-lg)!important; }
+      .padding-left-xl\@#{$breakpoint}    { padding-left: var(--space-xl)!important; }
+      .padding-left-xxl\@#{$breakpoint}   { padding-left: var(--space-xxl)!important; }
+      .padding-left-xxxl\@#{$breakpoint}  { padding-left: var(--space-xxxl)!important; }
+      .padding-left-xxxxl\@#{$breakpoint} { padding-left: var(--space-xxxxl)!important; }
+      .padding-left-0\@#{$breakpoint}     { padding-left: 0!important; }
+      .padding-left-component\@#{$breakpoint} { padding-left: var(--component-padding)!important; }
+  
+      .padding-x-xxxxs\@#{$breakpoint} { padding-left: var(--space-xxxxs)!important; padding-right: var(--space-xxxxs)!important; }
+      .padding-x-xxxs\@#{$breakpoint}  { padding-left: var(--space-xxxs)!important; padding-right: var(--space-xxxs)!important; }
+      .padding-x-xxs\@#{$breakpoint}   { padding-left: var(--space-xxs)!important; padding-right: var(--space-xxs)!important; }
+      .padding-x-xs\@#{$breakpoint}    { padding-left: var(--space-xs)!important; padding-right: var(--space-xs)!important; }
+      .padding-x-sm\@#{$breakpoint}    { padding-left: var(--space-sm)!important; padding-right: var(--space-sm)!important; }
+      .padding-x-md\@#{$breakpoint}    { padding-left: var(--space-md)!important; padding-right: var(--space-md)!important; }
+      .padding-x-lg\@#{$breakpoint}    { padding-left: var(--space-lg)!important; padding-right: var(--space-lg)!important; }
+      .padding-x-xl\@#{$breakpoint}    { padding-left: var(--space-xl)!important; padding-right: var(--space-xl)!important; }
+      .padding-x-xxl\@#{$breakpoint}   { padding-left: var(--space-xxl)!important; padding-right: var(--space-xxl)!important; }
+      .padding-x-xxxl\@#{$breakpoint}  { padding-left: var(--space-xxxl)!important; padding-right: var(--space-xxxl)!important; }
+      .padding-x-xxxxl\@#{$breakpoint} { padding-left: var(--space-xxxxl)!important; padding-right: var(--space-xxxxl)!important; }
+      .padding-x-0\@#{$breakpoint}     { padding-left: 0; padding-right: 0!important; }
+      .padding-x-component\@#{$breakpoint} { padding-left: var(--component-padding)!important; padding-right: var(--component-padding)!important; }
+  
+      .padding-y-xxxxs\@#{$breakpoint} { padding-top: var(--space-xxxxs)!important; padding-bottom: var(--space-xxxxs)!important; }
+      .padding-y-xxxs\@#{$breakpoint}  { padding-top: var(--space-xxxs)!important; padding-bottom: var(--space-xxxs)!important; }
+      .padding-y-xxs\@#{$breakpoint}   { padding-top: var(--space-xxs)!important; padding-bottom: var(--space-xxs)!important; }
+      .padding-y-xs\@#{$breakpoint}    { padding-top: var(--space-xs)!important; padding-bottom: var(--space-xs)!important; }
+      .padding-y-sm\@#{$breakpoint}    { padding-top: var(--space-sm)!important; padding-bottom: var(--space-sm)!important; }
+      .padding-y-md\@#{$breakpoint}    { padding-top: var(--space-md)!important; padding-bottom: var(--space-md)!important; }
+      .padding-y-lg\@#{$breakpoint}    { padding-top: var(--space-lg)!important; padding-bottom: var(--space-lg)!important; }
+      .padding-y-xl\@#{$breakpoint}    { padding-top: var(--space-xl)!important; padding-bottom: var(--space-xl)!important; }
+      .padding-y-xxl\@#{$breakpoint}   { padding-top: var(--space-xxl)!important; padding-bottom: var(--space-xxl)!important; }
+      .padding-y-xxxl\@#{$breakpoint}  { padding-top: var(--space-xxxl)!important; padding-bottom: var(--space-xxxl)!important; }
+      .padding-y-xxxxl\@#{$breakpoint} { padding-top: var(--space-xxxxl)!important; padding-bottom: var(--space-xxxxl)!important; }
+      .padding-y-0\@#{$breakpoint}     { padding-top: 0; padding-bottom: 0!important; }
+      .padding-y-component\@#{$breakpoint} { padding-top: var(--component-padding)!important; padding-bottom: var(--component-padding)!important; }
+    }
+  }
+  
+  @include breakpoint(#{$breakpoint}, "not all") {
+    .has-padding\@#{$breakpoint} { padding: 0 !important; }
+  }
+}

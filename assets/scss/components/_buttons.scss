@@ -1,0 +1,23 @@
+.btn {
+  display: inline-block;
+  padding: 9px 20px 8px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  &-primary {
+    background: #4DAD52;
+    border: #4DAD52;
+    color: #fff;
+    &:hover {
+      color: #fff;
+    }
+  }
+  &-rounded {
+    border-radius: 18px;
+  }
+  &-icon {
+    i {
+      margin-right: 10px;
+    }
+  }
+}

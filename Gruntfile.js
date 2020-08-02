@@ -51,8 +51,39 @@ module.exports = function(grunt) {
         }
       }
     },
+    
+    // configure browserify to transpile es6
+		browserify: {
+			dist: {
+				files: {
+					'assets/js-dev/js-compiled/main-compiled.js':'assets/js-dev/main.js'
+				},
+				options: {
+					transform: [['babelify', {presets: 'es2015'}]],
+					browserifyOptions: {
+						debug: false
+					}
+				}
+			}
+    },
+    
+    // configure javascript uglify -----------------------------------
+		uglify: {
+			production: {
+				options: {
+					sourceMap: false
+				},
+				files: {
+					'assets/js/main.min.js': 'assets/js-dev/js-compiled/**/*.js'
+				}
+			}
+		},
 
     watch: {
+      javascript: {
+				files: 'assets/js-dev/**/*.js',
+				tasks: ['browserify:dist','uglify:production']
+			},
       scripts: {
         files: ['assets/scss/**/*.scss'],
         tasks: ['sass:dev', 'autoprefixer:dev']
@@ -66,4 +97,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-browserify');
 }

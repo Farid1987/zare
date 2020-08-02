@@ -6,3 +6,11 @@ $clr-secondary: #F25C14;
 $ff-base: 'Nunito Sans';
 $ff-heading: 'Montserrat';
 $ff-pacifico: 'Pacifico';
+
+// bootstrap
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1170px
+) !default;

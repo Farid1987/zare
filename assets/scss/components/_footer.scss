@@ -1,0 +1,50 @@
+.footer {
+  &-top {
+    padding: 150px 0 100px;
+    background: url('../img/footer-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  &-logo {
+    display: block;
+    width: 38px;
+    margin-bottom: 26px;
+    &__caption {
+      font-size: 14px;
+      line-height: (19/14);
+      letter-spacing: -0.02em;
+      color: #5F6368;
+    }
+  }
+  &-menu {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    font-size: 14px;
+    line-height: (19/14);
+    &__wrapper {
+      margin-left: 75px;
+    }
+    &__title {
+      font-size: 14px;
+      line-height: (19/14);
+      letter-spacing: -0.02em;
+      color: #5F6368;
+      font-weight: 700;
+      margin-bottom: 13px;
+    }
+    li {
+      margin-bottom: 11px;
+    }
+  }
+  &-bottom {
+    background: $clr-primary;
+    color: #fff;
+    padding: 22px 0;
+    font-size: 14px;
+    line-height: (19/14);
+    letter-spacing: -0.02em;
+  }
+
+}

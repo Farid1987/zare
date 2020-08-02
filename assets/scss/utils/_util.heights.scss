@@ -1,0 +1,45 @@
+// --------------------------------
+
+// Heights
+
+// --------------------------------
+
+.height-xxxxs { height: 0.25rem !important; } // ~4px
+.height-xxxs { height: 0.5rem !important; }  // ~8px
+.height-xxs { height: 0.75rem !important; } // ~12px
+.height-xs { height: 1rem !important; }    // ~16px
+.height-sm { height: 1.5rem !important; }  // ~24px
+.height-md { height: 2rem !important; }    // ~32px
+.height-lg { height: 3rem !important; }    // ~48px
+.height-xl { height: 4rem !important; }    // ~64px
+.height-xxl { height: 6rem !important; }    // ~96px
+.height-xxxl { height: 8rem !important; }    // ~128px
+.height-xxxxl { height: 16rem !important; }   // ~256px
+.height-10\% { height: 10% !important; }
+.height-20\% { height: 20% !important; }
+.height-25\% { height: 25% !important; }
+.height-30\% { height: 30% !important; }
+.height-33\% { height: calc(100% / 3) !important; }
+.height-40\% { height: 40% !important; }
+.height-50\% { height: 50% !important; }
+.height-60\% { height: 60% !important; }
+.height-66\% { height: calc(100% / 1.5) !important; }
+.height-70\% { height: 70% !important; }
+.height-75\% { height: 75% !important; }
+.height-80\% { height: 80% !important; }
+.height-90\% { height: 90% !important; }
+.height-100\% { height: 100% !important; }
+.height-50vh { height: 50vh !important; }
+.height-100vh { height: 100vh !important; }
+.height-auto { height: auto !important; }
+
+
+// --------------------------------
+
+// min-height
+
+// --------------------------------
+
+.min-height-100\% { min-height: 100% !important;  }
+.min-height-100vh { min-height: 100vh !important;  }
+

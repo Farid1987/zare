@@ -13,8 +13,20 @@
 // Component
 @import "components/general";
 @import "components/header";
+@import "components/buttons";
+@import "components/swiper-slider";
+@import "components/box";
+@import "components/label";
+@import "components/circle";
+@import "components/footer";
 
 // Pages
+@import "pages/homepage.scss";
 
 // Utils
+@import "utils/util.flex";
+@import "utils/util.justify-content";
+@import "utils/util.align-items";
+@import "utils/util.text-align";
+@import "utils/util.other";
 

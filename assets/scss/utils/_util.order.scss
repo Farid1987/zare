@@ -1,0 +1,18 @@
+// --------------------------------
+
+// Order
+
+// --------------------------------
+
+.order-1 { order: 1 !important; }
+.order-2 { order: 2 !important; }
+.order-3 { order: 3 !important; }
+
+@each $breakpoint, $value in $breakpoints {
+  @include breakpoint(#{$breakpoint}) {
+    // order
+    .order-1\@#{$breakpoint}  { order: 1; }
+    .order-2\@#{$breakpoint}  { order: 2; }
+    .order-3\@#{$breakpoint}  { order: 3; }
+  }
+}
