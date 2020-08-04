@@ -3,7 +3,7 @@
     padding: 150px 0 100px;
     background: url('../img/footer-bg.png');
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     background-repeat: no-repeat;
   }
   &-logo {
@@ -47,4 +47,35 @@
     letter-spacing: -0.02em;
   }
 
+  @include media-breakpoint-down(sm) {
+    &-top {
+      padding-top: 50px;
+      padding-bottom: 20px;
+      background: #fafdfa;
+    }
+    
+    &-menu {
+      font-size: 12px;
+      &__wrapper {
+        margin-left: 0;
+        margin-bottom: 20px;
+      }
+      &__title {
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+      li {
+        margin-bottom: 9px;
+      }
+    }
+    &-bottom {
+      padding: 15px 0;
+      font-size: 10px;
+      img {
+        height: 13px;
+        margin-left: 4px;
+      }
+    }
+    
+  }
 }

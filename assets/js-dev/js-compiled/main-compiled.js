@@ -6,14 +6,30 @@
   document.addEventListener('scroll', function () {
     var scroll = window.pageYOffset || document.documentElement.scrollTop;
     var header = document.querySelector('header.header');
-    if (header.classList.contains('header-scroll')) {
-      if (scroll >= 100) {
-        header.classList.add('header-white');
-      } else {
-        header.classList.remove('header-white');
-      }
+    if (!header.classList.contains('header-scroll')) return;
+    if (scroll >= 100) {
+      header.classList.add('header-white');
+    } else {
+      header.classList.remove('header-white');
     }
   });
+
+  // header mobile
+  var menuToggle = document.querySelector('.toggle-menu');
+  if (menuToggle) {
+    menuToggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      var menu = document.querySelector('.header-menu');
+      if (!menu) return;
+      if (!this.classList.contains('open')) {
+        this.classList.add('open');
+        menu.classList.add('open');
+      } else {
+        this.classList.remove('open');
+        menu.classList.remove('open');
+      }
+    });
+  }
 
   // swiper slider
   try {
@@ -110,7 +126,7 @@
     (function fade() {
       if ((e.style.opacity -= fadeSpd) < 0) {
         e.style.display = "none";
-        callback();
+        if (typeof callback == 'function') callback();
       } else {
         requestAnimationFrame(fade);
       }

@@ -80,7 +80,7 @@
 
   &-product {
     &--sm {
-      width: 259px;
+      max-width: 259px;
     }
     .btn {
       font-size: 12px;
@@ -132,6 +132,24 @@
       color: #A8A8A8;
       margin-bottom: 10px;
       display: block;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &-journey {
+      padding: 30px 20px 19px;
+    }
+  }
+  @include media-breakpoint-down(sm) {
+    &-journey {
+      padding: 20px 20px 19px;
+      &__title {
+        font-size: 16px;
+        margin-bottom: 10px;
+      }
+    }
+    &-hover {
+      border: 1px solid rgba(224, 224, 224, 0.70);
     }
   }
 }

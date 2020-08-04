@@ -51,13 +51,13 @@
     <div class="footer-top">
       <div class="container">
         <div class="row">
-          <div class="col">
+          <div class="col-md col-6">
             <a href="" class="footer-logo">
               <img src="<?= base_url()?>/assets/img/logo-zare.png" alt="">
             </a>
             <span class="footer-logo__caption">We Grow The Nation</span>
           </div>
-          <div class="col-auto">
+          <div class="col-md-auto col-6">
             <div class="footer-menu__wrapper">
               <div class="footer-menu__title">MENU</div>
               <ul class="footer-menu">
@@ -68,7 +68,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-auto">
+          <div class="col-md-auto col-6">
             <div class="footer-menu__wrapper">
               <div class="footer-menu__title">BLOG</div>
               <ul class="footer-menu">
@@ -79,7 +79,7 @@
               </ul>
             </div>
           </div>
-          <div class="col-auto">
+          <div class="col-md-auto col-6">
             <div class="footer-menu__wrapper">
               <div class="footer-menu__title">Social Media</div>
               <ul class="footer-menu">

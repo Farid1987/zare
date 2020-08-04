@@ -34,6 +34,42 @@
       padding: 9px 43px 8px 45px;
     }
   }
+  .toggle-menu {
+    width: 22px;
+    margin-left: 20px;
+    span {
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      display: block;
+      margin-bottom: 5px;
+      transition: all 0.3s;
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+    &.open {
+      width: 22px;
+      height: 22px;
+      position: relative;
+      span {
+        position: absolute;
+        left: 0;
+        margin: 0;
+        &:first-child {
+          top: 50%;
+          transform: translate(0,-50%) rotate(45deg);
+        }
+        &:last-child {
+          top: 50%;
+          transform: translate(0,-50%) rotate(-45deg);
+        }
+        &:nth-child(2) {
+          display: none;
+        }
+      }
+    }
+  }
 
   &-white {
     padding: 15px 0;
@@ -46,6 +82,65 @@
         &:hover, &.active {
           color: $clr-primary;
         }
+      }
+    }
+    .toggle-menu span {
+      background: rgba(0,0,0,0.9);
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    &-menu {
+      &__item {
+        margin-left: 20px;
+      }
+    }
+    &-right {
+      .btn {
+        margin-left: 20px;
+        padding: 9px 30px 8px;
+      }
+    }
+  }
+
+  @include media-breakpoint-down(sm) {
+    padding: 20px 0;
+    .container {
+      max-width: 100%;
+    }
+    &-menu {
+      position: absolute;
+      flex-direction: column;
+      right: 0;
+      top: calc(100% + 15px);
+      background: rgba(0, 0, 0, 0.75);
+      width: 200px;
+      padding: 20px 0 4px;
+      box-shadow: -2px 6px 6px rgba(0,0,0,0.1);
+      transform: translateY(-50px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+      &__item {
+        margin-left: 0;
+        margin-bottom: 16px;
+      }
+      &.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+    }
+    &-right {
+      position: relative;
+      .btn {
+        font-size: 12px;
+        padding: 9px 22px 8px;
+      }
+    }
+    &-white {
+      .header-menu {
+        background: #fff;
       }
     }
   }

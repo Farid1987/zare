@@ -2,22 +2,23 @@
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
-    <?php for ($i=0; $i < 1; $i++) { ?>
+    <?php for ($i=0; $i < 2; $i++) { ?>
       <div class="swiper-slide">
-        <div class="home-slider__item">
+        <div class="home-slider__item flex items-center">
           <img class="home-slider__bg" src="<?= base_url()?>/assets/img/home-slider.jpg" alt="">
-  
-          <div class="home-slider__content">
-            <h1 class="home-slider__title">Zare Indonesia</h1>
-            <h4 class="home-slider__subtitle">INSPIRE EVERYONE TO HELP EACH OTHER AND LIFE HEALTHIER</h4>
-            <p class="home-slider__desc">Berangkat dari meningkatnya minat masyarakat akan produk pertanian yang sehat. zare.id berfokus menyediakan bacaan seputar pertanian, mengadakan event kolaborasi, juga produk-produk sehat yang terjangkau. Kami mengajak masyarakat indonesia terutama millenials untuk hidup lebih sehat dan bisa memberikan aksi nyata untuk kemajuan pertanian Indonesia.</p>
+          <div class="container">
+            <div class="home-slider__content">
+              <h1 class="home-slider__title">Zare Indonesia</h1>
+              <h4 class="home-slider__subtitle">INSPIRE EVERYONE TO HELP EACH OTHER AND LIFE HEALTHIER</h4>
+              <p class="home-slider__desc">Berangkat dari meningkatnya minat masyarakat akan produk pertanian yang sehat. zare.id berfokus menyediakan bacaan seputar pertanian, mengadakan event kolaborasi, juga produk-produk sehat yang terjangkau. Kami mengajak masyarakat indonesia terutama millenials untuk hidup lebih sehat dan bisa memberikan aksi nyata untuk kemajuan pertanian Indonesia.</p>
+            </div>
           </div>
         </div>
       </div>
     <?php } ?>
   </div>
   <!-- If we need pagination -->
-  <!-- <div class="swiper-pagination"></div> -->
+  <div class="swiper-pagination"></div>
 </section>
 
 <section class="section-our-journey">
@@ -62,7 +63,7 @@
   </div>
 </section>
 
-<div class="container">
+<!-- <div class="container">
   <section class="section-health-product">
     <div class="box box-grey box-rounded-20 box-health-product flex justify-between">
       <div class="box-content">
@@ -135,7 +136,6 @@
           <?php } ?>
         </div>
       </div>
-      <!-- Add Arrows -->
       <div class="swiper-button-next">
         <i class="fa fa-arrow-right"></i>
       </div>
@@ -181,7 +181,6 @@
           <?php } ?>
         </div>
       </div>
-      <!-- Add Arrows -->
       <div class="swiper-button-next">
         <i class="fa fa-arrow-right"></i>
       </div>
@@ -240,7 +239,7 @@
           <?php } ?>
         </div>
       </div>
-      <!-- Add Arrows -->
+      
       <div class="swiper-button-next">
         <i class="fa fa-arrow-right"></i>
       </div>
@@ -281,7 +280,7 @@
           <?php } ?>
         </div>
       </div>
-      <!-- Add Arrows -->
+      
       <div class="swiper-button-next">
         <i class="fa fa-arrow-right"></i>
       </div>
@@ -356,4 +355,4 @@
       </form>
     </div>
   </div>
-</section>
+</section> -->

@@ -12,3 +12,14 @@
 .text-primary {
   color: $clr-primary;
 }
+
+@include media-breakpoint-down(sm) {
+  .show-desktop {
+    display: none; 
+  }
+}
+@include media-breakpoint-up(md) {
+  .show-mobile {
+    display: none;
+  }
+}
