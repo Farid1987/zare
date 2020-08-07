@@ -50,13 +50,28 @@
             nextEl: (next) ? next:null,
             prevEl: (prev) ? prev:null,
           },
-          slidesPerView: (items) ? Number(items):1,
-          spaceBetween: (space) ? Number(space):0,
+          slidesPerView: 1,
+          spaceBetween: 0,
           on: {
             init: function(e) {
               if (display=='none') {
                 (parentArrow) ? parentArrow.style.display='none':el.style.display='none';
               }
+            }
+          },
+          breakpoints: {
+            576: {
+              slidesPerView: (items >= 2) ? 2:1,
+              spaceBetween: (space) ? 20:0,
+              centeredSlides: false,
+            },
+            768: {
+              slidesPerView: (items >= 3) ? 3:items,
+              spaceBetween: (space >= 30) ? 30:space,
+            },
+            992: {
+              slidesPerView: (items) ? Number(items):1,
+              spaceBetween: (space) ? space:0,
             }
           }
         })

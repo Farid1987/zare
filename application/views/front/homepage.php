@@ -63,7 +63,7 @@
   </div>
 </section>
 
-<!-- <div class="container">
+<div class="container">
   <section class="section-health-product">
     <div class="box box-grey box-rounded-20 box-health-product flex justify-between">
       <div class="box-content">
@@ -217,7 +217,7 @@
                   <img src="<?= base_url()?>/assets/img/home-blog1.jpg" alt="">
                 </a>
                 <div class="box-content">
-                  <div class="box-info flex justify-between">
+                  <div class="box-info flex flex-wrap@md justify-between">
                     <div class="box-info__cat flex items-center">
                       <span class="circle circle-primary"></span>
                       LIVE IN
@@ -258,7 +258,7 @@
                   <img src="<?= base_url()?>/assets/img/home-blog1.jpg" alt="">
                 </a>
                 <div class="box-content">
-                  <div class="box-info flex justify-between">
+                  <div class="box-info flex flex-wrap@md justify-between">
                     <div class="box-info__cat flex items-center">
                       <span class="circle circle-primary"></span>
                       LIVE IN
@@ -303,7 +303,7 @@
 
     <div class="row">
       <div class="col-md-7">
-        <div class="flex partner-wrapper">
+        <div class="flex items-start partner-wrapper">
           <a href="" class="partner-thumb">
             <div class="img-rasio r-100">
               <img src="<?= base_url()?>/assets/img/home-blog2.jpg" alt="">
@@ -315,7 +315,7 @@
             <a href="" class="btn btn-primary">Baca Selengkapnya</a>
           </div>
         </div>
-        <div class="flex partner-wrapper">
+        <div class="flex items-start partner-wrapper">
           <a href="" class="partner-thumb">
             <div class="img-rasio r-100">
               <img src="<?= base_url()?>/assets/img/home-blog2.jpg" alt="">
@@ -355,4 +355,4 @@
       </form>
     </div>
   </div>
-</section> -->
+</section>
