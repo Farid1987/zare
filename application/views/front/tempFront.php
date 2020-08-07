@@ -19,7 +19,7 @@
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
-  <header class="header header-scroll header-fixed">
+  <header class="header header-fixed <?= (isset($header_class) ? $header_class:'')?>">
     <div class="container flex items-center justify-between">
       <div class="header-left">
         <a href="" class="header-logo">
@@ -30,7 +30,7 @@
         <ul class="header-menu flex items-center">
           <li class="header-menu__item active"><a href="">HOME</a></li>
           <li class="header-menu__item"><a href="">ABOUT US</a></li>
-          <li class="header-menu__item"><a href="">PRODUCT</a></li>
+          <li class="header-menu__item"><a href="<?= site_url('frontPage/products')?>">PRODUCT</a></li>
           <li class="header-menu__item"><a href="">EVENT</a></li>
           <li class="header-menu__item"><a href="">BLOG</a></li>
           <li class="header-menu__item"><a href="">CONTACT US</a></li>
@@ -62,7 +62,7 @@
               <div class="footer-menu__title">MENU</div>
               <ul class="footer-menu">
                 <li><a href="">Home</a></li>
-                <li><a href="">Product</a></li>
+                <li><a href="<?= site_url('frontPage/products')?>">Product</a></li>
                 <li><a href="">About Us</a></li>
                 <li><a href="">Contact Us</a></li>
               </ul>

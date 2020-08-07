@@ -12,6 +12,13 @@
 .text-primary {
   color: $clr-primary;
 }
+.text-secondary {
+  color: $clr-secondary;
+}
+
+.mb-0 {
+  margin-bottom: 0;
+}
 
 @include media-breakpoint-down(sm) {
   .show-desktop {

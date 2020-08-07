@@ -97,7 +97,7 @@
     <h2 class="section-title section-title--sm flex items-center justify-between">
       Product Terlaris
 
-      <a href="" class="section-title__link text-primary flex items-center">
+      <a href="<?= site_url('frontPage/products')?>" class="section-title__link text-primary flex items-center">
         LIHAT SEMUA
         <i class="fa fa-arrow-right"></i>
       </a>

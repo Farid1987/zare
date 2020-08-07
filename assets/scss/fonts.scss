@@ -1,7 +1,8 @@
 @font-face {
   font-family: 'Montserrat';
-  src: url('../fonts/montserrat/Montserrat-Bold.eot');
-  src: url('../fonts/montserrat/Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
+  src: local('Montserrat'),
+      local('Montserrat-Bold'),
+      url('../fonts/montserrat/Montserrat-Bold.eot?#iefix') format('embedded-opentype'),
       url('../fonts/montserrat/Montserrat-Bold.woff2') format('woff2'),
       url('../fonts/montserrat/Montserrat-Bold.woff') format('woff'),
       url('../fonts/montserrat/Montserrat-Bold.ttf') format('truetype');
@@ -12,8 +13,9 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('../fonts/montserrat/Montserrat-ExtraBold.eot');
-  src: url('../fonts/montserrat/Montserrat-ExtraBold.eot?#iefix') format('embedded-opentype'),
+  src: local('Montserrat'),
+      local('Montserrat-ExtraBold'), 
+      url('../fonts/montserrat/Montserrat-ExtraBold.eot?#iefix') format('embedded-opentype'),
       url('../fonts/montserrat/Montserrat-ExtraBold.woff2') format('woff2'),
       url('../fonts/montserrat/Montserrat-ExtraBold.woff') format('woff'),
       url('../fonts/montserrat/Montserrat-ExtraBold.ttf') format('truetype');
@@ -24,8 +26,9 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('../fonts/montserrat/Montserrat-Regular.eot');
-  src: url('../fonts/montserrat/Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
+  src: local('Montserrat'),
+      local('Montserrat-Regular'),
+      url('../fonts/montserrat/Montserrat-Regular.eot?#iefix') format('embedded-opentype'),
       url('../fonts/montserrat/Montserrat-Regular.woff2') format('woff2'),
       url('../fonts/montserrat/Montserrat-Regular.woff') format('woff'),
       url('../fonts/montserrat/Montserrat-Regular.ttf') format('truetype');
@@ -36,8 +39,9 @@
 
 @font-face {
   font-family: 'Montserrat';
-  src: url('../fonts/montserrat/Montserrat-SemiBold.eot');
-  src: url('../fonts/montserrat/Montserrat-SemiBold.eot?#iefix') format('embedded-opentype'),
+  src: local('Montserrat'),
+      local('Montserrat-SemiBold'),
+      url('../fonts/montserrat/Montserrat-SemiBold.eot?#iefix') format('embedded-opentype'),
       url('../fonts/montserrat/Montserrat-SemiBold.woff2') format('woff2'),
       url('../fonts/montserrat/Montserrat-SemiBold.woff') format('woff'),
       url('../fonts/montserrat/Montserrat-SemiBold.ttf') format('truetype');
@@ -48,8 +52,9 @@
 
 @font-face {
   font-family: 'Nunito Sans';
-  src: url('../fonts/nunito/NunitoSans-SemiBold.eot');
-  src: url('../fonts/nunito/NunitoSans-SemiBold.eot?#iefix') format('embedded-opentype'),
+  src: local('Nunito Sans'),
+      local('NunitoSans-SemiBold'),
+      url('../fonts/nunito/NunitoSans-SemiBold.eot?#iefix') format('embedded-opentype'),
       url('../fonts/nunito/NunitoSans-SemiBold.woff2') format('woff2'),
       url('../fonts/nunito/NunitoSans-SemiBold.woff') format('woff'),
       url('../fonts/nunito/NunitoSans-SemiBold.ttf') format('truetype');
@@ -60,8 +65,9 @@
 
 @font-face {
   font-family: 'Nunito Sans';
-  src: url('../fonts/nunito/NunitoSans-Light.eot');
-  src: url('../fonts/nunito/NunitoSans-Light.eot?#iefix') format('embedded-opentype'),
+  src: local('Nunito Sans'),
+      local('NunitoSans-Light'),
+      url('../fonts/nunito/NunitoSans-Light.eot?#iefix') format('embedded-opentype'),
       url('../fonts/nunito/NunitoSans-Light.woff2') format('woff2'),
       url('../fonts/nunito/NunitoSans-Light.woff') format('woff'),
       url('../fonts/nunito/NunitoSans-Light.ttf') format('truetype');
@@ -72,8 +78,9 @@
 
 @font-face {
   font-family: 'Nunito Sans';
-  src: url('../fonts/nunito/NunitoSans-Bold.eot');
-  src: url('../fonts/nunito/NunitoSans-Bold.eot?#iefix') format('embedded-opentype'),
+  src: local('Nunito Sans'),
+      local('NunitoSans-Bold'),
+      url('../fonts/nunito/NunitoSans-Bold.eot?#iefix') format('embedded-opentype'),
       url('../fonts/nunito/NunitoSans-Bold.woff2') format('woff2'),
       url('../fonts/nunito/NunitoSans-Bold.woff') format('woff'),
       url('../fonts/nunito/NunitoSans-Bold.ttf') format('truetype');
@@ -84,8 +91,9 @@
 
 @font-face {
   font-family: 'Nunito Sans';
-  src: url('../fonts/nunito/NunitoSans-Regular.eot');
-  src: url('../fonts/nunito/NunitoSans-Regular.eot?#iefix') format('embedded-opentype'),
+  src: local('Nunito Sans'),
+      local('NunitoSans-Regular'),
+      url('../fonts/nunito/NunitoSans-Regular.eot?#iefix') format('embedded-opentype'),
       url('../fonts/nunito/NunitoSans-Regular.woff2') format('woff2'),
       url('../fonts/nunito/NunitoSans-Regular.woff') format('woff'),
       url('../fonts/nunito/NunitoSans-Regular.ttf') format('truetype');
@@ -96,8 +104,9 @@
 
 @font-face {
   font-family: 'Pacifico';
-  src: url('../fonts/pacifico/Pacifico-Regular.eot');
-  src: url('../fonts/pacifico/Pacifico-Regular.eot?#iefix') format('embedded-opentype'),
+  src: local('Pacifico'),
+      local('Pacifico-SemiBold'),
+      url('../fonts/pacifico/Pacifico-Regular.eot?#iefix') format('embedded-opentype'),
       url('../fonts/pacifico/Pacifico-Regular.woff2') format('woff2'),
       url('../fonts/pacifico/Pacifico-Regular.woff') format('woff'),
       url('../fonts/pacifico/Pacifico-Regular.ttf') format('truetype');
