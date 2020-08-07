@@ -22,7 +22,7 @@
   <header class="header header-fixed <?= (isset($header_class) ? $header_class:'')?>">
     <div class="container flex items-center justify-between">
       <div class="header-left">
-        <a href="" class="header-logo">
+        <a href="<?= site_url()?>" class="header-logo">
           <img src="<?= base_url()?>/assets/img/logo-zare.png" alt="">
         </a>
       </div>
@@ -52,7 +52,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md col-6">
-            <a href="" class="footer-logo">
+            <a href="<?= site_url()?>" class="footer-logo">
               <img src="<?= base_url()?>/assets/img/logo-zare.png" alt="">
             </a>
             <span class="footer-logo__caption">We Grow The Nation</span>

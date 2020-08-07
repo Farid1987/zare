@@ -331,9 +331,9 @@
       <div class="col-md-5">
         <div class="ig-feed flex flex-wrap" data-url="https://www.instagram.com/zareindonesia/?__a=1">
           <?php for ($i=0; $i < 6; $i++) { ?>
-            <a href="" target="__blank" class="ig-feed__item">
+            <a href="https://www.instagram.com/p/CDdWR8Snzka/" target="__blank" class="ig-feed__item">
               <div class="img-rasio r-100">
-                <img src="<?= base_url()?>/assets/img/home-blog3.jpg" alt="">
+                <img src="https://instagram.fsoc1-1.fna.fbcdn.net/v/t51.2885-15/e35/116582099_955440678262959_9078401629976227098_n.jpg?_nc_ht=instagram.fsoc1-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=hnbB7cWmMdQAX8XZhvY&oh=a9b9bb7291c55b9445c732169c222026&oe=5F55CDF1" alt="">
               </div>
             </a>
           <?php } ?>

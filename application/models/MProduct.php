@@ -8,11 +8,41 @@ class MProduct extends CI_Model {
 	 *	@return array data product
 	 */
 	public function getAll(){
-    $this->db->select('product.*, product_kategori.nama_kategori as kategori');
+    $this->db->select('product.*, product_kategori.nama_kategori as kategori, product_kategori.satuan_harga as satuan');
     $this->db->from('product');
     $this->db->join('product_kategori', 'product.id_kategori = product_kategori.id_kategori', 'left');
 		$query = $this->db->get();
 		return $query->result();
+  }
+
+  /**
+	 * 	get data product with limit data
+	 *	@return array data product
+	 */
+  public function getWithLimit($limit, $start, $idKategori) {
+    $this->db->select('product.*, product_kategori.nama_kategori as kategori, product_kategori.satuan_harga as satuan');
+    $this->db->from('product');
+    $this->db->join('product_kategori', 'product.id_kategori = product_kategori.id_kategori', 'left');
+    if ($idKategori) {
+      $this->db->where(['product.id_kategori' => $idKategori]);  
+    }
+    $this->db->limit($limit, $start);
+    $query = $this->db->get();
+		return $query->result();
+  }
+
+  /**
+	 * 	get total data product with condition
+	 *	@return array number / null
+	 */
+  public function countDataProduct($condition) {
+    if ($condition == 'all') {
+      $this->db->select('*');
+      $query = $this->db->get('product');
+    } else {
+      $query = $this->db->get_where('product', $condition);
+    }
+    return count($query->result());
   }
 
    /**

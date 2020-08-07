@@ -4,30 +4,36 @@
     <div class="page-subtitle text-center">- Zare Indonesia</div>
 
     <div class="product-filter flex flex-wrap items-center justify-center">
-      <a href="" class="product-filter__item active">SEMUA</a>
-      <a href="" class="product-filter__item">KOMBUCHA</a>
-      <a href="" class="product-filter__item">KEFIR</a>
+      <?php $currentKategori = $this->input->get('kategori');?>
+      <a href="<?= site_url('/frontPage/products')?>" class="product-filter__item <?= (!isset($currentKategori)) ? 'active' : ''?>">SEMUA</a>
+      <?php foreach ($kategori as $key => $value) { ?>
+        <a href="<?= site_url('/frontPage/products')?>?kategori=<?=$value->id_kategori?>" class="product-filter__item <?= (isset($currentKategori) && $currentKategori==$value->id_kategori) ? 'active' : ''?>"><?= strtoupper($value->nama_kategori)?></a>
+      <?php } ?>
     </div>
 
     <div class="product-list row">
-      <?php for ($i=0; $i < 6; $i++) { ?>
+      <?php foreach ($products as $key => $value) { ?>
         <div class="col-md-4 col-sm-6">
           <a href="" class="box box-hover box-rounded-10 box-product">
             <div class="box-thumb img-rasio r-100 mb-0">
-              <img src="<?= base_url()?>/assets/img/product1-big.jpg" alt="">
+              <img src="<?= base_url().'/'.$value->featured_img?>" alt="">
             </div>
             <div class="box-content box-content__product">
               <h4 class="box-title text-primary">
-                Kombucha Sirsak
+                <?= $value->nama_product?>
               </h4>
-              <span class="label">KATEGORI</span>
+              <span class="label"><?= $value->kategori?></span>
               <div class="flex justify-between items-center box-product__info">
                 <div class="box-product__info-item">
-                  <p class="product-price text-secondary">12.000/Kg</p>
+                  <p class="product-price text-secondary"><?= $value->price.' /'.$value->satuan?></p>
                 </div>
                 <div class="box-product__info-item">
                   <p class="product-stock flex items-center">
-                    <span class="circle circle-primary"></span><span class="text-primary">tersedia</span>
+                    <?php if ($value->stock > 0) { ?>
+                      <span class="circle circle-primary"></span><span class="text-primary">tersedia</span>
+                    <?php } else {?>
+                      <span class="circle circle-secondary"></span><span class="text-secondary">habis</span>
+                    <?php } ?>
                   </p>
                 </div>
               </div>
@@ -38,7 +44,11 @@
     </div>
 
     <div class="text-center load-more">
-      <a href="" class="btn btn-primary btn-load-more">LIHAT LEBIH BANYAK</a>
+      <?php if ($totalProducts > $per_page) { ?>
+        <a href="" class="btn btn-primary btn-load-more">LIHAT LEBIH BANYAK</a>
+        <input type="text" hidden id="limit" value="<?= $per_page?>">
+        <input type="text" hidden id="page" value="<?= $per_page?>">
+      <?php } ?>
     </div>
     
     <div class="product-terlaris">
@@ -78,3 +88,78 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    const btnLoadMore = document.querySelector('.btn-load-more');
+    if (btnLoadMore) {
+      btnLoadMore.addEventListener('click', function(e) {
+        e.preventDefault();
+        const url = '<?= site_url('frontPage/getNextProduct')?>';
+        const kategori = '<?= $this->input->get('kategori')?>';
+        const page = document.getElementById('page');
+        const limit = document.getElementById('limit');
+        const container = document.querySelector('.product-list');
+        let xhr = new XMLHttpRequest();
+
+        this.innerText = 'LOADING...';
+        this.classList.add('disabled');
+        xhr.open(
+          'GET',
+          url + '?page=' + page.value + '&limit=' + limit.value + '&kategori=' + kategori
+        );
+        xhr.onload = function() {
+          if ( xhr.status === 200 ) {
+            try {
+              const res = JSON.parse(xhr.response);
+              const newProduct = getHTMLProduct(res.data);
+              const totalProduct = '<?= $totalProducts?>';
+              page.value = res.nextPage;
+              limit.value = res.limit;
+
+              container.insertAdjacentHTML( 'beforeend', newProduct );
+              btnLoadMore.classList.remove('disabled');
+              (res.nextPage >= Number(totalProduct)) ? btnLoadMore.remove() : btnLoadMore.innerText='LIHAT LEBIH BANYAK';
+            } catch (err) {
+              console.log(err);
+            }
+          }
+        }
+        xhr.send();
+      })
+    }
+
+    function getHTMLProduct(data) {
+      let html = '';
+      data.forEach(el => {
+        html += `<div class="col-md-4 col-sm-6">
+          <a href="" class="box box-hover box-rounded-10 box-product">
+            <div class="box-thumb img-rasio r-100 mb-0">
+              <img src="<?= base_url()?>/${el.featured_img}" alt="">
+            </div>
+            <div class="box-content box-content__product">
+              <h4 class="box-title text-primary">
+                ${el.nama_product}
+              </h4>
+              <span class="label">${el.kategori}</span>
+              <div class="flex justify-between items-center box-product__info">
+                <div class="box-product__info-item">
+                  <p class="product-price text-secondary">${el.price} /${el.satuan}</p>
+                </div>
+                <div class="box-product__info-item">
+                  <p class="product-stock flex items-center">
+                    ${(el.stock > 0) ? '<span class="circle circle-primary"></span><span class="text-primary">tersedia</span>' : '<span class="circle circle-secondary"></span><span class="text-secondary">habis</span>'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>`;
+      });
+
+      return html;
+    }
+  })
+})()
+</script>

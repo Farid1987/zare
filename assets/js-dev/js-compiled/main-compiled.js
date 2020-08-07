@@ -128,7 +128,6 @@
       }
     }
   }
-
   var fadeSpd = 0.050;
   function fadeIn(e, display) {
     e.style.opacity = 0, e.style.display = display || "block", function fade(val) {
@@ -147,6 +146,30 @@
       }
     })();
   }
+
+  // instagram feed fetch
+  // const igContainer = document.querySelectorAll('.ig-feed');
+  // if (igContainer.length > 0) {
+  //   for (const container of igContainer) {
+  //     const url = container.dataset.url;
+  //     let xhr = new XMLHttpRequest();
+  //     xhr.open(
+  //       'GET',
+  //       url
+  //     );
+  //     xhr.onload = function() {
+  //       if ( xhr.status === 200 ) {
+  //         try {
+  //           console.log(xhr.response);
+  //           // const res = JSON.parse(xhr.response);
+  //         } catch (err) {
+  //           console.log(err);
+  //         }
+  //       }
+  //     }
+  //     xhr.send();
+  //   }
+  // }
 })();
 
 },{}]},{},[1]);
