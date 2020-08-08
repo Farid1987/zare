@@ -33,7 +33,7 @@
 
   // swiper slider
   try {
-    var sliderContainer = document.querySelectorAll('.swiper-container');
+    var sliderContainer = document.querySelectorAll('.js-swiper');
     if (sliderContainer.length > 0) {
       sliderContainer.forEach(function (el) {
         var parentArrow = el.closest('.swiper-arrow__wrapper');
@@ -78,6 +78,21 @@
             }
           }
         });
+      });
+    }
+
+    var sliderProductThumb = document.querySelector('.product-gallery__thumbs');
+    var sliderProduct = document.querySelector('.product-gallery__top');
+    if (sliderProduct && sliderProductThumb) {
+      var productSliderThumb = new Swiper(sliderProductThumb, {
+        spaceBetween: 20,
+        slidesPerView: 4
+      });
+      var productSlider = new Swiper(sliderProduct, {
+        spaceBetween: 10,
+        thumbs: {
+          swiper: productSliderThumb
+        }
       });
     }
   } catch (error) {

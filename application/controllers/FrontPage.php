@@ -16,7 +16,7 @@
       ];
       $this->data['css_to_load'] = [
         base_url('assets/css/swiper-bundle.min.css'),
-      ];;
+      ];
       $this->data['header_class'] = 'header-scroll';
       // $this->data['ig'] = file_get_contents('https://www.instagram.com/zareindonesia/?__a=1');
       // var_dump(json_decode($this->data['ig']));die;
@@ -36,6 +36,23 @@
 
       $this->data['header_class'] = 'header-white';
       $this->template->load('front/tempFront', 'front/products', $this->data);
+    }
+
+    public function productDetail($idProduct) {
+      $this->load->model('MProduct');
+
+      $this->data['product'] = $this->MProduct->getDetailProduct($idProduct);
+      $this->data['js_to_load'] = [
+        base_url('assets/js/swiper-bundle.min.js'),
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/css/swiper-bundle.min.css'),
+      ];
+      $this->data['product_gallery'] = ($this->data['product']->image_url) ? explode(',', $this->data['product']->image_url):null;
+
+      // var_dump($this->data['product_gallery']);die();
+      $this->data['header_class'] = 'header-white';
+      $this->template->load('front/tempFront', 'front/productDetail', $this->data);
     }
 
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////

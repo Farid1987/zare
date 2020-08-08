@@ -30,7 +30,7 @@
 
   // swiper slider
   try {
-    const sliderContainer = document.querySelectorAll('.swiper-container');
+    const sliderContainer = document.querySelectorAll('.js-swiper');
     if (sliderContainer.length > 0) {
       sliderContainer.forEach(el => {
         const parentArrow = el.closest('.swiper-arrow__wrapper');
@@ -76,6 +76,21 @@
           }
         })
       });
+    }
+
+    const sliderProductThumb = document.querySelector('.product-gallery__thumbs');
+    const sliderProduct = document.querySelector('.product-gallery__top');
+    if (sliderProduct && sliderProductThumb) {
+      let productSliderThumb = new Swiper(sliderProductThumb, {
+        spaceBetween: 20,
+        slidesPerView: 4,
+      })
+      let productSlider = new Swiper(sliderProduct, {
+        spaceBetween: 10,
+        thumbs: {
+          swiper: productSliderThumb
+        }
+      })
     }
   } catch (error) {
     console.warn('this page not load swiperjs');

@@ -9,11 +9,19 @@
     opacity: 0.6;
   }
   &-primary {
-    background: #4DAD52;
-    border: #4DAD52;
+    background: $clr-primary;
+    border: $clr-primary;
     color: #fff;
     &:hover, &:focus {
       color: #fff;
+    }
+    &--outline {
+      background: #fff;
+      border: 1px solid $clr-primary;
+      color: $clr-primary;
+      &:hover {
+        color: $clr-primary;
+      }
     }
   }
   &-rounded {

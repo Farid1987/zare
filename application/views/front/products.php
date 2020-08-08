@@ -14,7 +14,7 @@
     <div class="product-list row">
       <?php foreach ($products as $key => $value) { ?>
         <div class="col-md-4 col-sm-6">
-          <a href="" class="box box-hover box-rounded-10 box-product">
+          <a href="<?= site_url('frontPage/productDetail/'.$value->id_product)?>" class="box box-hover box-rounded-10 box-product">
             <div class="box-thumb img-rasio r-100 mb-0">
               <img src="<?= base_url().'/'.$value->featured_img?>" alt="">
             </div>
@@ -134,7 +134,7 @@
       let html = '';
       data.forEach(el => {
         html += `<div class="col-md-4 col-sm-6">
-          <a href="" class="box box-hover box-rounded-10 box-product">
+          <a href="<?= site_url('frontPage/productDetail/')?>/${el.id_product}" class="box box-hover box-rounded-10 box-product">
             <div class="box-thumb img-rasio r-100 mb-0">
               <img src="<?= base_url()?>/${el.featured_img}" alt="">
             </div>

@@ -1,4 +1,4 @@
-<section class="section-home-slider swiper-container swiper-item-1">
+<section class="section-home-slider swiper-container js-swiper swiper-item-1">
   <!-- Additional required wrapper -->
   <div class="swiper-wrapper">
     <!-- Slides -->
@@ -104,7 +104,7 @@
     </h2>
     
     <div class="swiper-arrow__wrapper">
-      <div class="swiper-container swiper-item-4 product-slider" data-items="4" data-space="35">
+      <div class="swiper-container js-swiper swiper-item-4 product-slider" data-items="4" data-space="35">
         <div class="swiper-wrapper">
           <?php for ($i=0; $i < 8; $i++) { ?>
             <div class="swiper-slide">
@@ -158,7 +158,7 @@
     </h2>
 
     <div class="swiper-arrow__wrapper">
-      <div class="swiper-container swiper-item-3" data-items="3" data-space="45">
+      <div class="swiper-container js-swiper swiper-item-3" data-items="3" data-space="45">
         <div class="swiper-wrapper">
           <?php for ($i=0; $i < 6; $i++) { ?>
             <div class="swiper-slide">
@@ -208,7 +208,7 @@
     </div>
 
     <div class="swiper-arrow__wrapper" id="event">
-      <div class="swiper-container swiper-item-3" data-items="3" data-space="45">
+      <div class="swiper-container js-swiper swiper-item-3" data-items="3" data-space="45">
         <div class="swiper-wrapper">
           <?php for ($i=0; $i < 6; $i++) { ?>
             <div class="swiper-slide">
@@ -249,7 +249,7 @@
     </div>
     
     <div class="swiper-arrow__wrapper" id="workshop">
-      <div class="swiper-container swiper-item-3" data-items="3" data-space="45" data-display="none">
+      <div class="swiper-container js-swiper swiper-item-3" data-items="3" data-space="45" data-display="none">
         <div class="swiper-wrapper">
           <?php for ($i=0; $i < 6; $i++) { ?>
             <div class="swiper-slide">
