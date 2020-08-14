@@ -884,7 +884,7 @@
         $this->data['event'] = $result[0];
         $this->data['eventPhotos'] = $this->MEventPhotos->getWhere($condition);
         $this->data['allType'] = $this->MTypeProject->getAll();
-        $this->data['eventStatus'] = EVENT_STATUS;
+        $this->data['eventStatus'] = unserialize(EVENT_STATUS);
         $this->data['active'] = 'event';
         $this->data['breadcrumb'] = [
           ['Event', site_url('admin/event')],

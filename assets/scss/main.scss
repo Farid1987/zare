@@ -19,11 +19,13 @@
 @import "components/label";
 @import "components/circle";
 @import "components/footer";
+@import "components/form";
 
 // Pages
 @import "pages/homepage.scss";
 @import "pages/products.scss";
 @import "pages/productDetail.scss";
+@import "pages/auth.scss";
 
 // Utils
 @import "utils/util.flex";

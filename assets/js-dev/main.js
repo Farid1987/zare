@@ -140,6 +140,36 @@
     })()
   }
 
+  // input number
+  const allInputWrapper = document.querySelectorAll('.add-cart__count');
+  if (allInputWrapper.length > 0) {
+    for (const inputWrapper of allInputWrapper) {
+      const plus = inputWrapper.querySelector('.plus');
+      const minus = inputWrapper.querySelector('.minus');
+      const input = inputWrapper.querySelector('.input');
+      
+      if (!input) continue;
+
+      plus && plus.addEventListener('click', function(e) {
+        e.preventDefault();
+        const newValue = Number(input.value) + 1
+        const max = Number(input.max);
+
+        if (newValue > max) return;
+        input.value = newValue
+      })
+
+      minus && minus.addEventListener('click', function(e) {
+        e.preventDefault();
+        const newValue = Number(input.value) - 1
+        const min = Number(input.min);
+
+        if (newValue < min) return;
+        input.value = newValue
+      })
+    }
+  }
+
   // instagram feed fetch
   // const igContainer = document.querySelectorAll('.ig-feed');
   // if (igContainer.length > 0) {

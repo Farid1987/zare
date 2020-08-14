@@ -28,14 +28,14 @@
       </div>
       <div class="header-right flex items-center">
         <ul class="header-menu flex items-center">
-          <li class="header-menu__item active"><a href="">HOME</a></li>
+          <li class="header-menu__item active"><a href="<?= site_url('frontPage')?>">HOME</a></li>
           <li class="header-menu__item"><a href="">ABOUT US</a></li>
           <li class="header-menu__item"><a href="<?= site_url('frontPage/products')?>">PRODUCT</a></li>
           <li class="header-menu__item"><a href="">EVENT</a></li>
-          <li class="header-menu__item"><a href="">BLOG</a></li>
+          <li class="header-menu__item"><a href="http://blog.zare.id/">BLOG</a></li>
           <li class="header-menu__item"><a href="">CONTACT US</a></li>
         </ul>
-        <a href="" class="btn btn-primary btn-rounded">MASUK</a>
+        <a href="<?= site_url('auth')?>" class="btn btn-primary btn-rounded">MASUK</a>
         <div class="toggle-menu show-mobile">
           <span></span>
           <span></span>

@@ -1,0 +1,17 @@
+.auth {
+  &-wrapper {
+    max-width: 400px;
+    margin: 50px auto 150px;
+    box-shadow: -3px 3px 13px rgb(181, 181, 181);
+    padding: 30px 25px 30px;
+  }
+  &-title {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+  &-note {
+    display: block;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}

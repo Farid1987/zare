@@ -34,7 +34,7 @@
         <p class="product-detail__short-desc"><?= $product->short_description?></p>
         
         <div class="product-detail__price">Rp <?= $product->price?> /<?= $product->satuan?></div>
-        <div class="product-detail__stock">stock : <?= ($product->stock > 0) ? '<span class="text-primary">tersedia(10)</span>':'<span class="text-secondary">habis</span>'?> </div>
+        <div class="product-detail__stock">stock : <?= ($product->stock > 0) ? '<span class="text-primary">tersedia('.$product->stock.')</span>':'<span class="text-secondary">habis</span>'?> </div>
 
         <div class="add-cart">
           <div class="add-cart__title">Masukkan Jumlah</div>
@@ -42,7 +42,7 @@
           <div class="flex">
             <div class="add-cart__count flex">
               <span class="minus flex items-center justify-center"><i class="fa fa-minus"></i></span>
-              <input type="text" value="0" class="input" readonly>
+              <input type="number" value="0" class="input" min="0" max="<?= $product->stock?>" readonly>
               <span class="plus flex items-center justify-center"><i class="fa fa-plus"></i></span>
             </div>
             <a href="" class="btn btn-primary btn-icon">

@@ -162,6 +162,63 @@
     })();
   }
 
+  // input number
+  var allInputWrapper = document.querySelectorAll('.add-cart__count');
+  if (allInputWrapper.length > 0) {
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+      var _loop = function _loop() {
+        var inputWrapper = _step2.value;
+
+        var plus = inputWrapper.querySelector('.plus');
+        var minus = inputWrapper.querySelector('.minus');
+        var input = inputWrapper.querySelector('.input');
+
+        if (!input) return 'continue';
+
+        plus && plus.addEventListener('click', function (e) {
+          e.preventDefault();
+          var newValue = Number(input.value) + 1;
+          var max = Number(input.max);
+
+          if (newValue > max) return;
+          input.value = newValue;
+        });
+
+        minus && minus.addEventListener('click', function (e) {
+          e.preventDefault();
+          var newValue = Number(input.value) - 1;
+          var min = Number(input.min);
+
+          if (newValue < min) return;
+          input.value = newValue;
+        });
+      };
+
+      for (var _iterator2 = allInputWrapper[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var _ret = _loop();
+
+        if (_ret === 'continue') continue;
+      }
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+          _iterator2.return();
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2;
+        }
+      }
+    }
+  }
+
   // instagram feed fetch
   // const igContainer = document.querySelectorAll('.ig-feed');
   // if (igContainer.length > 0) {

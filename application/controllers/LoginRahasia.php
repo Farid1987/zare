@@ -10,9 +10,11 @@
 
     public function index() {
       if ($this->session->userdata('role')!=null) {
-				if ($this->session->userdata('role')==0){
+				if ($this->session->userdata('role')=='admin'){
 					redirect('admin');
-				}
+				} else if ($this->session->userdata('role')=='member') {
+          redirect('frontPage');
+        }
 			}
       $this->load->view('auth/loginAdmin.php');
     }

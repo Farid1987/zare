@@ -8,6 +8,11 @@
   font-size: 32px;
   line-height: (39/32);
   margin-bottom: 9px;
+  &__auth {
+    font-family: $ff-pacifico;
+    font-size: 42px;
+    color: $clr-primary;
+  }
 }
 .page-subtitle {
   font-size: 18px;
