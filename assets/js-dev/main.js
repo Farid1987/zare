@@ -28,6 +28,25 @@
     })
   }
 
+  // dropdown toggle
+  const allToggle = document.querySelectorAll('.dropdown-toggle');
+  if (allToggle.length > 0) {
+    for (const toggle of allToggle) {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const dropdownMenu = this.nextElementSibling;
+        if (!dropdownMenu.classList.contains('dropdown-menu')) return;
+
+        if (!dropdownMenu.classList.contains('open')) {
+          dropdownMenu.classList.add('open');
+        } else {
+          dropdownMenu.classList.remove('open');
+        }
+      })
+    }
+  }
+
   // swiper slider
   try {
     const sliderContainer = document.querySelectorAll('.js-swiper');
@@ -167,6 +186,24 @@
         if (newValue < min) return;
         input.value = newValue
       })
+    }
+  }
+
+  window.customHelper = {
+    formatMoney: function (amount, decimalCount = 2, decimal = ".", thousands = ",") {
+      try {
+        decimalCount = Math.abs(decimalCount);
+        decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+    
+        const negativeSign = amount < 0 ? "-" : "";
+    
+        let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+        let j = (i.length > 3) ? i.length % 3 : 0;
+    
+        return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+      } catch (e) {
+        console.log(e)
+      }
     }
   }
 

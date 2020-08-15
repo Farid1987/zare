@@ -7,6 +7,12 @@
       parent::__construct();
       $this->data['fullname'] = $this->session->userdata('fullname');
       $this->data['emailUser'] = $this->session->userdata('email');
+
+      $this->load->model('MCart');
+      if ($this->session->userdata('id_user')) {
+        $this->data['cart'] = $this->MCart->getWhere(['id_user' => $this->session->userdata('id_user')]);
+        $this->data['countCart'] = count($this->data['cart']);
+      }
     }
 
     /////////////////////////////////////// PAGES ///////////////////////////////////////
@@ -20,8 +26,7 @@
         base_url('assets/css/swiper-bundle.min.css'),
       ];
       $this->data['header_class'] = 'header-scroll';
-      // $this->data['ig'] = file_get_contents('https://www.instagram.com/zareindonesia/?__a=1');
-      // var_dump(json_decode($this->data['ig']));die;
+
       $this->template->load('front/tempFront', 'front/homepage', $this->data);
     }
 
@@ -42,8 +47,12 @@
 
     public function productDetail($idProduct) {
       $this->load->model('MProduct');
+      $this->load->model('MProductKategori');
 
       $this->data['product'] = $this->MProduct->getDetailProduct($idProduct);
+      $this->data['otherProducts'] = $this->MProduct->getOtherProductWithLimit($idProduct, 4);
+      $this->data['productKategori'] = $this->MProductKategori->getAll();
+
       $this->data['js_to_load'] = [
         base_url('assets/js/swiper-bundle.min.js'),
       ];
@@ -52,7 +61,6 @@
       ];
       $this->data['product_gallery'] = ($this->data['product']->image_url) ? explode(',', $this->data['product']->image_url):null;
 
-      // var_dump($this->data['product_gallery']);die();
       $this->data['header_class'] = 'header-white';
       $this->template->load('front/tempFront', 'front/productDetail', $this->data);
     }
@@ -75,6 +83,47 @@
       );
 
       die(json_encode($res));
+    }
+
+    public function addToCart() {
+      if (!isset($this->data['emailUser'])) redirect('auth');
+
+      $id = $this->input->post('id');
+      $qty = $this->input->post('qty');
+      $data = array(
+        'id_user' => $this->session->userdata('id_user'),
+        'id_product' => $id
+      );
+      
+      $current = $this->MCart->getWhere($data);
+      if (count($current) <= 0) {
+        $dataInsert = array(
+          'id_user' => $this->session->userdata('id_user'),
+          'id_product' => $id,
+          'quantity' => $qty
+        );
+
+        $this->MCart->add($dataInsert);
+        $this->redirectPreviousPage();
+      } else {
+        $updatedQty = $current[0]->quantity + $qty;
+        $dataUpdate = array(
+          'quantity' => $updatedQty
+        );
+        $this->MCart->edit($current[0]->id_cart, $dataUpdate);
+        $this->redirectPreviousPage();
+      }
+
+    }
+
+    private function redirectPreviousPage() {
+      if (isset($_SERVER['HTTP_REFERER'])) {
+        header('Location: '.$_SERVER['HTTP_REFERER']);
+      } else {
+        header('Location: http://'.$_SERVER['SERVER_NAME']);
+      }
+      
+      exit;
     }
     /////////////////////////////////// END OF FUNCT ///////////////////////////////////////
   }

@@ -32,6 +32,20 @@ class MProduct extends CI_Model {
   }
 
   /**
+	 * 	get other data product with limit
+	 *	@return array data product
+	 */
+  public function getOtherProductWithLimit($excludeProductId, $limit) {
+    $this->db->select('product.*, product_kategori.nama_kategori as kategori, product_kategori.satuan_harga as satuan');
+    $this->db->from('product');
+    $this->db->join('product_kategori', 'product.id_kategori = product_kategori.id_kategori', 'left');
+    $this->db->where('product.id_product !=', $excludeProductId);
+    $this->db->limit($limit, 0);
+    $query = $this->db->get();
+		return $query->result();
+  }
+
+  /**
 	 * 	get detail data product
 	 *	@return array data product
 	 */  

@@ -13,12 +13,14 @@
       if ($this->session->userdata('role')!=null && $this->session->userdata('role')=='member') {
         redirect('frontPage');
 			}
-      
       $this->data['header_class'] = 'header-white';
       $this->template->load('front/tempFront', 'auth/login', $this->data);
     }
 
     public function register() {
+      if ($this->session->userdata('role')!=null && $this->session->userdata('role')=='member') {
+        redirect('frontPage');
+			}
       $this->data['header_class'] = 'header-white';
       $this->template->load('front/tempFront', 'auth/register', $this->data);
     }

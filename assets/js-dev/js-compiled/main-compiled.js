@@ -31,6 +31,46 @@
     });
   }
 
+  // dropdown toggle
+  var allToggle = document.querySelectorAll('.dropdown-toggle');
+  if (allToggle.length > 0) {
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+      for (var _iterator = allToggle[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+        var toggle = _step.value;
+
+        toggle.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          var dropdownMenu = this.nextElementSibling;
+          if (!dropdownMenu.classList.contains('dropdown-menu')) return;
+
+          if (!dropdownMenu.classList.contains('open')) {
+            dropdownMenu.classList.add('open');
+          } else {
+            dropdownMenu.classList.remove('open');
+          }
+        });
+      }
+    } catch (err) {
+      _didIteratorError = true;
+      _iteratorError = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion && _iterator.return) {
+          _iterator.return();
+        }
+      } finally {
+        if (_didIteratorError) {
+          throw _iteratorError;
+        }
+      }
+    }
+  }
+
   // swiper slider
   try {
     var sliderContainer = document.querySelectorAll('.js-swiper');
@@ -102,13 +142,13 @@
   // event toggle
   var eventToggleAll = document.querySelectorAll('.event-toggle__item');
   if (eventToggleAll.length > 0) {
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
 
     try {
-      for (var _iterator = eventToggleAll[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-        var eventToggle = _step.value;
+      for (var _iterator2 = eventToggleAll[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var eventToggle = _step2.value;
 
         eventToggle.addEventListener('click', function (e) {
           e.preventDefault();
@@ -129,16 +169,16 @@
         });
       }
     } catch (err) {
-      _didIteratorError = true;
-      _iteratorError = err;
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
     } finally {
       try {
-        if (!_iteratorNormalCompletion && _iterator.return) {
-          _iterator.return();
+        if (!_iteratorNormalCompletion2 && _iterator2.return) {
+          _iterator2.return();
         }
       } finally {
-        if (_didIteratorError) {
-          throw _iteratorError;
+        if (_didIteratorError2) {
+          throw _iteratorError2;
         }
       }
     }
@@ -165,13 +205,13 @@
   // input number
   var allInputWrapper = document.querySelectorAll('.add-cart__count');
   if (allInputWrapper.length > 0) {
-    var _iteratorNormalCompletion2 = true;
-    var _didIteratorError2 = false;
-    var _iteratorError2 = undefined;
+    var _iteratorNormalCompletion3 = true;
+    var _didIteratorError3 = false;
+    var _iteratorError3 = undefined;
 
     try {
       var _loop = function _loop() {
-        var inputWrapper = _step2.value;
+        var inputWrapper = _step3.value;
 
         var plus = inputWrapper.querySelector('.plus');
         var minus = inputWrapper.querySelector('.minus');
@@ -198,50 +238,72 @@
         });
       };
 
-      for (var _iterator2 = allInputWrapper[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+      for (var _iterator3 = allInputWrapper[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
         var _ret = _loop();
 
         if (_ret === 'continue') continue;
       }
     } catch (err) {
-      _didIteratorError2 = true;
-      _iteratorError2 = err;
+      _didIteratorError3 = true;
+      _iteratorError3 = err;
     } finally {
       try {
-        if (!_iteratorNormalCompletion2 && _iterator2.return) {
-          _iterator2.return();
+        if (!_iteratorNormalCompletion3 && _iterator3.return) {
+          _iterator3.return();
         }
       } finally {
-        if (_didIteratorError2) {
-          throw _iteratorError2;
+        if (_didIteratorError3) {
+          throw _iteratorError3;
         }
       }
     }
   }
 
-  // instagram feed fetch
-  // const igContainer = document.querySelectorAll('.ig-feed');
-  // if (igContainer.length > 0) {
-  //   for (const container of igContainer) {
-  //     const url = container.dataset.url;
-  //     let xhr = new XMLHttpRequest();
-  //     xhr.open(
-  //       'GET',
-  //       url
-  //     );
-  //     xhr.onload = function() {
-  //       if ( xhr.status === 200 ) {
-  //         try {
-  //           console.log(xhr.response);
-  //           // const res = JSON.parse(xhr.response);
-  //         } catch (err) {
-  //           console.log(err);
-  //         }
-  //       }
-  //     }
-  //     xhr.send();
-  //   }
-  // }
+  window.customHelper = {
+    formatMoney: function formatMoney(amount) {
+      var decimalCount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;
+      var decimal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : ".";
+      var thousands = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : ",";
+
+      try {
+        decimalCount = Math.abs(decimalCount);
+        decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+
+        var negativeSign = amount < 0 ? "-" : "";
+
+        var i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+        var j = i.length > 3 ? i.length % 3 : 0;
+
+        return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + (decimalCount ? decimal + Math.abs(amount - i).toFixed(decimalCount).slice(2) : "");
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    // instagram feed fetch
+    // const igContainer = document.querySelectorAll('.ig-feed');
+    // if (igContainer.length > 0) {
+    //   for (const container of igContainer) {
+    //     const url = container.dataset.url;
+    //     let xhr = new XMLHttpRequest();
+    //     xhr.open(
+    //       'GET',
+    //       url
+    //     );
+    //     xhr.onload = function() {
+    //       if ( xhr.status === 200 ) {
+    //         try {
+    //           console.log(xhr.response);
+    //           // const res = JSON.parse(xhr.response);
+    //         } catch (err) {
+    //           console.log(err);
+    //         }
+    //       }
+    //     }
+    //     xhr.send();
+    //   }
+    // }
+  };
 })();
 
 },{}]},{},[1]);

@@ -25,7 +25,7 @@
               <span class="label"><?= $value->kategori?></span>
               <div class="flex justify-between items-center box-product__info">
                 <div class="box-product__info-item">
-                  <p class="product-price text-secondary"><?= $value->price.' /'.$value->satuan?></p>
+                  <p class="product-price text-secondary"><?= number_format($value->price, 0, '.', '.').' /'.$value->satuan?></p>
                 </div>
                 <div class="box-product__info-item">
                   <p class="product-stock flex items-center">
@@ -145,7 +145,7 @@
               <span class="label">${el.kategori}</span>
               <div class="flex justify-between items-center box-product__info">
                 <div class="box-product__info-item">
-                  <p class="product-price text-secondary">${el.price} /${el.satuan}</p>
+                  <p class="product-price text-secondary">${window.customHelper.formatMoney(el.price, 0, ',', '.')} /${el.satuan}</p>
                 </div>
                 <div class="box-product__info-item">
                   <p class="product-stock flex items-center">

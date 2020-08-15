@@ -38,6 +38,18 @@
         <?php if (!isset($emailUser)) { ?>
           <a href="<?= site_url('auth')?>" class="btn btn-primary btn-rounded">MASUK</a>
         <?php } else { ?>
+          <ul class="cart">
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle cart-icon">
+                <i class="fa fa-cart-arrow-down"></i>
+                <div class="cart-count flex items-center justify-center"><?= $countCart?></div>
+              </a>
+
+              <ul class="dropdown-menu dropdown-menu__cart">
+                <li class="dropdown-menu__item"></li>
+              </ul>
+            </li>
+          </ul>
           <ul class="user-menu">
             <li class="dropdown">
               <a href="" class="dropdown-toggle user-icon flex items-center justify-center"><i class="fa fa-user"></i></a>
