@@ -35,7 +35,19 @@
           <li class="header-menu__item"><a href="http://blog.zare.id/">BLOG</a></li>
           <li class="header-menu__item"><a href="">CONTACT US</a></li>
         </ul>
-        <a href="<?= site_url('auth')?>" class="btn btn-primary btn-rounded">MASUK</a>
+        <?php if (!isset($emailUser)) { ?>
+          <a href="<?= site_url('auth')?>" class="btn btn-primary btn-rounded">MASUK</a>
+        <?php } else { ?>
+          <ul class="user-menu">
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle user-icon flex items-center justify-center"><i class="fa fa-user"></i></a>
+
+              <ul class="dropdown-menu">
+                <li class="dropdown-menu__item"><a href="<?= site_url('auth/logout')?>">Logout</a></li>
+              </ul>
+            </li>
+          </ul>
+        <?php } ?>
         <div class="toggle-menu show-mobile">
           <span></span>
           <span></span>

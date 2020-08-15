@@ -3,11 +3,16 @@
     <h1 class="page-title page-title__auth text-center">Zare Indonesia</h1>
     <div class="auth-wrapper box box-rounded-10">
       <h4 class="auth-title text-center">Login</h4>
-      <div class="text-center text-error p-t-20 p-b-20">
+      <div class="text-center text-danger">
         <span>
           <?php echo $this->session->flashdata('errorlog'); ?>
         </span>
       </div>
+      <?php if ($this->session->flashdata('status') == 'success') { ?>
+        <div class="text-center text-success">
+          <?php echo $this->session->flashdata('message')?>
+        </div>
+      <?php } ?>
       <form action="<?php echo site_url('auth/checkLogin')?>" method="post" class="form-wrapper">
         <div class="form-group">
           <label for="" class="form-label">Email</label>

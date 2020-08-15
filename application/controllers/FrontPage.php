@@ -6,6 +6,7 @@
     public function __construct() {
       parent::__construct();
       $this->data['fullname'] = $this->session->userdata('fullname');
+      $this->data['emailUser'] = $this->session->userdata('email');
     }
 
     /////////////////////////////////////// PAGES ///////////////////////////////////////

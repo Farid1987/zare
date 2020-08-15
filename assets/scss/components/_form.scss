@@ -1,20 +1,30 @@
-.form-input {
-  width: 100%;
-  padding: 10px 12px;
-  margin-bottom: 15px;
-  border: 1px solid #5F6368;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: all 0.3s;
-  &:focus {
-    border-color: $clr-primary;
+.form {
+  &-group {
+    margin-bottom: 15px;
   }
-}
+  &-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #5F6368;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s;
+    &:focus {
+      border-color: $clr-primary;
+    }
+  }
+  
+  &-label {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-family: $ff-heading;
+  }
 
-.form-label {
-  display: inline-block;
-  font-weight: 600;
-  font-size: 14px;
-  margin-bottom: 5px;
-  font-family: 'Montserrat';
+  &-error-message {
+    font-size: 13px;
+    margin-top: 5px;
+    display: block;
+  }
 }

@@ -63,7 +63,20 @@
       $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
 
       if ($this->form_validation->run()) {
-        # code...
+        $this->load->model('MUsers');
+
+        $dataInsert = array(
+          'email' => $this->input->post('email'),
+          'password' => md5($this->input->post('password')),
+          'role' => 'member',
+          'fullname' => $this->input->post('fullname')
+        );
+        $insert = $this->MUsers->add($dataInsert);
+        if ($insert) {
+          $this->session->set_flashdata('status', 'success');
+          $this->session->set_flashdata('message', 'Register success, please login with your account.');
+        }
+        redirect(site_url('auth'));
       } else {
         $this->data['header_class'] = 'header-white';
         $this->template->load('front/tempFront', 'auth/register', $this->data);
@@ -72,7 +85,7 @@
 
     public function logout(){
 			$this->session->sess_destroy();
-			redirect('auth');
+			redirect('frontPage');
     }
 
     /////////////////////////////////// END OF FUNCT ///////////////////////////////////////
