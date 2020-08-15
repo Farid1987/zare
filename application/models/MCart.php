@@ -7,7 +7,11 @@ class MCart extends CI_Model {
 	 *	@return array data cart
 	 */
 	public function getWhere($condition) {
-		$query = $this->db->get_where('cart', $condition);
+		$this->db->select('cart.*, product.nama_product, product.featured_img, product.price');
+    $this->db->from('cart');
+		$this->db->join('product', 'cart.id_product = product.id_product');
+		$this->db->where($condition);
+		$query = $this->db->get();
 		return $query->result();
   }
 

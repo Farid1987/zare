@@ -46,7 +46,29 @@
               </a>
 
               <ul class="dropdown-menu dropdown-menu__cart">
-                <li class="dropdown-menu__item"></li>
+                <?php if ($countCart > 0) { ?>
+                  <?php foreach ($cart as $item) { ?>
+                    <li class="dropdown-menu__item">
+                      <a href="<?= site_url('frontPage/productDetail').'/'.$item->id_product?>" class="cart-item items-start">
+                        <div class="cart-item__img">
+                          <img src="<?= base_url().'/'.$item->featured_img?>" alt="">
+                        </div>
+                        <div class="cart-item__content">
+                          <div class="cart-item__title"><?= $item->nama_product?></div>
+                          <div class="cart-item__qty">Qty: <strong><?= $item->quantity?></strong></div>
+                          <div class="cart-item__price">Rp <?= number_format($item->price * $item->quantity, 0, '.', '.')?></div>
+                        </div>
+                      </a>
+                    </li>
+                  <?php } ?>
+                  <li class="dropdown-menu__item">
+                    <a href="" class="btn btn-primary btn-block">Lihat Keranjang</a>
+                  </li>
+                <?php } else { ?>
+                  <li class="dropdown-menu__item">
+                    <span class="cart-empty">Tidak ada item</span>
+                  </li>
+                <?php } ?>
               </ul>
             </li>
           </ul>

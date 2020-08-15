@@ -13,6 +13,8 @@
         $this->data['cart'] = $this->MCart->getWhere(['id_user' => $this->session->userdata('id_user')]);
         $this->data['countCart'] = count($this->data['cart']);
       }
+
+      // var_dump($this->data['cart']);die;
     }
 
     /////////////////////////////////////// PAGES ///////////////////////////////////////
@@ -91,8 +93,8 @@
       $id = $this->input->post('id');
       $qty = $this->input->post('qty');
       $data = array(
-        'id_user' => $this->session->userdata('id_user'),
-        'id_product' => $id
+        'cart.id_user' => $this->session->userdata('id_user'),
+        'cart.id_product' => $id
       );
       
       $current = $this->MCart->getWhere($data);

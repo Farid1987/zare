@@ -113,10 +113,14 @@
                     </p>
                   </div>
                   <div class="box-product__info-item">
-                    <a href="" class="btn btn-primary btn-icon">
-                      <i class="fa fa-shopping-cart"></i>
-                      AMBIL
-                    </a>
+                    <form action="<?= site_url('frontPage/addToCart')?>" method="post">
+                      <input type="hidden" name="id" value="<?= $other->id_product?>">
+                      <input type="hidden" name="qty" value="1">
+                      <button type="submit" href="" class="btn btn-primary btn-icon">
+                        <i class="fa fa-shopping-cart"></i>
+                        AMBIL
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
