@@ -136,6 +136,7 @@
                                 <ul class="submenu">
                                     <li><a href="<?= site_url('admin/kategoriProduct')?>">Kategori Product</a></li>
                                     <li><a href="<?= site_url('admin/typeProject')?>">Type Project</a></li>
+                                    <li><a href="<?= site_url('admin/bank')?>">Bank</a></li>
                                 </ul>
                             </li>
 

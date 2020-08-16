@@ -134,6 +134,25 @@
       $this->loadEventEditView($idEvent);
     }
 
+    public function bank() {
+      $this->load->model('MBank');
+
+      $this->data['bank'] = $this->MBank->getAll();
+      $this->data['active'] = 'masterdata';
+      $this->data['breadcrumb'] = [
+        ['Master Data', '#'],
+        ['Bank', site_url('admin/bank')]
+      ];
+      $this->data['js_to_load'] = array_merge($this->datatableAssets()['js'], [
+        base_url('assets/admin/plugins/sweet-alert2/sweetalert2.min.js'),
+      ]);
+      $this->data['css_to_load'] = array_merge($this->datatableAssets()['css'], [
+        base_url('assets/admin/plugins/sweet-alert2/sweetalert2.min.css'),
+      ]);
+
+      $this->template->load('admin/tempAdmin', 'admin/datamaster/master_bank', $this->data);
+    }
+
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
 
     ////////////////////////////////////// FUNCT ///////////////////////////////////////////
@@ -346,6 +365,80 @@
       }
     }
     // Type Project ============
+
+    // Bank ============
+    public function addBank() {
+      $this->form_validation->set_rules('nama', 'Nama Bank', 'required');
+      $this->form_validation->set_rules('rekening', 'Nomor Rekening', 'required');
+      $this->form_validation->set_rules('atasNama', 'Atas Nama', 'required');
+
+      if ($this->form_validation->run()) {
+        $this->load->model('MBank');
+
+        $nama = $this->input->post('nama');
+        $rekening = $this->input->post('rekening');
+        $atasNama = $this->input->post('atasNama');
+        $dataInsert = array(
+          'nama' => $nama,
+          'rekening' => $rekening,
+          'atas_nama' => $atasNama
+        );
+        
+        $this->MBank->add($dataInsert);
+        $data['status'] = 'success';
+        die(json_encode($data));
+      } else {
+        $data['status'] = 'error';
+        $data['message'] = $this->form_validation->error_array();
+        die(json_encode($data));
+      }
+    }
+    public function editBank() {
+      $this->form_validation->set_rules('nama', 'Nama Bank', 'required');
+      $this->form_validation->set_rules('rekening', 'Nomor Rekening', 'required');
+      $this->form_validation->set_rules('atasNama', 'Atas Nama', 'required');
+
+      if ($this->form_validation->run()) {
+        $this->load->model('MBank');
+
+        $id = $this->input->post('id_bank');
+        $nama = $this->input->post('nama');
+        $rekening = $this->input->post('rekening');
+        $atasNama = $this->input->post('atasNama');
+        
+        $dataUpdate = array(
+          'nama' => $nama,
+          'rekening' => $rekening,
+          'atas_nama' => $atasNama
+        );
+        
+        $this->MBank->edit($id, $dataUpdate);
+        $data['status'] = 'success';
+        die(json_encode($data));
+      } else {
+        $data['status'] = 'error';
+        $data['message'] = $this->form_validation->error_array();
+        die(json_encode($data));
+      }
+    }
+    public function deleteBank() {
+      $this->load->model('MBank');
+
+      $id_bank = $this->input->post('id');
+      $dataDelete = array('id_bank' => $id_bank);
+
+      $res = $this->MBank->delete($dataDelete);
+      if ($res) {
+        $data['status'] = 'success';
+        $data['message'] = 'Delete Bank Account success!';
+        die(json_encode($data));
+      }else{
+        $data['status'] = 'error';
+        $data['message'] = 'Delete Bank Account Failed!';
+        die(json_encode($data));
+      }
+    }
+    // Bank ============
 
     // Regencies/city ============
     public function getRegencies() {
