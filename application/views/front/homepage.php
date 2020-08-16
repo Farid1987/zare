@@ -95,7 +95,7 @@
 <section class="section-product">
   <div class="container">
     <h2 class="section-title section-title--sm flex items-center justify-between">
-      Product Terlaris
+      Product Kami
 
       <a href="<?= site_url('frontPage/products')?>" class="section-title__link text-primary flex items-center">
         LIHAT SEMUA
@@ -106,28 +106,40 @@
     <div class="swiper-arrow__wrapper">
       <div class="swiper-container js-swiper swiper-item-4 product-slider" data-items="4" data-space="35">
         <div class="swiper-wrapper">
-          <?php for ($i=0; $i < 8; $i++) { ?>
+          <?php foreach ($products as $key => $value) { ?>
             <div class="swiper-slide">
               <div class="box box-product box-product--sm">
                 <a href="" class="box-thumb img-rasio r-100">
-                  <img src="<?= base_url()?>/assets/img/product1.png" alt="">
+                  <img src="<?= base_url().'/'.$value->featured_img?>" alt="">
                 </a>
                 <div class="box-content">
-                  <a href="" class="label">KATEGORI</a>
+                  <a href="<?= site_url('frontPage/products')?>?kategori=<?= $value->id_kategori?>" class="label"><?= $value->kategori?></a>
                   <h4 class="box-title text-primary">
-                    <a href="">Kombucha Sirsak</a>
+                    <a href=""><?= $value->nama_product?></a>
                   </h4>
-                  <p class="box-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                  <p class="box-desc"><?= $value->short_description?></p>
                   <div class="flex justify-between box-product__info">
                     <div class="box-product__info-item">
-                      <p class="product-price">12.000/Kg</p>
-                      <p class="product-stock">stok : <span class="text-primary">tersedia</span></p>
+                      <p class="product-price">Rp <?= number_format($value->price, 0, '.', '.').' /'.$value->satuan?></p>
+                      <?php if ($value->stock > 0) { ?>
+                        <p class="product-stock">stok : <span class="text-primary">tersedia</span></p>
+                      <?php } else {?>
+                        <p class="product-stock">stok : <span class="text-secondary">habis</span></p>
+                      <?php } ?>
                     </div>
                     <div class="box-product__info-item">
-                      <a href="" class="btn btn-primary btn-icon">
+                      <form action="<?= site_url('frontPage/addToCart')?>" method="post">
+                        <input type="hidden" name="id" value="<?= $value->id_product?>">
+                        <input type="hidden" name="qty" value="1">
+                        <button type="submit" href="" class="btn btn-primary btn-icon">
+                          <i class="fa fa-shopping-cart"></i>
+                          AMBIL
+                        </button>
+                      </form>
+                      <!-- <a href="" class="btn btn-primary btn-icon">
                         <i class="fa fa-shopping-cart"></i>
                         AMBIL
-                      </a>
+                      </a> -->
                     </div>
                   </div>
                 </div>

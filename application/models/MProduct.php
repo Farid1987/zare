@@ -39,7 +39,9 @@ class MProduct extends CI_Model {
     $this->db->select('product.*, product_kategori.nama_kategori as kategori, product_kategori.satuan_harga as satuan');
     $this->db->from('product');
     $this->db->join('product_kategori', 'product.id_kategori = product_kategori.id_kategori', 'left');
-    $this->db->where('product.id_product !=', $excludeProductId);
+    if ($excludeProductId) {
+      $this->db->where('product.id_product !=', $excludeProductId);
+    }
     $this->db->limit($limit, 0);
     $query = $this->db->get();
 		return $query->result();

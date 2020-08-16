@@ -183,7 +183,7 @@
         const newValue = Number(input.value) - 1
         const min = Number(input.min);
 
-        if (min && newValue < min) return;
+        if (newValue < min) return;
         input.value = newValue
       })
     }
@@ -230,6 +230,8 @@
   //     xhr.send();
   //   }
   // }
-
-  MicroModal.init();
+  // try {
+  //   MicroModal.init();
+  // } catch (error) {
+  // }
 })()

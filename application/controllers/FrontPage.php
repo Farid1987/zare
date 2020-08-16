@@ -14,14 +14,14 @@
         $this->data['cart'] = $this->MCart->getWhere(['id_user' => $this->session->userdata('id_user')]);
         $this->data['countCart'] = count($this->data['cart']);
       }
-
-      // var_dump($this->data['cart']);die;
     }
 
     /////////////////////////////////////// PAGES ///////////////////////////////////////
 
     public function index() {
+      $this->load->model('MProduct');
       
+      $this->data['products'] = $this->MProduct->getOtherProductWithLimit(null, 8);
       $this->data['js_to_load'] = [
         base_url('assets/js/swiper-bundle.min.js'),
       ];
@@ -69,14 +69,33 @@
     }
 
     public function cart() {
-      $this->load->model('MBank');
       
-      $this->data['bank'] = $this->MBank->getAll();
-      $this->data['js_to_load'] = [
-        base_url('assets/js/micromodal.min.js'),
-      ];
       $this->data['header_class'] = 'header-white';
       $this->template->load('front/tempFront', 'front/cart', $this->data);
+    }
+    
+    public function pengiriman() {
+      $this->load->model('MProvinces');
+      $this->load->model('MBank');
+      $this->data['bank'] = $this->MBank->getAll();
+      
+      $this->data['js_to_load'] = [
+        base_url('assets/js/jquery.min.js'),
+        base_url('assets/js/select2.full.min.js'),
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/css/select2.min.css'),
+      ];
+      $this->data['provinces'] = $this->MProvinces->getAll();
+      $this->data['header_class'] = 'header-white';
+      $this->template->load('front/tempFront', 'front/pengiriman', $this->data);
+    }
+
+    public function pembayaran() {
+      $this->load->model('MTransaksi');
+      
+      $this->data['header_class'] = 'header-white';
+      $this->template->load('front/tempFront', 'front/pembayaran', $this->data);
     }
 
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
@@ -100,7 +119,7 @@
     }
 
     public function addToCart() {
-      if (!$this->data['emailUser'] || $this->data['role'] == 'admin') redirect('frontPage');
+      if ($this->data['emailUser'] && $this->data['role'] == 'admin') redirect('frontPage');
       if (!isset($this->data['emailUser'])) redirect('auth');
 
       $id = $this->input->post('id');
@@ -159,6 +178,88 @@
       );
       $this->MCart->delete($data);
       $this->redirectPreviousPage();
+    }
+
+    public function getRegencies() {
+      $this->load->model('MRegencies');
+      
+      $idProv = $this->input->get('idProv');
+      $condition = array('province_id' => $idProv);
+      $result = $this->MRegencies->getWhere($condition);
+      
+      die(json_encode($result));
+    }
+    
+    public function checkout() {
+      $this->form_validation->set_rules('province', 'Provinsi', 'required');
+      $this->form_validation->set_rules('city', 'Kota', 'required');
+      $this->form_validation->set_rules('address', 'Alamat Lengkap', 'required');
+      $this->form_validation->set_rules('zip_code', 'Kode Pos', 'required');
+
+      if ($this->form_validation->run()) {
+        $this->load->model('MTransaksi');
+        $this->load->model('MTransaksiDetail');
+
+        $dataInsert = array(
+          'id_user' => $this->session->userdata('id_user'),
+          'total_pembayaran' => $this->input->post('total_pembayaran'),
+          'address' => $this->input->post('address'),
+          'province' => $this->input->post('province'),
+          'city' => $this->input->post('city'),
+          'zip_code' => $this->input->post('zip_code'),
+        );
+
+        $insertTransaksi = $this->MTransaksi->add($dataInsert);
+        if ($insertTransaksi) {
+          $id_transaksi = $this->db->insert_id();
+          foreach ($this->data['cart'] as $item) {
+            $hargaSatuan = $item->price;
+            $jumlahPenjualan = $item->quantity;
+            $total_harga = $item->quantity * $item->price;
+
+            $dataInsertDetail = array(
+              'id_transaksi' => $id_transaksi,
+              'id_product' => (isset($item->id_product)) ? $item->id_product:null,
+              'id_event' => (isset($item->id_event)) ? $item->id_event:null,
+              'harga_satuan' => $hargaSatuan,
+              'jumlah_penjualan' => $jumlahPenjualan,
+              'total_harga' => $total_harga,
+            );
+
+            $insertTransaksiDetail = $this->MTransaksiDetail->add($dataInsertDetail);
+
+            if ($insertTransaksiDetail) {
+              $this->MCart->delete(['id_cart' => $item->id_cart]);
+            }
+          }
+        }
+
+        if ($insertTransaksi) {
+          $this->session->set_flashdata('status', 'success');
+          $this->session->set_flashdata('message', 'Add Product success!');
+
+          redirect('frontPage/pembayaran');
+        } else {
+          $this->session->set_flashdata('status', 'error');
+          $this->session->set_flashdata('message', 'Add Product failed!');
+          redirect('frontPage/checkout');
+        }
+      } else {
+        $this->load->model('MProvinces');
+        $this->load->model('MBank');
+        $this->data['bank'] = $this->MBank->getAll();
+        
+        $this->data['js_to_load'] = [
+          base_url('assets/js/jquery.min.js'),
+          base_url('assets/js/select2.full.min.js'),
+        ];
+        $this->data['css_to_load'] = [
+          base_url('assets/css/select2.min.css'),
+        ];
+        $this->data['provinces'] = $this->MProvinces->getAll();
+        $this->data['header_class'] = 'header-white';
+        $this->template->load('front/tempFront', 'front/pengiriman', $this->data);
+      }
     }
 
     private function redirectPreviousPage() {

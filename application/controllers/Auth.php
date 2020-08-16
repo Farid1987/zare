@@ -42,8 +42,6 @@
       $res = $this->MUsers->checkUser($data);
       $data = $res->result();
 
-      // var_dump($data[0]->role);die;
-
       if ($res->num_rows() == 1 && $data[0]->role == 'member') {
         foreach ($res->result() as $sess) {
           $sess_data['fullname'] = $sess->fullname;

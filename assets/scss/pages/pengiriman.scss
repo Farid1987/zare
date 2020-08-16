@@ -1,0 +1,24 @@
+.pengiriman-title {
+  font-size: 22px;
+  margin-bottom: 30px;
+}
+.pengiriman-wrapper {
+  margin-bottom: 80px;
+}
+
+.cart-list {
+  margin-bottom: 30px;
+  .cart-item {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    border-bottom: 1px solid #cacaca;
+    &__img {
+      width: 100px;
+      height: 100px;
+    }
+    &__content {
+      font-size: 16px;
+    }
+  }
+
+}
