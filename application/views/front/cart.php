@@ -70,7 +70,31 @@
     </table>
     
     <div class="text-right">
-      <a href="" class="btn btn-primary">Lanjutkan Pembayaran</a>
+      <a href="javascrip:;" data-micromodal-trigger="modal-1" class="btn btn-primary">Lanjutkan Pembayaran</a>
+    </div>
+  </div>
+</div>
+<div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+      <header class="modal__header">
+        <h2 class="modal__title" id="modal-1-title">
+          Pilih rekening pembayaran
+        </h2>
+      </header>
+      <main class="modal__content" id="modal-1-content">
+        <form action="" id="form-bank">
+          <?php foreach ($bank as $key => $value) { ?>
+            <div class="form-group">
+              <input type="radio" name="bank" value="<?= $value->id_bank?>"> <?= $value->nama?>
+            </div>
+          <?php } ?>
+        </form>
+      </main>
+      <footer class="modal__footer">
+        <button class="btn btn-primary" form="form-bank">Lanjutkan Pembayaran</button>
+        <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
+      </footer>
     </div>
   </div>
 </div>

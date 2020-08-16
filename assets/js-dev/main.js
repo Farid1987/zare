@@ -230,4 +230,6 @@
   //     xhr.send();
   //   }
   // }
+
+  MicroModal.init();
 })()

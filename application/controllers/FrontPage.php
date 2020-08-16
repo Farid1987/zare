@@ -7,6 +7,7 @@
       parent::__construct();
       $this->data['fullname'] = $this->session->userdata('fullname');
       $this->data['emailUser'] = $this->session->userdata('email');
+      $this->data['role'] = $this->session->userdata('role');
 
       $this->load->model('MCart');
       if ($this->session->userdata('id_user')) {
@@ -68,7 +69,12 @@
     }
 
     public function cart() {
-
+      $this->load->model('MBank');
+      
+      $this->data['bank'] = $this->MBank->getAll();
+      $this->data['js_to_load'] = [
+        base_url('assets/js/micromodal.min.js'),
+      ];
       $this->data['header_class'] = 'header-white';
       $this->template->load('front/tempFront', 'front/cart', $this->data);
     }
@@ -94,6 +100,7 @@
     }
 
     public function addToCart() {
+      if (!$this->data['emailUser'] || $this->data['role'] == 'admin') redirect('frontPage');
       if (!isset($this->data['emailUser'])) redirect('auth');
 
       $id = $this->input->post('id');
@@ -125,6 +132,7 @@
     }
 
     public function updateCart() {
+      if (!$this->data['emailUser'] || $this->data['role'] == 'admin') redirect('frontPage');
       $this->load->model('MProduct');
 
       $idCart = $this->input->post('idCart');
@@ -145,7 +153,7 @@
     }
 
     public function removeFromCart($idCart) {
-      
+      if (!$this->data['emailUser'] || $this->data['role'] == 'admin') redirect('frontPage');
       $data = array(
         'id_cart' => $idCart
       );

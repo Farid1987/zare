@@ -35,7 +35,7 @@
           <li class="header-menu__item"><a href="http://blog.zare.id/">BLOG</a></li>
           <li class="header-menu__item"><a href="">CONTACT US</a></li>
         </ul>
-        <?php if (!isset($emailUser)) { ?>
+        <?php if (!isset($emailUser) || $role == 'admin') { ?>
           <a href="<?= site_url('auth')?>" class="btn btn-primary btn-rounded">MASUK</a>
         <?php } else { ?>
           <ul class="cart">
