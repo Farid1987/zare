@@ -174,7 +174,7 @@
         const newValue = Number(input.value) + 1
         const max = Number(input.max);
 
-        if (max && newValue > max) return;
+        if (max && newValue > max || max == 0) return;
         input.value = newValue
       })
 

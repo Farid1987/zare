@@ -224,7 +224,7 @@
           var newValue = Number(input.value) + 1;
           var max = Number(input.max);
 
-          if (max && newValue > max) return;
+          if (max && newValue > max || max == 0) return;
           input.value = newValue;
         });
 

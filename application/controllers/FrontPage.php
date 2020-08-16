@@ -75,6 +75,7 @@
     }
     
     public function pengiriman() {
+      if ($this->data['countCart'] <= 0) redirect('frontPage/products');
       $this->load->model('MProvinces');
       $this->load->model('MBank');
       $this->data['bank'] = $this->MBank->getAll();
@@ -91,7 +92,7 @@
       $this->template->load('front/tempFront', 'front/pengiriman', $this->data);
     }
 
-    public function pembayaran() {
+    public function pembayaran($idTransaksi) {
       $this->load->model('MTransaksi');
       
       $this->data['header_class'] = 'header-white';
@@ -209,6 +210,7 @@
           'zip_code' => $this->input->post('zip_code'),
         );
 
+        $this->db->trans_begin();
         $insertTransaksi = $this->MTransaksi->add($dataInsert);
         if ($insertTransaksi) {
           $id_transaksi = $this->db->insert_id();
@@ -227,18 +229,37 @@
             );
 
             $insertTransaksiDetail = $this->MTransaksiDetail->add($dataInsertDetail);
-
             if ($insertTransaksiDetail) {
+              $this->load->model('MProduct');
+
               $this->MCart->delete(['id_cart' => $item->id_cart]);
+              $product = $this->MProduct->getStock($item->id_product);
+              if ($item->quantity > $product->stock) {
+                $this->db->trans_rollback();
+                $this->session->set_flashdata('errorlog', 'Product stock tidak mencukupi, silahkan check kembali stock product yang tersedia');
+                redirect('frontPage/checkout');
+              } else {
+                $updatedStock = $product->stock - $item->quantity;
+                $dataUpdate = array('stock' => $updatedStock);
+                $updateProduct = $this->MProduct->edit($item->id_product, $dataUpdate);
+                if (!$updateProduct) {
+                  $this->db->trans_rollback();
+                  $this->session->set_flashdata('errorlog', 'Error saat checkout. Silahkan coba beberapa saat lagi / hubungi admin.');
+                  redirect('frontPage/checkout');
+                }
+              }
             }
           }
         }
+
+        $this->db->trans_commit();
+
 
         if ($insertTransaksi) {
           $this->session->set_flashdata('status', 'success');
           $this->session->set_flashdata('message', 'Add Product success!');
 
-          redirect('frontPage/pembayaran');
+          redirect('frontPage/pembayaran/'.$id_transaksi);
         } else {
           $this->session->set_flashdata('status', 'error');
           $this->session->set_flashdata('message', 'Add Product failed!');

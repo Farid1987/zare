@@ -43,6 +43,9 @@
           </div>
         </div>
         <div class="col-md-4">
+          <?php if ($this->session->flashdata('errorlog')) { ?>
+            <div class="text-danger"><?= $this->session->flashdata('errorlog')?></div>
+          <?php } ?>
           <div class="cart-list">
             <?php 
             $total = 0;
