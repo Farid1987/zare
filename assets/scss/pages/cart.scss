@@ -1,0 +1,31 @@
+.table-cart {
+  max-width: 100%;
+  width: 100%;
+  margin-top: 100px;
+  margin-bottom: 30px;
+  th {
+    padding: 5px;
+    border-bottom: 1px solid;
+  }
+  td {
+    padding: 15px 5px;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .cart {
+    &-item {
+      padding: 0 !important;
+      &__content {
+        font-size: inherit;
+      }
+    }
+  }
+}
+.remove-cart-item {
+  color: #fff;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: $clr-secondary;
+  font-size: 14px;
+}

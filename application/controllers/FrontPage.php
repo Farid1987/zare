@@ -67,6 +67,12 @@
       $this->template->load('front/tempFront', 'front/productDetail', $this->data);
     }
 
+    public function cart() {
+
+      $this->data['header_class'] = 'header-white';
+      $this->template->load('front/tempFront', 'front/cart', $this->data);
+    }
+
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
     
     ////////////////////////////////////// FUNCT ///////////////////////////////////////////
@@ -116,6 +122,35 @@
         $this->redirectPreviousPage();
       }
 
+    }
+
+    public function updateCart() {
+      $this->load->model('MProduct');
+
+      $idCart = $this->input->post('idCart');
+      $idProduct = $this->input->post('idProduct');
+      $qty = $this->input->post('qty');
+
+      $stock = $this->MProduct->getStock($idProduct)->stock;
+
+      // var_dump($qty, $stock); die;
+      if ($qty > $stock) {
+        $this->session->set_flashdata('errorlog', 'Input melebihi stock yang tersedia, maksimal '.$stock.' item');
+        redirect('frontPage/cart');
+      } else {
+        $dataUpdate = array('quantity' => $qty);
+        $this->MCart->edit($idCart, $dataUpdate);
+        redirect('frontPage/cart');
+      }
+    }
+
+    public function removeFromCart($idCart) {
+      
+      $data = array(
+        'id_cart' => $idCart
+      );
+      $this->MCart->delete($data);
+      $this->redirectPreviousPage();
     }
 
     private function redirectPreviousPage() {

@@ -174,7 +174,7 @@
         const newValue = Number(input.value) + 1
         const max = Number(input.max);
 
-        if (newValue > max) return;
+        if (max && newValue > max) return;
         input.value = newValue
       })
 
@@ -183,7 +183,7 @@
         const newValue = Number(input.value) - 1
         const min = Number(input.min);
 
-        if (newValue < min) return;
+        if (min && newValue < min) return;
         input.value = newValue
       })
     }

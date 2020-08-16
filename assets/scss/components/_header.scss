@@ -220,6 +220,9 @@
     font-size: 25px;
     color: #fff;
     position: relative;
+    &:focus {
+      color: #777777;
+    }
   }
   &-count {
     position: absolute;
@@ -239,7 +242,7 @@
     font-size: 14px;
     text-align: center;
   }
-  .cart-item {
+  &-item {
     display: flex !important;
     padding: 10px !important;
     &__img {

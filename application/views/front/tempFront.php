@@ -62,7 +62,7 @@
                     </li>
                   <?php } ?>
                   <li class="dropdown-menu__item">
-                    <a href="" class="btn btn-primary btn-block">Lihat Keranjang</a>
+                    <a href="<?= site_url('frontPage/cart')?>" class="btn btn-primary btn-block">Lihat Keranjang</a>
                   </li>
                 <?php } else { ?>
                   <li class="dropdown-menu__item">

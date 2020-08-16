@@ -32,7 +32,16 @@ class MCart extends CI_Model {
     $this->db->where('id_cart', $id);                   
     $query = $this->db->update('cart', $data);
 		return $query;
-  }
+	}
+	
+	/**
+	 * 	delete data cart
+   *	@return boolean
+	 */
+	public function delete($data){
+    $query = $this->db->delete('cart', $data);
+		return $query;
+	}
 }
 
 ?>

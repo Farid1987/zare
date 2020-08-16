@@ -104,6 +104,14 @@ class MProduct extends CI_Model {
 		return $query->row();
   }
 
+  public function getStock($id) {
+    $this->db->select('product.stock');
+    $this->db->from('product');
+    $this->db->where(['id_product' => $id]);
+		$query = $this->db->get();
+		return $query->row();
+  }
+
   /**
 	 * 	edit data product
    *	@return boolean
