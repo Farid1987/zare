@@ -230,8 +230,10 @@
   //     xhr.send();
   //   }
   // }
-  // try {
-  //   MicroModal.init();
-  // } catch (error) {
-  // }
+  
+  try {
+    MicroModal.init();
+  } catch (error) {
+    console.warn('Micromodal not loaded')
+  }
 })()

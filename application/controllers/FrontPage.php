@@ -93,8 +93,18 @@
     }
 
     public function pembayaran($idTransaksi) {
+      $this->load->model('MBank');
       $this->load->model('MTransaksi');
-      
+      $this->load->model('MTransaksiDetail');
+
+      $this->data['transaksi'] = $this->MTransaksi->getWhere($idTransaksi);
+      $this->data['transaksiItem'] = $this->MTransaksiDetail->getWhere($idTransaksi);
+      $this->data['bank'] = $this->MBank->getAll();
+
+      // var_dump($this->data['transaksiItem']);die;
+      $this->data['js_to_load'] = [
+        base_url('assets/js/micromodal.min.js'),
+      ];
       $this->data['header_class'] = 'header-white';
       $this->template->load('front/tempFront', 'front/pembayaran', $this->data);
     }
@@ -208,6 +218,7 @@
           'province' => $this->input->post('province'),
           'city' => $this->input->post('city'),
           'zip_code' => $this->input->post('zip_code'),
+          'status' => 'process'
         );
 
         $this->db->trans_begin();
