@@ -151,6 +151,10 @@
                             <li>
                                 <a class="<?= (isset($active) && $active=='event') ? 'active':''?>" href="<?= site_url('admin/event')?>"><i class="ti-map-alt"></i>Event</a>
                             </li>
+
+                            <li>
+                                <a class="<?= (isset($active) && $active=='order') ? 'active':''?>" href="<?= site_url('admin/order')?>"><i class="ti-receipt"></i>Order</a>
+                            </li>
                             
                         </ul>
                         <!-- End navigation menu -->

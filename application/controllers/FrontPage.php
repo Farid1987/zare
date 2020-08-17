@@ -101,7 +101,6 @@
       $this->data['transaksiItem'] = $this->MTransaksiDetail->getWhere($idTransaksi);
       $this->data['bank'] = $this->MBank->getAll();
 
-      // var_dump($this->data['transaksiItem']);die;
       $this->data['js_to_load'] = [
         base_url('assets/js/micromodal.min.js'),
       ];
@@ -264,7 +263,6 @@
         }
 
         $this->db->trans_commit();
-
 
         if ($insertTransaksi) {
           $this->session->set_flashdata('status', 'success');

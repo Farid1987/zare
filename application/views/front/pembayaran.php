@@ -96,7 +96,7 @@
         </h2>
       </header>
       <main class="modal__content" id="modal-1-content">
-        <p>Silahkan melakukan konfirmasi pembayaran via Whatsapp atau Line dibawah ini.</p>
+        <p>Silahkan konfirmasi pembayaran via Whatsapp atau Line dibawah ini.</p>
 
         <div class="row">
           <div class="col-md-6 text-center">

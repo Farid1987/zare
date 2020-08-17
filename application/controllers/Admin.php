@@ -153,6 +153,39 @@
       $this->template->load('admin/tempAdmin', 'admin/datamaster/master_bank', $this->data);
     }
 
+    public function order() {
+      $this->load->model('MTransaksi');
+
+      $this->data['transaksi'] = $this->MTransaksi->getAll();
+      $this->data['active'] = "order";
+      $this->data['breadcrumb'] = [
+        ['Order List', site_url('admin/order')]
+      ];
+      $this->data['js_to_load'] = array_merge($this->datatableAssets()['js'], [
+        base_url('assets/admin/plugins/sweet-alert2/sweetalert2.min.js'),
+      ]);
+      $this->data['css_to_load'] = array_merge($this->datatableAssets()['css'], [
+        base_url('assets/admin/plugins/sweet-alert2/sweetalert2.min.css'),
+      ]);
+
+      $this->template->load('admin/tempAdmin', 'admin/order/order', $this->data);
+    }
+    public function orderDetail($idTransaksi) {
+      $this->load->model('MTransaksi');
+      $this->load->model('MTransaksiDetail');
+
+      $this->data['transaksi'] = $this->MTransaksi->getWhere($idTransaksi);
+      $this->data['transaksiItem'] = $this->MTransaksiDetail->getWhere($idTransaksi);
+
+      $this->data['active'] = 'order';
+      $this->data['breadcrumb'] = [
+        ['Order List', site_url('admin/order')],
+        ['Order Detail', site_url('admin/orderDetail')]
+      ];
+
+      $this->template->load('admin/tempAdmin', 'admin/order/orderDetail', $this->data);
+    }
+
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
 
     ////////////////////////////////////// FUNCT ///////////////////////////////////////////
@@ -813,6 +846,60 @@
       }
     }
     // Upload Img ============
+
+    // order function ============
+    public function konfirmasiPembayaran() {
+      $this->load->model('MTransaksi');
+
+      $id = $this->input->post('id');
+
+      $dataUpdate = array('status' => 'success');
+      $konfirmasi = $this->MTransaksi->edit($id, $dataUpdate);
+      if ($konfirmasi) {
+        $data['status'] = 'success';
+        $data['message'] = 'Konfirmasi Pembayaran Berhasil!';
+        die(json_encode($data));
+      } else {
+        $data['status'] = 'error';
+        $data['message'] = 'Konfirmasi Pembayaran Gagal!';
+        die(json_encode($data));
+      }
+    }
+    public function batalkanTransaksi() {
+      $this->load->model('MTransaksi');
+
+      $id = $this->input->post('id');
+
+      $dataUpdate = array('status' => 'cancelled');
+      $konfirmasi = $this->MTransaksi->edit($id, $dataUpdate);
+      if ($konfirmasi) {
+        $this->load->model('MTransaksiDetail');
+        $this->load->model('MProduct');
+        $transaksiItem = $this->MTransaksiDetail->getWhere($id);
+        
+        if (count($transaksiItem) > 0) {
+          foreach ($transaksiItem as $item) {
+            if ($item->id_product) {
+              $currentStock = $this->MProduct->getStock($item->id_product);
+              $newStock = $currentStock->stock + $item->jumlah_penjualan;
+
+              $this->MProduct->edit($item->id_product, ['stock' => $newStock]);
+            }
+          }
+        }
+      }
+
+      if ($konfirmasi) {
+        $data['status'] = 'success';
+        $data['message'] = 'Pembatalan Transaksi Berhasil!';
+        die(json_encode($data));
+      } else {
+        $data['status'] = 'error';
+        $data['message'] = 'Pembatalan Transaksi Gagal!';
+        die(json_encode($data));
+      }
+    }
+    // order function ============
     
     // Private function ============
     private function datatableAssets() {

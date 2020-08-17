@@ -54,7 +54,7 @@
               <td><strong>Rp <?= number_format($item->price * $item->quantity, 0, '.', '.')?></strong></td>
               <td>
                 <a href="<?= site_url('frontPage/removeFromCart').'/'.$item->id_cart?>" class="remove-cart-item flex items-center justify-center" onclick="return window.confirm('Are you sure want to delete this item?')">
-                  <i class="fa fa-close"></i>
+                  <i class="fa fa-times"></i>
                 </a>
               </td>
             </tr>

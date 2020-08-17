@@ -27,6 +27,30 @@ class MTransaksi extends CI_Model {
 
 		return $query->row();
 	}
+
+	/**
+	 * 	get all data transaksi
+	 *	@return array data transaksi
+	 */  
+	public function getAll() {
+		$this->db->select('transaksi.*, users.fullname, CONCAT( "ZR-", LPAD(transaksi.id_transaksi,7,"0") ) as id_invoice');
+		$this->db->from('transaksi');
+		$this->db->join('users', 'users.id_user = transaksi.id_user');
+		$query = $this->db->get();
+
+		return $query->result();
+	}
+
+	/**
+	 * 	edit data transaksi
+   *	@return boolean
+	 */
+	public function edit($id, $data){
+    $this->db->where('id_transaksi', $id);                   
+    $query = $this->db->update('transaksi', $data);
+		return $query;
+	}
+	
 }
 
 ?>
