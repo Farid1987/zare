@@ -35,5 +35,50 @@
         }
       }
     }
+
+    public function events() {
+      include APPPATH.'/third_party/faker/autoload.php';
+      $faker = Faker\Factory::create();
+
+      $this->load->model('MEvent');
+      $this->load->model('MTypeProject');
+
+      $allType = $this->MTypeProject->getAll();
+      $idType = [];
+
+      foreach ($allType as $key => $value) {
+        array_push($idType, $value->id_type_project);
+      }
+      for ($i=0; $i < 20; $i++) { 
+        $deadline = $faker->dateTimeThisYear($timezone = null);
+        $startRegis = $faker->dateTimeBetween($startDate = '-1 years', $endDate = $deadline, $timezone = null);
+        // $startRegis = $faker->dateTimeThisYear($max = $deadline, $timezone = null);
+        $finishRegis = $faker->dateTimeBetween($startDate = $startRegis, $endDate = $deadline, $timezone = null);
+        
+        $dataInsert = array(
+          'title' => $faker->sentence($nbWords = 3, $variableNbWords = true),
+          'id_type_project' => $faker->randomElement($idType),
+          'featured_img' => 'assets/upload/15969092605GK0KjhBLs4.png',
+          'deadline' => $deadline->format('Y-m-d H:i:s'),
+          'start_registration' => $startRegis->format('Y-m-d H:i:s'),
+          'finish_registration' => $finishRegis->format('Y-m-d H:i:s'),
+          'short_description' => $faker->sentence($nbWords = 10, $variableNbWords = true),
+          'description' => '<p>Description<p>',
+          'note' => $faker->sentence($nbWords = 10, $variableNbWords = true),
+          'price' => $faker->numberBetween($min = 20000, $max = 50000),
+          'location' => 'Location',
+          'latitude' => $faker->numberBetween($min = 10000, $max = 50000),
+          'longitude' => $faker->numberBetween($min = 10000, $max = 50000),
+          'registration_link' => ''
+        );
+
+        $insert = $this->MEvent->add($dataInsert);
+        if ($insert) {
+          echo "success";
+        } else {
+          echo "failed";
+        }
+      }
+    }
   }
 ?>

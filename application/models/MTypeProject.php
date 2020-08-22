@@ -30,7 +30,12 @@ class MTypeProject extends CI_Model {
     $this->db->where('id_type_project', $id);                   
     $query = $this->db->update('type_project', $data);
 		return $query;
-  }
+	}
+	
+	public function getWhere($condition) {
+		$query = $this->db->get_where('type_project', $condition);
+		return $query->result();
+	}
   
   /**
 	 * 	delete data kategori

@@ -32,7 +32,7 @@
           <li class="header-menu__item active"><a href="<?= site_url('frontPage')?>">HOME</a></li>
           <li class="header-menu__item"><a href="">ABOUT US</a></li>
           <li class="header-menu__item"><a href="<?= site_url('frontPage/products')?>">PRODUCT</a></li>
-          <li class="header-menu__item"><a href="">EVENT</a></li>
+          <li class="header-menu__item"><a href="<?= site_url('frontPage/events')?>">EVENT</a></li>
           <li class="header-menu__item"><a href="http://blog.zare.id/">BLOG</a></li>
           <li class="header-menu__item"><a href="">CONTACT US</a></li>
         </ul>

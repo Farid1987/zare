@@ -20,7 +20,12 @@
 
     public function index() {
       $this->load->model('MProduct');
+      $this->load->model('MTypeProject');
+      $this->load->model('MEvent');
       
+      $workshop = $this->MTypeProject->getWhere(['type_project' => 'workshop'])[0];
+      $this->data['otherEvent'] = $this->MEvent->getWhereWithLimit(['event.id_type_project !=' => $workshop->id_type_project], 3);
+      $this->data['workshop'] = $this->MEvent->getWhereWithLimit(['event.id_type_project' => $workshop->id_type_project], 3);
       $this->data['products'] = $this->MProduct->getOtherProductWithLimit(null, 8);
       $this->data['js_to_load'] = [
         base_url('assets/js/swiper-bundle.min.js'),
@@ -68,7 +73,22 @@
       $this->template->load('front/tempFront', 'front/productDetail', $this->data);
     }
 
+    public function events() {
+      $this->load->model('MEvent');
+      $this->load->model('MTypeProject');
+
+      $this->data['allType'] = $this->MTypeProject->getAll();
+
+      $this->data['per_page'] = 6;
+      $this->data['totalEvents'] = (!$this->input->get('type')) ? $this->MEvent->countDataEvent('all') : $this->MEvent->countDataEvent(['id_type_project' => $this->input->get('type')]);
+      $this->data['events'] = $this->MEvent->getWithLimit($this->data['per_page'], 0, $this->input->get('type'));
+
+      $this->data['header_class'] = 'header-white';
+      $this->template->load('front/tempFront', 'front/events', $this->data);
+    }
+
     public function cart() {
+      if (!$this->session->userdata('emailUser')) redirect('auth');
       
       $this->data['header_class'] = 'header-white';
       $this->template->load('front/tempFront', 'front/cart', $this->data);
@@ -118,6 +138,23 @@
       $limit = $this->input->get('limit');
       $kategori = $this->input->get('kategori');
       $products = $this->MProduct->getWithLimit($limit, $page, $kategori);
+
+      $res = array(
+        'data' => $products,
+        'nextPage' => $page + $limit,
+        'limit' => $limit,
+      );
+
+      die(json_encode($res));
+    }
+
+    public function getNextEvent() {
+      $this->load->model('MEvent');
+
+      $page = $this->input->get('page');
+      $limit = $this->input->get('limit');
+      $type = $this->input->get('type');
+      $products = $this->MEvent->getWithLimit($limit, $page, $type);
 
       $res = array(
         'data' => $products,

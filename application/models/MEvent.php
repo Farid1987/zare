@@ -29,8 +29,54 @@ class MEvent extends CI_Model {
 	 *	@return array data event
 	 */
 	public function getWhere($condition) {
-		$query = $this->db->get_where('event', $condition);
+		$this->db->select('event.*, type_project.type_project as type');
+    $this->db->from('event');
+		$this->db->join('type_project', 'event.id_type_project = type_project.id_type_project', 'left');
+		$this->db->where($condition);
+		$query = $this->db->get();
 		return $query->result();
+		// $query = $this->db->get_where('event', $condition);
+		// return $query->result();
+	}
+	
+	public function getWhereWithLimit($condition, $limit) {
+		$this->db->select('event.*, type_project.type_project as type');
+    $this->db->from('event');
+		$this->db->join('type_project', 'event.id_type_project = type_project.id_type_project', 'left');
+		$this->db->where($condition);
+		$this->db->limit($limit, 0);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	/**
+	 * 	get data event with limit data
+	 *	@return array data product
+	 */
+  public function getWithLimit($limit, $start, $idType) {
+    $this->db->select('event.*, type_project.type_project as type');
+    $this->db->from('event');
+    $this->db->join('type_project', 'event.id_type_project = type_project.id_type_project', 'left');
+    if ($idType) {
+      $this->db->where(['event.id_type_project' => $idType]);  
+    }
+    $this->db->limit($limit, $start);
+    $query = $this->db->get();
+		return $query->result();
+  }
+	
+	/**
+	 * 	get total data event with condition
+	 *	@return array number / null
+	 */
+  public function countDataEvent($condition) {
+    if ($condition == 'all') {
+      $this->db->select('*');
+      $query = $this->db->get('event');
+    } else {
+      $query = $this->db->get_where('event', $condition);
+    }
+    return count($query->result());
   }
 
   /**

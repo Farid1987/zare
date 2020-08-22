@@ -208,7 +208,7 @@
     <h2 class="section-title section-title--sm flex items-center justify-between">
       Berkolaborasi bersama Zare
 
-      <a href="" class="section-title__link text-primary flex items-center">
+      <a href="<?= site_url('frontPage/events')?>" class="section-title__link text-primary flex items-center">
         LIHAT SEMUA
         <i class="fa fa-arrow-right"></i>
       </a>
@@ -222,29 +222,33 @@
     <div class="swiper-arrow__wrapper" id="event">
       <div class="swiper-container js-swiper swiper-item-3" data-items="3" data-space="45">
         <div class="swiper-wrapper">
-          <?php for ($i=0; $i < 6; $i++) { ?>
+          <?php for ($i=0; $i < count($otherEvent); $i++) { ?>
             <div class="swiper-slide">
               <div class="box box-transparent box-event">
                 <a href="" class="box-thumb img-rasio r-63">
-                  <img src="<?= base_url()?>/assets/img/home-blog1.jpg" alt="">
+                  <img src="<?= base_url().'/'.$otherEvent[$i]->featured_img?>" alt="">
                 </a>
                 <div class="box-content">
                   <div class="box-info flex flex-wrap@md justify-between">
                     <div class="box-info__cat flex items-center">
                       <span class="circle circle-primary"></span>
-                      LIVE IN
-                      <span class="event-status text-primary">Open</span>
+                      <?= $otherEvent[$i]->type?>
+                      <?php if (time() < strtotime($otherEvent[$i]->finish_registration)) { ?>
+                        <span class="event-status text-primary">Open</span>
+                      <?php } else { ?>
+                        <span class="event-status text-secondary">Closed</span>
+                      <?php } ?>
                     </div>
                     <div class="box-info__date">
                       <i class="fa fa-calendar"></i>
-                      Nov 19 - 20 Dec
+                      <?= date('F j', strtotime($otherEvent[$i]->start_registration))?> - <?= date('F j', strtotime($otherEvent[$i]->finish_registration))?>
                     </div>
                   </div>
                   <h4 class="box-title text-primary">
-                    <a href="">Bakar jagung dipuncah Merbabu</a>
+                    <a href=""><?= $otherEvent[$i]->title?></a>
                   </h4>
-                  <span class="event-location">Kaki Gunung Merbabu, Magelang, Jawa Tengah</span>
-                  <p class="box-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad..</p>
+                  <span class="event-location"><?= $otherEvent[$i]->location?></span>
+                  <p class="box-desc"><?= $otherEvent[$i]->short_description?></p>
                 </div>
               </div>
             </div>
@@ -263,29 +267,33 @@
     <div class="swiper-arrow__wrapper" id="workshop">
       <div class="swiper-container js-swiper swiper-item-3" data-items="3" data-space="45" data-display="none">
         <div class="swiper-wrapper">
-          <?php for ($i=0; $i < 6; $i++) { ?>
+          <?php for ($i=0; $i < count($workshop); $i++) { ?>
             <div class="swiper-slide">
               <div class="box box-transparent box-event">
                 <a href="" class="box-thumb img-rasio r-63">
-                  <img src="<?= base_url()?>/assets/img/home-blog1.jpg" alt="">
+                  <img src="<?= base_url().'/'.$workshop[$i]->featured_img?>" alt="">
                 </a>
                 <div class="box-content">
                   <div class="box-info flex flex-wrap@md justify-between">
                     <div class="box-info__cat flex items-center">
                       <span class="circle circle-primary"></span>
-                      LIVE IN
-                      <span class="event-status text-primary">Open</span>
+                      <?= $workshop[$i]->type?>
+                      <?php if (time() < strtotime($workshop[$i]->finish_registration)) { ?>
+                        <span class="event-status text-primary">Open</span>
+                      <?php } else { ?>
+                        <span class="event-status text-secondary">Closed</span>
+                      <?php } ?>
                     </div>
                     <div class="box-info__date">
                       <i class="fa fa-calendar"></i>
-                      Nov 19 - 20 Dec
+                      <?= date('F j', strtotime($workshop[$i]->start_registration))?> - <?= date('F j', strtotime($workshop[$i]->finish_registration))?>
                     </div>
                   </div>
                   <h4 class="box-title text-primary">
-                    <a href="">Bakar jagung dipuncah Merbabu</a>
+                    <a href=""><?= $workshop[$i]->title?></a>
                   </h4>
-                  <span class="event-location">Kaki Gunung Merbabu, Magelang, Jawa Tengah</span>
-                  <p class="box-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad..</p>
+                  <span class="event-location"><?= $workshop[$i]->location?></span>
+                  <p class="box-desc"><?= $workshop[$i]->short_description?></p>
                 </div>
               </div>
             </div>
