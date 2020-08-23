@@ -15,7 +15,7 @@
       <?php foreach ($events as $key => $value) { ?>
         <div class="col-md-4 col-sm-6">
           <div class="box box-transparent box-event">
-            <a href="" class="box-thumb img-rasio r-63">
+            <a href="<?= site_url('frontPage/eventDetail').'/'.$value->id_event?>" class="box-thumb img-rasio r-63">
               <img src="<?= base_url().'/'.$value->featured_img?>" alt="">
             </a>
             <div class="box-content">
@@ -37,7 +37,7 @@
                 </div>
               </div>
               <h4 class="box-title text-primary">
-                <a href=""><?= $value->title?></a>
+                <a href="<?= site_url('frontPage/eventDetail').'/'.$value->id_event?>"><?= $value->title?></a>
               </h4>
               <span class="event-location"><?= $value->location?></span>
               <p class="box-desc"><?= $value->short_description?></p>
@@ -106,7 +106,7 @@
         const end = new Date(el.finish_registration).toLocaleString('default', { month: 'long' }) +' '+new Date(el.finish_registration).getDate();
         html += `<div class="col-md-4 col-sm-6">
           <div class="box box-transparent box-event">
-            <a href="" class="box-thumb img-rasio r-63">
+            <a href="<?= site_url('frontPage/eventDetail')?>/${el.id_event}" class="box-thumb img-rasio r-63">
               <img src="<?= base_url()?>/${el.featured_img}" alt="">
             </a>
             <div class="box-content">
@@ -127,7 +127,7 @@
                 </div>
               </div>
               <h4 class="box-title text-primary">
-                <a href="">${el.title}</a>
+                <a href="<?= site_url('frontPage/eventDetail')?>/${el.id_event}">${el.title}</a>
               </h4>
               <span class="event-location">${el.location}</span>
               <p class="box-desc">${el.short_description}</p>

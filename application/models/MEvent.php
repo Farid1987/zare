@@ -13,7 +13,19 @@ class MEvent extends CI_Model {
     $this->db->join('type_project', 'event.id_type_project = type_project.id_type_project', 'left');
 		$query = $this->db->get();
 		return $query->result();
-  }
+	}
+	// /**
+	//  * 	get all data event except 
+	//  *	@return array data event
+	//  */
+	// public function getAllNotDraft(){
+  //   $this->db->select('event.*, type_project.type_project as type');
+  //   $this->db->from('event');
+	// 	$this->db->join('type_project', 'event.id_type_project = type_project.id_type_project', 'left');
+	// 	$this->db->where('event.status !=', 'draft');
+	// 	$query = $this->db->get();
+	// 	return $query->result();
+  // }
 
   /**
 	 * 	add data event
@@ -39,14 +51,24 @@ class MEvent extends CI_Model {
 		// return $query->result();
 	}
 	
-	public function getWhereWithLimit($condition, $limit) {
+	public function getWhereWithLimit($condition, $limit, $start = 0) {
 		$this->db->select('event.*, type_project.type_project as type');
     $this->db->from('event');
 		$this->db->join('type_project', 'event.id_type_project = type_project.id_type_project', 'left');
 		$this->db->where($condition);
-		$this->db->limit($limit, 0);
+		$this->db->limit($limit, $start);
 		$query = $this->db->get();
 		return $query->result();
+	}
+
+	public function getDetailEvent($idEvent) {
+		$this->db->select('event.*, type_project.type_project as type, GROUP_CONCAT(event_photos.url) as image_url');
+    $this->db->from('event');
+    $this->db->where(['event.id_event' => $idEvent]);
+    $this->db->join('type_project', 'event.id_type_project = type_project.id_type_project', 'left');
+    $this->db->join('event_photos', 'event_photos.id_event = event.id_event', 'left');
+    $query = $this->db->get();
+    return $query->row();
 	}
 
 	/**

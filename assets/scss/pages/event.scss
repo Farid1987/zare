@@ -1,0 +1,34 @@
+.event {
+  &-title {
+    font-size: 26px;
+    margin-bottom: 20px;
+  }
+  &-location {
+    font-size: 14px;
+    margin-bottom: 10px;
+    i {
+      margin-right: 5px;
+    }
+  }
+  &-description {
+    margin-top: 30px;
+  }
+
+  &-price {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  &-info {
+    font-size: 14px;
+    margin-bottom: 10px;
+    i {
+      margin-right: 7px;
+    }
+  }
+  &-note {
+    background: rgba(242, 92, 20, 0.17);
+    padding: 10px;
+    font-size: 14px;
+  }
+}

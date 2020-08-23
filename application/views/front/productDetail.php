@@ -19,13 +19,17 @@
         <div class="swiper-container product-gallery__thumbs">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
-              <img src="<?= base_url().'/'.$product->featured_img?>" alt="">
+              <div class="img-rasio r-100">
+                <img src="<?= base_url().'/'.$product->featured_img?>" alt="">
+              </div>
             </div>
             <?php if ($product_gallery != null) {
               for ($i=0; $i < count($product_gallery); $i++) { 
             ?>
               <div class="swiper-slide">
-                <img src="<?= base_url().'/'.$product_gallery[$i]?>" alt="">
+                <div class="img-rasio r-100">
+                  <img src="<?= base_url().'/'.$product_gallery[$i]?>" alt="">
+                </div>
               </div>
             <?php }
             } ?>

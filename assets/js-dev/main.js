@@ -100,11 +100,14 @@
     const sliderProductThumb = document.querySelector('.product-gallery__thumbs');
     const sliderProduct = document.querySelector('.product-gallery__top');
     if (sliderProduct && sliderProductThumb) {
+      const space = sliderProductThumb.dataset.space;
       let productSliderThumb = new Swiper(sliderProductThumb, {
-        spaceBetween: 20,
+        spaceBetween: (space) ? space:20,
         slidesPerView: 4,
+        autoHeight: true,
       })
       let productSlider = new Swiper(sliderProduct, {
+        autoHeight: true,
         spaceBetween: 10,
         thumbs: {
           swiper: productSliderThumb

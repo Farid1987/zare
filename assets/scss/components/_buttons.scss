@@ -24,6 +24,14 @@
       }
     }
   }
+  &-secondary {
+    background: $clr-secondary;
+    border: $clr-secondary;
+    color: #fff;
+    &:hover, &:focus {
+      color: #fff;
+    }
+  }
   &-rounded {
     border-radius: 18px;
   }
@@ -31,5 +39,10 @@
     i {
       margin-right: 10px;
     }
+  }
+  &-block {
+    display: block;
+    width: 100%;
+    text-align: center;
   }
 }

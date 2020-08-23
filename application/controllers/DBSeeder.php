@@ -69,9 +69,11 @@
           'location' => 'Location',
           'latitude' => $faker->numberBetween($min = 10000, $max = 50000),
           'longitude' => $faker->numberBetween($min = 10000, $max = 50000),
-          'registration_link' => ''
+          'registration_link' => '',
+          'status' => (time() > strtotime($deadline->format('Y-m-d H:i:s'))) ? 'complete':'process'
         );
 
+        
         $insert = $this->MEvent->add($dataInsert);
         if ($insert) {
           echo "success";

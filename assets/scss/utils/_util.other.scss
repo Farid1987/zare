@@ -28,6 +28,9 @@
 .mb-20 {
   margin-bottom: 20px;
 }
+.mb-10 {
+  margin-bottom: 10px;
+}
 @include media-breakpoint-down(sm) {
   .show-desktop {
     display: none; 
@@ -36,5 +39,21 @@
 @include media-breakpoint-up(md) {
   .show-mobile {
     display: none;
+  }
+}
+
+.img-rasio {
+  position: relative;
+  
+  .r-100 {
+    padding-top: 100%;
+  }
+  & > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }

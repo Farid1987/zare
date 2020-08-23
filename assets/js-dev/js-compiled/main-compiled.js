@@ -124,11 +124,14 @@
     var sliderProductThumb = document.querySelector('.product-gallery__thumbs');
     var sliderProduct = document.querySelector('.product-gallery__top');
     if (sliderProduct && sliderProductThumb) {
+      var space = sliderProductThumb.dataset.space;
       var productSliderThumb = new Swiper(sliderProductThumb, {
-        spaceBetween: 20,
-        slidesPerView: 4
+        spaceBetween: space ? space : 20,
+        slidesPerView: 4,
+        autoHeight: true
       });
       var productSlider = new Swiper(sliderProduct, {
+        autoHeight: true,
         spaceBetween: 10,
         thumbs: {
           swiper: productSliderThumb

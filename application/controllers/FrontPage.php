@@ -24,8 +24,8 @@
       $this->load->model('MEvent');
       
       $workshop = $this->MTypeProject->getWhere(['type_project' => 'workshop'])[0];
-      $this->data['otherEvent'] = $this->MEvent->getWhereWithLimit(['event.id_type_project !=' => $workshop->id_type_project], 3);
-      $this->data['workshop'] = $this->MEvent->getWhereWithLimit(['event.id_type_project' => $workshop->id_type_project], 3);
+      $this->data['otherEvent'] = $this->MEvent->getWhereWithLimit(['event.status !=' => 'draft', 'event.id_type_project !=' => $workshop->id_type_project], 6);
+      $this->data['workshop'] = $this->MEvent->getWhereWithLimit(['event.status !=' => 'draft', 'event.id_type_project' => $workshop->id_type_project], 6);
       $this->data['products'] = $this->MProduct->getOtherProductWithLimit(null, 8);
       $this->data['js_to_load'] = [
         base_url('assets/js/swiper-bundle.min.js'),
@@ -81,10 +81,32 @@
 
       $this->data['per_page'] = 6;
       $this->data['totalEvents'] = (!$this->input->get('type')) ? $this->MEvent->countDataEvent('all') : $this->MEvent->countDataEvent(['id_type_project' => $this->input->get('type')]);
-      $this->data['events'] = $this->MEvent->getWithLimit($this->data['per_page'], 0, $this->input->get('type'));
+
+      $condition = ['event.status !=' => 'draft'];
+      if ($this->input->get('type')) {
+        $condition = ['event.status !=' => 'draft','event.id_type_project' => $this->input->get('type')];
+      }
+      // var_dump($condition);die;
+      $this->data['events'] = $this->MEvent->getWhereWithLimit($condition, $this->data['per_page'], 0);
 
       $this->data['header_class'] = 'header-white';
       $this->template->load('front/tempFront', 'front/events', $this->data);
+    }
+
+    public function eventDetail($idEvent) {
+      $this->load->model('MEvent');
+
+      $this->data['event'] = $this->MEvent->getDetailEvent($idEvent);
+      $this->data['event_gallery'] = ($this->data['event']->image_url) ? explode(',', $this->data['event']->image_url):null;
+
+      $this->data['js_to_load'] = [
+        base_url('assets/js/swiper-bundle.min.js'),
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/css/swiper-bundle.min.css'),
+      ];
+      $this->data['header_class'] = 'header-white';
+      $this->template->load('front/tempFront', 'front/eventDetail', $this->data);
     }
 
     public function cart() {
