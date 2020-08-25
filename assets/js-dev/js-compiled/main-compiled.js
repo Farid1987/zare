@@ -226,8 +226,9 @@
           e.preventDefault();
           var newValue = Number(input.value) + 1;
           var max = Number(input.max);
+          console.log(max);
 
-          if (max && newValue > max || max == 0) return;
+          if (max && newValue > max) return;
           input.value = newValue;
         });
 

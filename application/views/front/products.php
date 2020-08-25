@@ -68,7 +68,7 @@
                   <a href="">Kombucha Sirsak</a>
                 </h4>
                 <p class="box-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                <div class="flex justify-between box-product__info">
+                <div class="flex justify-between flex-wrap@md box-product__info">
                   <div class="box-product__info-item">
                     <p class="product-price">12.000/Kg</p>
                     <p class="product-stock">stok : <span class="text-primary">tersedia</span></p>

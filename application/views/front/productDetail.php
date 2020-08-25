@@ -1,6 +1,6 @@
 <div class="main-wrapper">
   <div class="container">
-    <div class="flex">
+    <div class="flex flex-wrap@xs">
       <div class="product-gallery__wrapper">
         <div class="swiper-container product-gallery__top">
           <div class="swiper-wrapper">
@@ -50,7 +50,7 @@
             <input type="hidden" name="id" value="<?= $product->id_product?>">
             <div class="add-cart__title">Masukkan Jumlah</div>
             
-            <div class="flex">
+            <div class="flex flex-wrap@sm">
               <div class="add-cart__count flex">
                 <span class="minus flex items-center justify-center"><i class="fa fa-minus"></i></span>
                 <input type="number" name="qty" value="0" class="input" min="0" max="<?= $product->stock?>" readonly id="qty">
@@ -65,12 +65,12 @@
         </div>
 
         <a href="https://wa.me/6282327773818" target="__blank" class="btn btn-rounded btn-primary--outline btn-icon">
-          <i class="fa fa-commenting"></i>
+          <i class="fa fa-comments"></i>
           Tanya-tanya dulu
         </a>
       </div>
     </div>
-    <div class="product-detail__desc flex">
+    <div class="product-detail__desc flex flex-wrap@sm">
       <div class="detail-wrapper">
         <div class="detail-title">DESKRIPSI</div>
         <div class="detail-content">
@@ -105,7 +105,7 @@
                   <a href="<?= site_url('frontPage/productDetail/'.$other->id_product)?>"><?= $other->nama_product?></a>
                 </h4>
                 <p class="box-desc"><?= $other->short_description?></p>
-                <div class="flex justify-between box-product__info">
+                <div class="flex justify-between flex-wrap@md box-product__info">
                   <div class="box-product__info-item">
                     <p class="product-price"><?= number_format($other->price, 0, '.', '.')?>/<?= $other->satuan?></p>
                     <p class="product-stock">stok :

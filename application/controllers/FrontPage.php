@@ -86,7 +86,7 @@
       if ($this->input->get('type')) {
         $condition = ['event.status !=' => 'draft','event.id_type_project' => $this->input->get('type')];
       }
-      // var_dump($condition);die;
+      
       $this->data['events'] = $this->MEvent->getWhereWithLimit($condition, $this->data['per_page'], 0);
 
       $this->data['header_class'] = 'header-white';
@@ -110,7 +110,7 @@
     }
 
     public function cart() {
-      if (!$this->session->userdata('emailUser')) redirect('auth');
+      if (!$this->session->userdata('email')) redirect('auth');
       
       $this->data['header_class'] = 'header-white';
       $this->template->load('front/tempFront', 'front/cart', $this->data);
@@ -191,6 +191,8 @@
       if ($this->data['emailUser'] && $this->data['role'] == 'admin') redirect('frontPage');
       if (!isset($this->data['emailUser'])) redirect('auth');
 
+      $this->load->model('MProduct');
+
       $id = $this->input->post('id');
       $qty = $this->input->post('qty');
       $data = array(
@@ -210,10 +212,15 @@
         $this->redirectPreviousPage();
       } else {
         $updatedQty = $current[0]->quantity + $qty;
-        $dataUpdate = array(
-          'quantity' => $updatedQty
-        );
-        $this->MCart->edit($current[0]->id_cart, $dataUpdate);
+        $stock = $this->MProduct->getStock($id);
+        
+        if ($updatedQty <= $stock->stock) {
+          $dataUpdate = array(
+            'quantity' => $updatedQty
+          );
+          $this->MCart->edit($current[0]->id_cart, $dataUpdate);
+        }
+        
         $this->redirectPreviousPage();
       }
 

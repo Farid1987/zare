@@ -148,6 +148,9 @@
 
   @include media-breakpoint-down(md) {
     margin-bottom: 40px;
+    &--sm {
+      font-size: 20px;
+    }
   }
   @include media-breakpoint-down(sm) {
     font-size: 22px;

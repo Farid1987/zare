@@ -27,7 +27,7 @@
           ?>
             <tr>
               <td>
-                <a href="<?= site_url('frontPage/productDetal').'/'.$item->id_product?>" class="cart-item items-center">
+                <a href="<?= site_url('frontPage/productDetail').'/'.$item->id_product?>" class="cart-item items-center">
                   <div class="cart-item__img">
                     <img src="<?= base_url().'/'.$item->featured_img?>" alt="">
                   </div>
