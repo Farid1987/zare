@@ -128,14 +128,21 @@
                       <?php } ?>
                     </div>
                     <div class="box-product__info-item">
-                      <form action="<?= site_url('frontPage/addToCart')?>" method="post">
-                        <input type="hidden" name="id" value="<?= $value->id_product?>">
-                        <input type="hidden" name="qty" value="1">
-                        <button type="submit" href="" class="btn btn-primary btn-icon">
+                      <?php if ($value->stock > 0) { ?>
+                        <form action="<?= site_url('frontPage/addToCart')?>" method="post">
+                          <input type="hidden" name="id" value="<?= $value->id_product?>">
+                          <input type="hidden" name="qty" value="1">
+                          <button type="submit" href="" class="btn btn-primary btn-icon">
+                            <i class="fa fa-shopping-cart"></i>
+                            AMBIL
+                          </button>
+                        </form>
+                      <?php } else { ?>
+                        <a href="" class="btn btn-primary btn-icon" onclick="alert('Product habis'); return false;">
                           <i class="fa fa-shopping-cart"></i>
                           AMBIL
-                        </button>
-                      </form>
+                        </a>
+                      <?php } ?>
                       <!-- <a href="" class="btn btn-primary btn-icon">
                         <i class="fa fa-shopping-cart"></i>
                         AMBIL
@@ -225,7 +232,7 @@
           <?php for ($i=0; $i < count($otherEvent); $i++) { ?>
             <div class="swiper-slide">
               <div class="box box-transparent box-event">
-                <a href="" class="box-thumb img-rasio r-63">
+                <a href="<?= site_url('frontPage/eventDetail').'/'.$otherEvent[$i]->id_event?>" class="box-thumb img-rasio r-63">
                   <img src="<?= base_url().'/'.$otherEvent[$i]->featured_img?>" alt="">
                 </a>
                 <div class="box-content">
@@ -245,7 +252,7 @@
                     </div>
                   </div>
                   <h4 class="box-title text-primary">
-                    <a href=""><?= $otherEvent[$i]->title?></a>
+                    <a href="<?= site_url('frontPage/eventDetail').'/'.$otherEvent[$i]->id_event?>"><?= $otherEvent[$i]->title?></a>
                   </h4>
                   <span class="event-location"><?= $otherEvent[$i]->location?></span>
                   <p class="box-desc"><?= $otherEvent[$i]->short_description?></p>

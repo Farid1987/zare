@@ -45,7 +45,7 @@
             <div class="form-group row">
               <label class="col-sm-3 col-form-label">Stock</label>
               <div class="col-sm-9">
-                <input type="number" class="form-control" name="stock" min="1" required value="<?= $product->stock; ?>">
+                <input type="number" class="form-control" name="stock" min="0" required value="<?= $product->stock; ?>">
                 <span class="help-block text-danger"><?php echo form_error('stock'); ?></span>
               </div>
             </div>

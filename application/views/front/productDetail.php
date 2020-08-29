@@ -53,7 +53,7 @@
             <div class="flex flex-wrap@sm">
               <div class="add-cart__count flex">
                 <span class="minus flex items-center justify-center"><i class="fa fa-minus"></i></span>
-                <input type="number" name="qty" value="0" class="input" min="0" max="<?= $product->stock?>" readonly id="qty">
+                <input type="number" name="qty" value="0" class="input <?= ($product->stock <= 0) ? 'disabled':''?>" min="0" max="<?= $product->stock?>" readonly id="qty">
                 <span class="plus flex items-center justify-center"><i class="fa fa-plus"></i></span>
               </div>
               <button type="submit" class="btn btn-primary btn-icon btn-buy">
@@ -117,14 +117,21 @@
                     </p>
                   </div>
                   <div class="box-product__info-item">
-                    <form action="<?= site_url('frontPage/addToCart')?>" method="post">
-                      <input type="hidden" name="id" value="<?= $other->id_product?>">
-                      <input type="hidden" name="qty" value="1">
-                      <button type="submit" href="" class="btn btn-primary btn-icon">
+                    <?php if ($other->stock > 0) { ?>
+                      <form action="<?= site_url('frontPage/addToCart')?>" method="post">
+                        <input type="hidden" name="id" value="<?= $other->id_product?>">
+                        <input type="hidden" name="qty" value="1">
+                        <button type="submit" class="btn btn-primary btn-icon">
+                          <i class="fa fa-shopping-cart"></i>
+                          AMBIL
+                        </button>
+                      </form>
+                    <?php } else { ?>
+                      <a href="" class="btn btn-primary btn-icon" onclick="alert('Product habis'); return false;">
                         <i class="fa fa-shopping-cart"></i>
                         AMBIL
-                      </button>
-                    </form>
+                      </a>
+                    <?php } ?>
                   </div>
                 </div>
               </div>

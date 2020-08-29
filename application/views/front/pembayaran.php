@@ -79,7 +79,7 @@
         <div class="pembayaran-note">
           <p>Segera transfer dan jangan sampai anda salah memasukkan jumlah nominal pembayaran anda. Jika sudah transfer, silahkan hubungi admin WA/Line untuk konfirmasi. Bisa juga klik disini</p>
           <div class="text-right">
-            <a href="javascrip:;" class="btn btn-primary" data-micromodal-trigger="modal-1">Konfirmasi Pembayaran</a>
+            <a href="javascript:;" class="btn btn-primary" data-micromodal-trigger="modal-1">Konfirmasi Pembayaran</a>
           </div>
         </div>
       </div>

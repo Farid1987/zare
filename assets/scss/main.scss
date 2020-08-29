@@ -21,6 +21,7 @@
 @import "components/footer";
 @import "components/form";
 @import "components/modal";
+@import "components/pagination";
 
 // Pages
 @import "pages/homepage.scss";
@@ -31,6 +32,7 @@
 @import "pages/pengiriman.scss";
 @import "pages/pembayaran.scss";
 @import "pages/event.scss";
+@import "pages/dashboard.scss";
 
 // Utils
 @import "utils/util.flex";

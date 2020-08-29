@@ -224,9 +224,9 @@
 
         plus && plus.addEventListener('click', function (e) {
           e.preventDefault();
+          if (input.classList.contains('disabled')) return;
           var newValue = Number(input.value) + 1;
           var max = Number(input.max);
-          console.log(max);
 
           if (max && newValue > max) return;
           input.value = newValue;
@@ -234,6 +234,7 @@
 
         minus && minus.addEventListener('click', function (e) {
           e.preventDefault();
+          if (input.classList.contains('disabled')) return;
           var newValue = Number(input.value) - 1;
           var min = Number(input.min);
 

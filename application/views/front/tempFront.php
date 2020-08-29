@@ -78,6 +78,7 @@
               <a href="" class="dropdown-toggle user-icon flex items-center justify-center"><i class="fa fa-user"></i></a>
 
               <ul class="dropdown-menu">
+                <li class="dropdown-menu__item"><a href="<?= site_url('frontPage/dashboardUser')?>">Dashboard</a></li>
                 <li class="dropdown-menu__item"><a href="<?= site_url('auth/logout')?>">Logout</a></li>
               </ul>
             </li>

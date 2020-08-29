@@ -8,7 +8,7 @@
           <div class="form-address">
             <div class="form-group">
               <label for="" class="form-label">Provinsi</label>
-              <select name="province" class="form-input select2 js-provinsi" data-placeholder="Pilih Provinsi" required>
+              <select name="province" class="form-input select2 js-provinsi" data-placeholder="Pilih Provinsi" required id="provinsi">
                 <option value=""></option>
                 <?php if (isset($provinces)) {
                   foreach ($provinces as $province) {?>
@@ -20,19 +20,19 @@
             </div>
             <div class="form-group">
               <label for="" class="form-label">Kota</label>
-              <select name="city" class="form-input select2 js-kota" data-placeholder="Pilih Kota" required>
+              <select name="city" class="form-input select2 js-kota" data-placeholder="Pilih Kota" required id="kota">
                 <option value=""></option>
               </select>
               <span class="form-error-message text-danger"><?php echo form_error('city'); ?></span>
             </div>
             <div class="form-group">
               <label for="" class="form-label">Alamat Lengkap</label>
-              <textarea name="address" class="form-input js-address" placeholder="Masukkan alamat lengkap anda" required><?= set_value('address'); ?></textarea>
+              <textarea name="address" class="form-input js-address" placeholder="Masukkan alamat lengkap anda" required id="alamat"><?= set_value('address'); ?></textarea>
               <span class="form-error-message text-danger"><?php echo form_error('address'); ?></span>
             </div>
             <div class="form-group">
               <label for="" class="form-label">Kode Pos</label>
-              <input type="text" name="zip_code" class="form-input js-kode-pos" value="<?= set_value('zip_code'); ?>" placeholder="Masukkan kode pos" required>
+              <input type="text" name="zip_code" class="form-input js-kode-pos" value="<?= set_value('zip_code'); ?>" placeholder="Masukkan kode pos" required id="kode_pos">
               <span class="form-error-message text-danger"><?php echo form_error('zip_code'); ?></span>
             </div>
           </div>
@@ -62,10 +62,6 @@
                   <div class="cart-item__price">Rp <?= number_format($item->price * $item->quantity, 0, '.', '.')?></div>
                 </div>
               </a>
-              <!-- <input type="hidden" name="id_product" value="<?= $item->id_product?>">
-              <input type="hidden" name="price" value="<?= $item->price?>">
-              <input type="hidden" name="quantity" value="<?= $item->quantity?>">
-              <input type="hidden" name="total_price" value="<?= $item->price * $item->quantity?>"> -->
             <?php } ?>
           </div>
           <table width="100%" style="max-width: 300px; margin-left: auto">
@@ -128,6 +124,39 @@
       $('.js-provinsi').val('<?= set_value('province')?>');
       $('.js-provinsi').trigger('change');
     }
+
+    $('#fill-address').on('change', function(e) {
+      if ($(this).prop('checked')) {
+        const url = '<?= site_url('frontPage/getUserAddress')?>';
+
+        $.ajax({
+          url,
+          method: 'GET',
+          dataType: 'json',
+          beforeSend: function() {
+            
+          },
+          success: function(res) {
+            if (!res.fill) {
+              alert('Lengkapi data terlebih dahulu');
+              window.location.href = '<?= site_url('frontPage/dashboardUser')?>'
+            } else {
+              const {address, province, city, zip_code} = res.data;
+
+              $('#alamat').val(address);
+              $('#kode_pos').val(zip_code);
+              $('#provinsi').val(province).trigger('change');
+              setTimeout(() => {
+                $('#kota').val(city).trigger('change');
+              }, 200);
+            }
+          },
+          error: function(err) {
+            console.log(err)
+          }
+        })
+      }
+    })
   })
 })()
 </script>

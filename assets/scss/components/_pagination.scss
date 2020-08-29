@@ -1,0 +1,20 @@
+.pagination-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+  &>a ,&>strong {
+    padding: 5px 10px;
+    line-height: 1;
+    margin: 0 5px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+  }
+  &>a {
+    background: #fff;
+  }
+  &>strong {
+    background: $clr-primary;
+    color: #fff;
+  }
+}

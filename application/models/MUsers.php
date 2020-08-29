@@ -48,6 +48,18 @@ class MUsers extends CI_Model {
     $this->db->where($condition);
 		$query = $this->db->get();
 		return $query->result();
+	}
+	
+	/**
+	 * 	get user address
+	 *	@return array data regencies
+	 */
+	public function getUserAddress($idUser) {
+    $this->db->select('users.address, users.province, users.city, users.zip_code');
+    $this->db->from('users');
+    $this->db->where(['id_user' => $idUser]);
+		$query = $this->db->get();
+		return $query->row();
   }
 
   /**

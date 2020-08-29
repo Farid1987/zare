@@ -1,0 +1,29 @@
+.dashboard {
+  &-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  &-table {
+    width: 100%;
+    margin: 20px 0;
+    &__wrapper {
+      margin-bottom: 80px;
+      margin-top: 30px;
+      background-color: #F9F9F9;
+      border-top: 1px solid #E7E7E7;
+      border-bottom: 1px solid #E7E7E7;
+    }
+    tbody tr {
+      background: #fff;
+      box-shadow: 0 2px 4px rgba(202, 202, 202, 0.42);
+    }
+    tbody tr.spacer {
+      height: 20px;
+      box-shadow: none;
+    }
+    td, th {
+      padding: 10px 15px;
+    }
+  }
+}

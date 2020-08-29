@@ -135,12 +135,13 @@
     }
 
     public function pembayaran($idTransaksi) {
+      if (!$this->session->userdata('id_user')) redirect('/');
       $this->load->model('MBank');
       $this->load->model('MTransaksi');
       $this->load->model('MTransaksiDetail');
 
-      $this->data['transaksi'] = $this->MTransaksi->getWhere($idTransaksi);
-      $this->data['transaksiItem'] = $this->MTransaksiDetail->getWhere($idTransaksi);
+      $this->data['transaksi'] = $this->MTransaksi->getWhere(['transaksi.id_transaksi' => $idTransaksi])[0];
+      $this->data['transaksiItem'] = $this->MTransaksiDetail->getWhere(['id_transaksi' => $idTransaksi]);
       $this->data['bank'] = $this->MBank->getAll();
 
       $this->data['js_to_load'] = [
@@ -148,6 +149,60 @@
       ];
       $this->data['header_class'] = 'header-white';
       $this->template->load('front/tempFront', 'front/pembayaran', $this->data);
+    }
+
+    public function dashboardUser() {
+      if (!$this->session->userdata('id_user')) redirect('/');
+
+      $this->load->library('pagination');
+      $this->load->model('MUsers');
+      $this->load->model('MTransaksi');
+
+      $this->data['user'] = $this->MUsers->getWhere(['id_user' => $this->session->userdata('id_user')])[0];
+      $allTransaksi = $this->MTransaksi->getWhere(['transaksi.id_user' => $this->session->userdata('id_user')]);
+
+      //konfigurasi pagination
+      $config['base_url'] = site_url('frontPage/dashboardUser'); //site url
+      $config['total_rows'] = count($allTransaksi); //total row
+      $config['per_page'] = 5;  //show record per halaman
+      $config["uri_segment"] = 3;  // uri parameter
+      $choice = $config["total_rows"] / $config["per_page"];
+      $config["num_links"] = floor($choice);
+
+      $this->pagination->initialize($config);
+      $condition = ['id_user' => $this->session->userdata('id_user')];
+      $data['page'] = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+      
+      $this->data['dataTransaksi'] = $this->MTransaksi->getWithLimit($config["per_page"], $data['page'], $condition);
+      $this->data['pagination'] = $this->pagination->create_links();
+
+      $this->data['js_to_load'] = [
+        base_url('assets/js/jquery.min.js'),
+        base_url('assets/js/micromodal.min.js'),
+      ];
+      $this->data['header_class'] = 'header-white';
+      $this->template->load('front/tempFront', 'front/dashboard', $this->data);
+    }
+
+    public function editAlamatUser() {
+      if (!$this->session->userdata('id_user')) redirect('/');
+
+      $this->load->model('MUsers');
+      $this->load->model('MProvinces');
+
+      $this->data['user'] = $this->MUsers->getWhere(['id_user' => $this->session->userdata('id_user')])[0];
+      $this->data['provinces'] = $this->MProvinces->getAll();
+
+      $this->data['js_to_load'] = [
+        base_url('assets/js/jquery.min.js'),
+        base_url('assets/js/select2.full.min.js'),
+      ];
+      $this->data['css_to_load'] = [
+        base_url('assets/css/select2.min.css'),
+      ];
+
+      $this->data['header_class'] = 'header-white';
+      $this->template->load('front/tempFront', 'front/editAlamat', $this->data);
     }
 
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
@@ -356,6 +411,69 @@
         $this->data['header_class'] = 'header-white';
         $this->template->load('front/tempFront', 'front/pengiriman', $this->data);
       }
+    }
+
+    public function getUserAddress() {
+      $this->load->model('MUsers');
+
+      $address = $this->MUsers->getUserAddress($this->session->userdata('id_user'));
+
+      $fill = true;
+      if ($address->address == NULL && $address->province == NULL && $address->city == NULL && $address->zip_code == NULL) {
+        $fill = false;
+      }
+      
+      $res = array(
+        'data' => $address,
+        'fill' => $fill
+      );
+
+      die(json_encode($res));
+    }
+
+    public function editAlamat() {
+      $this->load->model('MUsers');
+      $dataEdit = array(
+        'address' => $this->input->post('address'),
+        'zip_code' => $this->input->post('zip_code'),
+        'province' => $this->input->post('province'),
+        'city' => $this->input->post('city')
+      );
+      $edit = $this->MUsers->edit($this->session->userdata('id_user'), $dataEdit);
+      if ($edit) {
+        $this->session->set_flashdata('status', 'success');
+        $this->session->set_flashdata('message', 'Edit user success!');
+      } else {
+        $this->session->set_flashdata('status', 'error');
+        $this->session->set_flashdata('message', 'Edit user failed!');
+      }
+      redirect(site_url('frontPage/dashboardUser'));
+    }
+
+    public function batalkanTransaksi($idTransaksi) {
+      if (!$this->session->userdata('id_user')) redirect('/');
+
+      $this->load->model('MTransaksi');
+      $dataUpdate = array('status' => 'cancelled');
+      $konfirmasi = $this->MTransaksi->edit($idTransaksi, $dataUpdate);
+      if ($konfirmasi) {
+        $this->load->model('MTransaksiDetail');
+        $this->load->model('MProduct');
+        $transaksiItem = $this->MTransaksiDetail->getWhere(['id_transaksi' => $idTransaksi]);
+        
+        if (count($transaksiItem) > 0) {
+          foreach ($transaksiItem as $item) {
+            if ($item->id_product) {
+              $currentStock = $this->MProduct->getStock($item->id_product);
+              $newStock = $currentStock->stock + $item->jumlah_penjualan;
+
+              $this->MProduct->edit($item->id_product, ['stock' => $newStock]);
+            }
+          }
+        } 
+      }
+
+      redirect(site_url('frontPage/dashboardUser'));
     }
 
     private function redirectPreviousPage() {
