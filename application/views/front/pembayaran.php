@@ -20,43 +20,45 @@
       </div>
     </div>
 
-    <table class="table-cart">
-      <thead>
-        <tr>
-          <th>Pesanan</th>
-          <th>Harga</th>
-          <th width="250">Jumlah</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <?php 
-          foreach ($transaksiItem as $item) {
-        ?>
+    <div class="table-responsive">
+      <table class="table-cart">
+        <thead>
           <tr>
-            <td>
-              <a href="<?= site_url('frontPage/productDetail').'/'.$item->id_product?>" class="cart-item items-center">
-                <div class="cart-item__img">
-                  <img src="<?= base_url().'/'.$item->featured_img?>" alt="">
-                </div>
-                <div class="cart-item__content">
-                  <div class="cart-item__title"><?= $item->nama_product?></div>
-                </div>
-              </a>
-            </td>
-            <td>Rp <?= number_format($item->harga_satuan, 0, '.', '.')?></td>
-            <td><?= $item->jumlah_penjualan?></td>
-            <td><strong>Rp <?= number_format($item->total_harga, 0, '.', '.')?></strong></td>
+            <th>Pesanan</th>
+            <th>Harga</th>
+            <th width="250">Jumlah</th>
+            <th>Total</th>
           </tr>
-        <?php } ?>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td class="text-right" colspan="3"><strong>Subtotal</strong></td>
-          <td><strong>Rp <?= number_format($transaksi->total_pembayaran, 0, '.', '.')?></strong></td>
-        </tr>
-      </tfoot>
-    </table>
+        </thead>
+        <tbody>
+          <?php 
+            foreach ($transaksiItem as $item) {
+          ?>
+            <tr>
+              <td>
+                <a href="<?= site_url('frontPage/productDetail').'/'.$item->id_product?>" class="cart-item items-center">
+                  <div class="cart-item__img">
+                    <img src="<?= base_url().'/'.$item->featured_img?>" alt="">
+                  </div>
+                  <div class="cart-item__content">
+                    <div class="cart-item__title"><?= $item->nama_product?></div>
+                  </div>
+                </a>
+              </td>
+              <td>Rp <?= number_format($item->harga_satuan, 0, '.', '.')?></td>
+              <td><?= $item->jumlah_penjualan?></td>
+              <td><strong>Rp <?= number_format($item->total_harga, 0, '.', '.')?></strong></td>
+            </tr>
+          <?php } ?>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="text-right" colspan="3"><strong>Subtotal</strong></td>
+            <td><strong>Rp <?= number_format($transaksi->total_pembayaran, 0, '.', '.')?></strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
 
     <div class="row">
       <div class="col-md-5">

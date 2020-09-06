@@ -38,7 +38,10 @@ table {
     padding: 5px;
   }
 }
-
+.table-responsive {
+  max-width: 100%;
+  overflow: auto;
+}
 // img rasio
 .img-rasio {
   width: 100%;

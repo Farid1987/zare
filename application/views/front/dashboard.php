@@ -14,40 +14,42 @@
 
   <div class="dashboard-table__wrapper">
     <div class="container">
-      <table class="dashboard-table">
-        <thead>
-          <tr>
-            <th>Invoice</th>
-            <th>Tanggal</th>
-            <th>Status</th>
-            <th>Total</th>
-            <th width="110">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="spacer"></tr>
-          <?php if (count($dataTransaksi) > 0) { ?>
-            <?php foreach ($dataTransaksi as $key => $value) { ?>
-              <tr>
-                <td><?= $value->id_invoice?></td>
-                <td><?= date("j F Y", strtotime($value->created_at))?></td>
-                <td><?= ucwords($value->status)?></td>
-                <td>Rp <?= number_format($value->total_pembayaran, 0, '.', '.')?></td>
-                <td>
-                  <?php if ($value->status == 'process') { ?>
-                    <a href="javascript:;" class="btn btn-icon-action" title="Konfirmasi Pembayaran" data-micromodal-trigger="modal-1"><i class="fa fa-comment"></i></a>
-                  <?php } ?>
-                </td>
-              </tr>
-              <tr class="spacer"></tr>
-            <?php } ?>
-          <?php } else { ?>
+      <div class="table-responsive">
+        <table class="dashboard-table">
+          <thead>
             <tr>
-              <td colspan="5" class="text-center"><strong>Tidak ada data transaksi</strong></td>
+              <th>Invoice</th>
+              <th>Tanggal</th>
+              <th>Status</th>
+              <th>Total</th>
+              <th width="110">Action</th>
             </tr>
-          <?php } ?>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <tr class="spacer"></tr>
+            <?php if (count($dataTransaksi) > 0) { ?>
+              <?php foreach ($dataTransaksi as $key => $value) { ?>
+                <tr>
+                  <td><?= $value->id_invoice?></td>
+                  <td><?= date("j F Y", strtotime($value->created_at))?></td>
+                  <td><?= ucwords($value->status)?></td>
+                  <td>Rp <?= number_format($value->total_pembayaran, 0, '.', '.')?></td>
+                  <td>
+                    <?php if ($value->status == 'process') { ?>
+                      <a href="javascript:;" class="btn btn-icon-action" title="Konfirmasi Pembayaran" data-micromodal-trigger="modal-1"><i class="fa fa-comment"></i></a>
+                    <?php } ?>
+                  </td>
+                </tr>
+                <tr class="spacer"></tr>
+              <?php } ?>
+            <?php } else { ?>
+              <tr>
+                <td colspan="5" class="text-center"><strong>Tidak ada data transaksi</strong></td>
+              </tr>
+            <?php } ?>
+          </tbody>
+        </table>
+      </div>
 
       <div class="pagination-wrapper">
         <?= $pagination?>
