@@ -210,6 +210,11 @@
       $this->template->load('front/tempFront', 'front/contactUs', $this->data);
     }
 
+    public function aboutUs() {
+      $this->data['header_class'] = 'header-white';
+      $this->template->load('front/tempFront', 'front/aboutUs', $this->data);
+    }
+
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
     
     ////////////////////////////////////// FUNCT ///////////////////////////////////////////

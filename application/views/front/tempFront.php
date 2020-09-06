@@ -30,10 +30,10 @@
       <div class="header-right flex items-center">
         <ul class="header-menu flex items-center">
           <li class="header-menu__item active"><a href="<?= site_url()?>">HOME</a></li>
-          <li class="header-menu__item"><a href="">ABOUT US</a></li>
+          <li class="header-menu__item"><a href="<?= site_url('frontPage/aboutUs')?>">ABOUT US</a></li>
           <li class="header-menu__item"><a href="<?= site_url('frontPage/products')?>">PRODUCT</a></li>
           <li class="header-menu__item"><a href="<?= site_url('frontPage/events')?>">EVENT</a></li>
-          <li class="header-menu__item"><a href="http://blog.zare.id/">BLOG</a></li>
+          <li class="header-menu__item"><a href="http://blog.zare.id/" target="__blank">BLOG</a></li>
           <li class="header-menu__item"><a href="<?= site_url('frontPage/contactUs')?>">CONTACT US</a></li>
         </ul>
         <?php if (!isset($emailUser) || $role == 'admin') { ?>
