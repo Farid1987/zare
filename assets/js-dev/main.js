@@ -194,6 +194,19 @@
     }
   }
 
+  // alert close
+  const btnClose = document.querySelectorAll('.alert-close')
+  if (btnClose.length > 0) {
+    for (const btn of btnClose) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        const parent = this.parentNode;
+        if (parent.classList.contains('alert')) parent.remove();
+      })
+    }
+  }
+
   window.customHelper = {
     formatMoney: function (amount, decimalCount = 2, decimal = ".", thousands = ",") {
       try {

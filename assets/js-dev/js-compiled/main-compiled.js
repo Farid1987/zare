@@ -264,6 +264,40 @@
     }
   }
 
+  // alert close
+  var btnClose = document.querySelectorAll('.alert-close');
+  if (btnClose.length > 0) {
+    var _iteratorNormalCompletion4 = true;
+    var _didIteratorError4 = false;
+    var _iteratorError4 = undefined;
+
+    try {
+      for (var _iterator4 = btnClose[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+        var btn = _step4.value;
+
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          var parent = this.parentNode;
+          if (parent.classList.contains('alert')) parent.remove();
+        });
+      }
+    } catch (err) {
+      _didIteratorError4 = true;
+      _iteratorError4 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion4 && _iterator4.return) {
+          _iterator4.return();
+        }
+      } finally {
+        if (_didIteratorError4) {
+          throw _iteratorError4;
+        }
+      }
+    }
+  }
+
   window.customHelper = {
     formatMoney: function formatMoney(amount) {
       var decimalCount = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 2;

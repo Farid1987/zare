@@ -22,6 +22,7 @@
 @import "components/form";
 @import "components/modal";
 @import "components/pagination";
+@import "components/alert";
 
 // Pages
 @import "pages/homepage.scss";
@@ -33,6 +34,7 @@
 @import "pages/pembayaran.scss";
 @import "pages/event.scss";
 @import "pages/dashboard.scss";
+@import "pages/contact.scss";
 
 // Utils
 @import "utils/util.flex";

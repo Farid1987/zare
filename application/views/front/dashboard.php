@@ -36,7 +36,6 @@
                 <td>
                   <?php if ($value->status == 'process') { ?>
                     <a href="javascript:;" class="btn btn-icon-action" title="Konfirmasi Pembayaran" data-micromodal-trigger="modal-1"><i class="fa fa-comment"></i></a>
-                    <a href="<?= site_url('frontPage/batalkanTransaksi').'/'.$value->id_transaksi?>" class="btn btn-icon-action btn-cancel" title="Batalkan Transaksi" onclick="return window.confirm('Apakah anda yakin ingin membatalkan transaksi?')"><i class="fa fa-times"></i></a>
                   <?php } ?>
                 </td>
               </tr>
@@ -62,11 +61,11 @@
     <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
       <header class="modal__header">
         <h2 class="modal__title" id="modal-1-title">
-          Konfirmasi pembayaran
+          Hubungi admin
         </h2>
       </header>
       <main class="modal__content" id="modal-1-content">
-        <p>Silahkan konfirmasi pembayaran via Whatsapp atau Line dibawah ini.</p>
+        <p>Silahkan Hubungi admin untuk konfirmasi pembayaran atau membatalkan pesanan.</p>
 
         <div class="row">
           <div class="col-md-6 text-center">

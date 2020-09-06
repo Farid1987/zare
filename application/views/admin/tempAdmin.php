@@ -155,6 +155,10 @@
                             <li>
                                 <a class="<?= (isset($active) && $active=='order') ? 'active':''?>" href="<?= site_url('admin/order')?>"><i class="ti-receipt"></i>Order</a>
                             </li>
+
+                            <li>
+                                <a class="<?= (isset($active) && $active=='message') ? 'active':''?>" href="<?= site_url('admin/message')?>"><i class="ti-comments"></i>Message</a>
+                            </li>
                             
                         </ul>
                         <!-- End navigation menu -->

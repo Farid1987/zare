@@ -186,6 +186,18 @@
       $this->template->load('admin/tempAdmin', 'admin/order/orderDetail', $this->data);
     }
 
+    public function message() {
+      $this->load->model('MMessage');
+
+      $this->data['message'] = $this->MMessage->getAll();
+      $this->data['active'] = 'message';
+      $this->data['breadcrumb'] = [
+        ['Message', site_url('admin/message')]
+      ];
+
+      $this->template->load('admin/tempAdmin', 'admin/message.php', $this->data);
+    }
+ 
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
 
     ////////////////////////////////////// FUNCT ///////////////////////////////////////////

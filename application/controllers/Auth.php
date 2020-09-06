@@ -51,7 +51,7 @@
           $this->session->set_userdata($sess_data);
         }
 
-        redirect('frontPage');
+        redirect('/');
       } else {
         $this->session->set_flashdata('errorlog', 'Incorrect username or password');
 				$this->session->set_flashdata('erroruser', $data['username']);
@@ -88,7 +88,7 @@
 
     public function logout(){
 			$this->session->sess_destroy();
-			redirect('frontPage');
+			redirect('/');
     }
 
     /////////////////////////////////// END OF FUNCT ///////////////////////////////////////

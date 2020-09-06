@@ -205,6 +205,11 @@
       $this->template->load('front/tempFront', 'front/editAlamat', $this->data);
     }
 
+    public function contactUs() {
+      $this->data['header_class'] = 'header-white';
+      $this->template->load('front/tempFront', 'front/contactUs', $this->data);
+    }
+
     /////////////////////////////////// END OF PAGES ///////////////////////////////////////
     
     ////////////////////////////////////// FUNCT ///////////////////////////////////////////
@@ -474,6 +479,40 @@
       }
 
       redirect(site_url('frontPage/dashboardUser'));
+    }
+
+    public function addMessage() {
+      $this->form_validation->set_rules('nama', 'Nama', 'required');
+      $this->form_validation->set_rules('email', 'Email', 'required');
+      $this->form_validation->set_rules('pesan', 'Pesan', 'required');
+
+      $this->data['header_class'] = 'header-white';
+      if ($this->form_validation->run()) {
+        $this->load->model('MMessage');
+
+        $nama = $this->input->post('nama');
+        $email = $this->input->post('email');
+        $pesan = $this->input->post('pesan');
+        $dataInsert = array(
+          'nama' => $nama,
+          'email' => $email,
+          'pesan' => $pesan
+        );
+        
+        $insertMessage = $this->MMessage->add($dataInsert);
+
+        if ($insertMessage) {
+          $this->session->set_flashdata('status', 'success');
+          $this->session->set_flashdata('message', 'Pesan berhasil dikirim.');
+        } else {
+          $this->session->set_flashdata('status', 'error');
+          $this->session->set_flashdata('message', 'Pesan gagal dikirim.');
+        }
+
+        redirect(site_url('frontPage/contactUs'));
+      } else {
+        $this->template->load('front/tempFront', 'front/contactUs', $this->data);
+      }
     }
 
     private function redirectPreviousPage() {

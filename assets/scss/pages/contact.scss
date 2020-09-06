@@ -1,0 +1,15 @@
+.contact {
+  &-wrapper {
+    max-width: 800px;
+    margin: 50px auto 30px;
+  }
+  &-map iframe {
+    width: 100%;
+  }
+
+  @include media-breakpoint-down(md) {
+    &-map {
+      margin: 0 -15px;
+    }
+  }
+}
