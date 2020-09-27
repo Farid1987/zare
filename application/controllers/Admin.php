@@ -650,7 +650,7 @@
     public function addEvent() {
       $this->form_validation->set_rules('title', 'Title', 'required');
       $this->form_validation->set_rules('type_project', 'Event Type', 'required');
-      $this->form_validation->set_rules('deadline', 'Deadline', 'required');
+      $this->form_validation->set_rules('deadline', 'Date Event', 'required');
       $this->form_validation->set_rules('start_regis', 'Start Registration', 'required');
       $this->form_validation->set_rules('end_regis', 'End Registration', 'required');
       $this->form_validation->set_rules('short_desc', 'Short Description', 'required');
@@ -714,7 +714,7 @@
     public function editEvent($idEvent) {
       $this->form_validation->set_rules('title', 'Title', 'required');
       $this->form_validation->set_rules('type_project', 'Event Type', 'required');
-      $this->form_validation->set_rules('deadline', 'Deadline', 'required');
+      $this->form_validation->set_rules('deadline', 'Date Event', 'required');
       $this->form_validation->set_rules('start_regis', 'Start Registration', 'required');
       $this->form_validation->set_rules('end_regis', 'End Registration', 'required');
       $this->form_validation->set_rules('short_desc', 'Short Description', 'required');

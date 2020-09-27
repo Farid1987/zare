@@ -118,17 +118,6 @@
           </div>
           <div class="col-md-auto col-6">
             <div class="footer-menu__wrapper">
-              <div class="footer-menu__title">BLOG</div>
-              <ul class="footer-menu">
-                <li><a href="">Lorem ipsum dolor sit</a></li>
-                <li><a href="">Lorem ipsum dolor sit</a></li>
-                <li><a href="">Lorem ipsum dolor sit</a></li>
-                <li><a href="">Lorem ipsum dolor sit</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-auto col-6">
-            <div class="footer-menu__wrapper">
               <div class="footer-menu__title">Social Media</div>
               <ul class="footer-menu">
                 <li><a href="" target="__blank">Facebook</a></li>

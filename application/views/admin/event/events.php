@@ -31,7 +31,7 @@
               <th width="10">No</th>
               <th width="100">Thumbnail</th>
               <th>Title</th>
-              <th>Deadline</th>
+              <th>Date Event</th>
               <th>Price</th>
               <th>Status</th>
               <th>Type</th>
