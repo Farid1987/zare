@@ -29,12 +29,12 @@
       </div>
       <div class="header-right flex items-center">
         <ul class="header-menu flex items-center">
-          <li class="header-menu__item active"><a href="<?= site_url()?>">HOME</a></li>
-          <li class="header-menu__item"><a href="<?= site_url('frontPage/aboutUs')?>">ABOUT US</a></li>
-          <li class="header-menu__item"><a href="<?= site_url('frontPage/products')?>">PRODUCT</a></li>
-          <li class="header-menu__item"><a href="<?= site_url('frontPage/events')?>">EVENT</a></li>
-          <li class="header-menu__item"><a href="http://blog.zare.id/" target="__blank">BLOG</a></li>
-          <li class="header-menu__item"><a href="<?= site_url('frontPage/contactUs')?>">CONTACT US</a></li>
+          <li class="header-menu__item <?= (isset($active) && $active=='home') ? 'active':''?>"><a href="<?= site_url()?>">HOME</a></li>
+          <li class="header-menu__item <?= (isset($active) && $active=='about') ? 'active':''?>"><a href="<?= site_url('frontPage/aboutUs')?>">ABOUT US</a></li>
+          <li class="header-menu__item <?= (isset($active) && $active=='product') ? 'active':''?>"><a href="<?= site_url('frontPage/products')?>">PRODUCT</a></li>
+          <li class="header-menu__item <?= (isset($active) && $active=='event') ? 'active':''?>"><a href="<?= site_url('frontPage/events')?>">EVENT</a></li>
+          <li class="header-menu__item <?= (isset($active) && $active=='blog') ? 'active':''?>"><a href="http://blog.zare.id/" target="__blank">BLOG</a></li>
+          <li class="header-menu__item <?= (isset($active) && $active=='contact') ? 'active':''?>"><a href="<?= site_url('frontPage/contactUs')?>">CONTACT US</a></li>
         </ul>
         <?php if (!isset($emailUser) || $role == 'admin') { ?>
           <a href="<?= site_url('auth')?>" class="btn btn-primary btn-rounded">MASUK</a>
@@ -94,6 +94,10 @@
   </header>
 
   <?php echo $contents; ?>
+  
+  <a href="https://api.whatsapp.com/send?phone=082132899582" target="_blank" class="sticky-chat__wrapper flex items-center justify-center">
+    <i class="fab fa-whatsapp"></i>
+  </a>
 
   <footer class="footer">
     <div class="footer-top">
@@ -120,10 +124,9 @@
             <div class="footer-menu__wrapper">
               <div class="footer-menu__title">Social Media</div>
               <ul class="footer-menu">
-                <li><a href="" target="__blank">Facebook</a></li>
-                <li><a href="" target="__blank">Instagram</a></li>
-                <li><a href="" target="__blank">Youtube</a></li>
-                <li><a href="">Blog</a></li>
+                <li><a href="https://www.facebook.com/zareindonesia" target="__blank">Facebook</a></li>
+                <li><a href="https://www.instagram.com/zareindonesia/" target="__blank">Instagram</a></li>
+                <li><a href="https://www.youtube.com/channel/UC3vsbUAHem2T0ppzU1zGdKQ/featured" target="__blank">Youtube</a></li>
               </ul>
             </div>
           </div>

@@ -34,6 +34,7 @@
         base_url('assets/css/swiper-bundle.min.css'),
       ];
       $this->data['header_class'] = 'header-scroll';
+      $this->data['active'] = 'home';
 
       $this->template->load('front/tempFront', 'front/homepage', $this->data);
     }
@@ -50,6 +51,7 @@
 
 
       $this->data['header_class'] = 'header-white';
+      $this->data['active'] = 'product';
       $this->template->load('front/tempFront', 'front/products', $this->data);
     }
 
@@ -70,6 +72,7 @@
       $this->data['product_gallery'] = ($this->data['product']->image_url) ? explode(',', $this->data['product']->image_url):null;
 
       $this->data['header_class'] = 'header-white';
+      $this->data['active'] = 'product';
       $this->template->load('front/tempFront', 'front/productDetail', $this->data);
     }
 
@@ -90,6 +93,7 @@
       $this->data['events'] = $this->MEvent->getWhereWithLimit($condition, $this->data['per_page'], 0);
 
       $this->data['header_class'] = 'header-white';
+      $this->data['active'] = 'event';
       $this->template->load('front/tempFront', 'front/events', $this->data);
     }
 
@@ -106,6 +110,7 @@
         base_url('assets/css/swiper-bundle.min.css'),
       ];
       $this->data['header_class'] = 'header-white';
+      $this->data['active'] = 'event';
       $this->template->load('front/tempFront', 'front/eventDetail', $this->data);
     }
 
@@ -207,11 +212,13 @@
 
     public function contactUs() {
       $this->data['header_class'] = 'header-white';
+      $this->data['active'] = 'contact';
       $this->template->load('front/tempFront', 'front/contactUs', $this->data);
     }
 
     public function aboutUs() {
       $this->data['header_class'] = 'header-white';
+      $this->data['active'] = 'about';
       $this->template->load('front/tempFront', 'front/aboutUs', $this->data);
     }
 

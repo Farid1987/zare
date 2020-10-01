@@ -79,7 +79,7 @@
       </div>
       <div class="col-md-7">
         <div class="pembayaran-note">
-          <p>Segera transfer dan jangan sampai anda salah memasukkan jumlah nominal pembayaran anda. Jika sudah transfer, silahkan hubungi admin WA/Line untuk konfirmasi. Bisa juga klik disini</p>
+          <p>Hubungi admin melalui WA/Line dibawah ini untuk mendapatkan estimasi biaya ongkir, pesanan anda akan otomatis dibatalkan 1x24 jam jika tidak dilakukan konfirmasi pembayaran</p>
           <div class="text-right">
             <a href="javascript:;" class="btn btn-primary" data-micromodal-trigger="modal-1">Konfirmasi Pembayaran</a>
           </div>

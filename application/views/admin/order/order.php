@@ -32,6 +32,7 @@
               <th>Invoice</th>
               <th>Nama User</th>
               <th>Total Pembayaran</th>
+              <th>Tanggal Pemesanan</th>
               <th>Status</th>
               <th width="120">Action</th>
             </tr>
@@ -45,6 +46,7 @@
                 <td><?= $value->id_invoice?></td>
                 <td><?= $value->fullname?></td>
                 <td>Rp <?= number_format($value->total_pembayaran, 0, '.', '.')?></td>
+                <td><?= date("j F Y", strtotime($value->created_at))?></td>
                 <td><?= ucwords($value->status)?></td>
                 <td>
                   <a

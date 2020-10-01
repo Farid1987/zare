@@ -36,18 +36,18 @@
 
     <h2 class="text-center">Meet Our Team</h2>
     <div class="our-team">
-      <div class="row">
+      <div class="row justify-center">
+
         <div class="col-md-3">
           <div class="our-team__card text-center">
             <div class="our-team__img">
-              <img src="<?= base_url()?>/assets/img/default-user.jpg" alt="">
+              <img src="<?= base_url()?>/assets/img/fathul.jpeg" alt="">
             </div>
-            <div class="our-team__name">Jhon Doe</div>
+            <div class="our-team__name">Fathul Firdaus</div>
             <div class="our-team__position">Founder</div>
             <div class="our-team__social flex flex-wrap justify-center">
-              <a href="" class="social-item"><i class="fab fa-facebook-f"></i></a>
-              <a href="" class="social-item"><i class="fab fa-instagram"></i></a>
-              <a href="" class="social-item"><i class="fab fa-google"></i></a>
+              <a href="https://www.instagram.com/firdafathul/" target="_blank" class="social-item"><i class="fab fa-instagram"></i></a>
+              <a href="mailto:firdafathul@gmail.com" class="social-item"><i class="fa fa-envelope"></i></a>
             </div>
           </div>
         </div>
@@ -55,14 +55,13 @@
         <div class="col-md-3">
           <div class="our-team__card text-center">
             <div class="our-team__img">
-              <img src="<?= base_url()?>/assets/img/default-user.jpg" alt="">
+              <img src="<?= base_url()?>/assets/img/tia.jpeg" alt="">
             </div>
-            <div class="our-team__name">Jhon Doe</div>
+            <div class="our-team__name">Tia Ristiana Dewi</div>
             <div class="our-team__position">Founder</div>
             <div class="our-team__social flex flex-wrap justify-center">
-              <a href="" class="social-item"><i class="fab fa-facebook-f"></i></a>
-              <a href="" class="social-item"><i class="fab fa-instagram"></i></a>
-              <a href="" class="social-item"><i class="fab fa-google"></i></a>
+              <a href="https://www.instagram.com/tiaristianad/" target="_blank" class="social-item"><i class="fab fa-instagram"></i></a>
+              <a href="mailto:tiaristiana2@gmail.com" class="social-item"><i class="fa fa-envelope"></i></a>
             </div>
           </div>
         </div>
@@ -70,29 +69,13 @@
         <div class="col-md-3">
           <div class="our-team__card text-center">
             <div class="our-team__img">
-              <img src="<?= base_url()?>/assets/img/default-user.jpg" alt="">
+              <img src="<?= base_url()?>/assets/img/fetri.jpeg" alt="">
             </div>
-            <div class="our-team__name">Jhon Doe</div>
+            <div class="our-team__name">Fetri Bariqi Almas</div>
             <div class="our-team__position">Founder</div>
             <div class="our-team__social flex flex-wrap justify-center">
-              <a href="" class="social-item"><i class="fab fa-facebook-f"></i></a>
-              <a href="" class="social-item"><i class="fab fa-instagram"></i></a>
-              <a href="" class="social-item"><i class="fab fa-google"></i></a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3">
-          <div class="our-team__card text-center">
-            <div class="our-team__img">
-              <img src="<?= base_url()?>/assets/img/default-user.jpg" alt="">
-            </div>
-            <div class="our-team__name">Jhon Doe</div>
-            <div class="our-team__position">Founder</div>
-            <div class="our-team__social flex flex-wrap justify-center">
-              <a href="" class="social-item"><i class="fab fa-facebook-f"></i></a>
-              <a href="" class="social-item"><i class="fab fa-instagram"></i></a>
-              <a href="" class="social-item"><i class="fab fa-google"></i></a>
+              <a href="https://www.instagram.com/fetribariqi_almas/" target="_blank" class="social-item"><i class="fab fa-instagram"></i></a>
+              <a href="mailto:lianbariqi@gmail.com" class="social-item"><i class="fa fa-envelope"></i></a>
             </div>
           </div>
         </div>

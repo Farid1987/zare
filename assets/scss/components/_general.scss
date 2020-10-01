@@ -61,3 +61,16 @@ table {
 .r-63 {
   padding-top: 63%;
 }
+
+// sticky chat
+.sticky-chat__wrapper {
+  width: 50px;
+  height: 50px;
+  background: #4dad52;
+  color: #fff;
+  font-size: 24px;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+}
