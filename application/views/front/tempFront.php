@@ -113,10 +113,10 @@
             <div class="footer-menu__wrapper">
               <div class="footer-menu__title">MENU</div>
               <ul class="footer-menu">
-                <li><a href="">Home</a></li>
+                <li><a href="<?= site_url()?>">Home</a></li>
                 <li><a href="<?= site_url('frontPage/products')?>">Product</a></li>
-                <li><a href="">About Us</a></li>
-                <li><a href="">Contact Us</a></li>
+                <li><a href="<?= site_url('frontPage/aboutUs')?>">About Us</a></li>
+                <li><a href="<?= site_url('frontPage/contactUs')?>">Contact Us</a></li>
               </ul>
             </div>
           </div>

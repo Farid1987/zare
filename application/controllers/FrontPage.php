@@ -34,6 +34,10 @@
         base_url('assets/css/swiper-bundle.min.css'),
       ];
       $this->data['header_class'] = 'header-scroll';
+      $this->data['blog'] = [
+        ['link' => 'https://blog.zare.id/blog/open-farm-dipenghujung-tahun-part-1', 'image' => base_url('/assets/img/blog1.jpeg'), 'title' => 'Open Farm Dipenghujung Tahun Part 1', 'short_desc' => 'Tanggal 7 desember 2019 adalah waktu yang paling tepat untuk merasakan dinginnya sepoi hembusan angin dan indahnya pe...', 'type' => 'Open Farm', 'date'=>'Dec 08'],
+        ['link' => 'https://blog.zare.id/blog/sektor-pertanian-banyuwangi-mampu-surplus-di-tengah-pandemi', 'image' => base_url('/assets/img/blog2.jpeg'), 'title' => 'Sektor Pertanian Banyuwangi Mampu Surplus Di Tengah Pandemi', 'short_desc' => 'Di tengah pandemi COVID-19, sektor pertanian Banyuwangi mencatat pertumbuhan positif.', 'type' => 'Open Farm', 'date'=>'Jun 08']
+      ];
       $this->data['active'] = 'home';
 
       $this->template->load('front/tempFront', 'front/homepage', $this->data);

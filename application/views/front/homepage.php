@@ -179,21 +179,21 @@
     <div class="swiper-arrow__wrapper">
       <div class="swiper-container js-swiper swiper-item-3" data-items="3" data-space="45">
         <div class="swiper-wrapper">
-          <?php for ($i=0; $i < 6; $i++) { ?>
+          <?php for ($i=0; $i < count($blog); $i++) { ?>
             <div class="swiper-slide">
               <div class="box box-transparent box-blog">
-                <a href="" class="box-thumb img-rasio r-63">
-                  <img src="<?= base_url()?>/assets/img/home-blog1.jpg" alt="">
+                <a href="<?= $blog[$i]['link']?>" target="_blank" class="box-thumb img-rasio r-63">
+                  <img src="<?= $blog[$i]['image']?>" alt="">
                 </a>
                 <div class="box-content">
                   <div class="box-info flex justify-between">
-                    <span class="box-info__cat">MENANAM</span>
-                    <span class="box-info__date">Nov 19</span>
+                    <span class="box-info__cat"><?= $blog[$i]['type']?></span>
+                    <span class="box-info__date"><?= $blog[$i]['date']?></span>
                   </div>
                   <h4 class="box-title text-primary">
-                    <a href="">Mas Suprat budidaya sawi sendok</a>
+                    <a href="<?= $blog[$i]['link']?>" target="_blank"><?= $blog[$i]['title']?></a>
                   </h4>
-                  <p class="box-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad..</p>
+                  <p class="box-desc"><?= $blog[$i]['short_desc']?></p>
                 </div>
               </div>
             </div>
@@ -330,37 +330,27 @@
 
     <div class="row">
       <div class="col-md-7">
-        <div class="flex items-start partner-wrapper">
-          <a href="" class="partner-thumb">
-            <div class="img-rasio r-100">
-              <img src="<?= base_url()?>/assets/img/home-blog2.jpg" alt="">
+        <?php for ($i=0; $i < 2; $i++) { ?>
+          <div class="flex items-start partner-wrapper">
+            <a href="<?= $blog[$i]['link']?>" target="_blank" class="partner-thumb">
+              <div class="img-rasio r-100">
+                <img src="<?= $blog[$i]['image']?>" alt="">
+              </div>
+            </a>
+            <div class="partner-content">
+              <h4 class="partner-title"><?= $blog[$i]['title']?></h4>
+              <p class="partner-desc"><?= $blog[$i]['short_desc']?></p>
+              <a href="<?= $blog[$i]['link']?>" target="_blank" class="btn btn-primary">Baca Selengkapnya</a>
             </div>
-          </a>
-          <div class="partner-content">
-            <h4 class="partner-title">Lorem ipsum dolor sit amet.</h4>
-            <p class="partner-desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore, aliquam vitae quod odio reiciendis asperiores minima</p>
-            <a href="" class="btn btn-primary">Baca Selengkapnya</a>
           </div>
-        </div>
-        <div class="flex items-start partner-wrapper">
-          <a href="" class="partner-thumb">
-            <div class="img-rasio r-100">
-              <img src="<?= base_url()?>/assets/img/home-blog2.jpg" alt="">
-            </div>
-          </a>
-          <div class="partner-content">
-            <h4 class="partner-title">Lorem ipsum dolor sit amet.</h4>
-            <p class="partner-desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore, aliquam vitae quod odio reiciendis asperiores minima</p>
-            <a href="" class="btn btn-primary">Baca Selengkapnya</a>
-          </div>
-        </div>
+        <?php } ?>
       </div>
       <div class="col-md-5">
         <div class="ig-feed flex flex-wrap" data-url="https://www.instagram.com/zareindonesia/?__a=1">
           <?php for ($i=0; $i < 6; $i++) { ?>
             <a href="https://www.instagram.com/p/CDdWR8Snzka/" target="__blank" class="ig-feed__item">
               <div class="img-rasio r-100">
-                <img src="https://instagram.fsoc1-1.fna.fbcdn.net/v/t51.2885-15/e35/116582099_955440678262959_9078401629976227098_n.jpg?_nc_ht=instagram.fsoc1-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=hnbB7cWmMdQAX8XZhvY&oh=a9b9bb7291c55b9445c732169c222026&oe=5F55CDF1" alt="">
+                <img src="https://instagram.fsoc1-1.fna.fbcdn.net/v/t51.2885-15/e35/116582099_955440678262959_9078401629976227098_n.jpg?_nc_ht=instagram.fsoc1-1.fna.fbcdn.net&_nc_cat=103&_nc_ohc=3fn6xhKotBUAX8skajr&_nc_tp=18&oh=8c4b85b87cb9df2f0cbf26616ff295b6&oe=5FA0F371" alt="">
               </div>
             </a>
           <?php } ?>
