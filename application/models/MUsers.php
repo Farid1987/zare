@@ -60,6 +60,20 @@ class MUsers extends CI_Model {
     $this->db->where(['id_user' => $idUser]);
 		$query = $this->db->get();
 		return $query->row();
+	}
+	
+	/**
+	 * 	get total data users with condition
+	 *	@return array number / null
+	 */
+  public function countDataUsers($condition) {
+    if ($condition == 'all') {
+      $this->db->select('*');
+      $query = $this->db->get('users');
+    } else {
+      $query = $this->db->get_where('users', $condition);
+    }
+    return count($query->result());
   }
 
   /**

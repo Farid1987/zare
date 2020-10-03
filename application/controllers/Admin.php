@@ -16,10 +16,21 @@
     /////////////////////////////////////// PAGES ///////////////////////////////////////
 
     public function index() {
+      $this->load->model('MProduct');
+      $this->load->model('MEvent');
+      $this->load->model('MUsers');
+      $this->load->model('MTransaksi');
+
       $this->data['active'] = "dashboard";
       $this->data['breadcrumb'] = [
         ['Dashboard', site_url('admin')]
       ];
+      $this->data['totalProduct'] = $this->MProduct->countDataProduct('all');
+      $this->data['totalEvent'] = $this->MEvent->countDataEvent('all');
+      $this->data['totalMember'] = $this->MUsers->countDataUsers(['role' => 'member']);
+      $this->data['totalTransaksi'] = $this->MTransaksi->countDataTransaksi('all');
+      $this->data['totalTransaksiSuccess'] = $this->MTransaksi->countDataTransaksi(['status' => 'success']);
+      $this->data['totalTransaksiProcess'] = $this->MTransaksi->countDataTransaksi(['status' => 'process']);
 
       $this->template->load('admin/tempAdmin', 'admin/dashboard', $this->data);
     }

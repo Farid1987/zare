@@ -53,6 +53,20 @@ class MTransaksi extends CI_Model {
 	}
 
 	/**
+	 * 	get total data transaksi with condition
+	 *	@return array number / null
+	 */
+  public function countDataTransaksi($condition) {
+    if ($condition == 'all') {
+      $this->db->select('*');
+      $query = $this->db->get('transaksi');
+    } else {
+      $query = $this->db->get_where('transaksi', $condition);
+    }
+    return count($query->result());
+  }
+
+	/**
 	 * 	edit data transaksi
    *	@return boolean
 	 */
