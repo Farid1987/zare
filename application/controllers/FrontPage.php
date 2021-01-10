@@ -52,7 +52,7 @@
       $this->data['per_page'] = 6;
       $this->data['totalProducts'] = (!$this->input->get('kategori')) ? $this->MProduct->countDataProduct('all') : $this->MProduct->countDataProduct(['id_kategori' => $this->input->get('kategori')]);
       $this->data['products'] = $this->MProduct->getWithLimit($this->data['per_page'], 0, $this->input->get('kategori'));
-
+      $this->data['productTerlaris'] = $this->MProduct->getProductTerlaris();
 
       $this->data['header_class'] = 'header-white';
       $this->data['active'] = 'product';

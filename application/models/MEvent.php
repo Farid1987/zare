@@ -10,7 +10,8 @@ class MEvent extends CI_Model {
 	public function getAll(){
     $this->db->select('event.*, type_project.type_project as type');
     $this->db->from('event');
-    $this->db->join('type_project', 'event.id_type_project = type_project.id_type_project', 'left');
+		$this->db->join('type_project', 'event.id_type_project = type_project.id_type_project', 'left');
+		$this->db->order_by('event.created_at', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}
@@ -57,6 +58,7 @@ class MEvent extends CI_Model {
 		$this->db->join('type_project', 'event.id_type_project = type_project.id_type_project', 'left');
 		$this->db->where($condition);
 		$this->db->limit($limit, $start);
+		$this->db->order_by('event.created_at', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
 	}

@@ -56,34 +56,64 @@
         Product Terlaris
       </h2>
       <div class="row">
-        <?php for ($i=0; $i < 4; $i++) { ?>
+      <?php if (count($productTerlaris) > 0) { ?>
+        <?php for ($i=0; $i < count($productTerlaris); $i++) { ?>
           <div class="col-md-3 col-sm-6">
             <div class="box box-product box-product--sm">
               <a href="" class="box-thumb img-rasio r-100">
-                <img src="<?= base_url()?>/assets/img/product1.png" alt="">
+                <img src="<?= base_url().'/'.$productTerlaris[$i]->featured_img?>" alt="">
               </a>
               <div class="box-content">
-                <a href="" class="label">KATEGORI</a>
+                <a href="" class="label"><?= $productTerlaris[$i]->kategori?></a>
                 <h4 class="box-title text-primary">
-                  <a href="">Kombucha Sirsak</a>
+                  <a href=""><?= $productTerlaris[$i]->nama_product?></a>
                 </h4>
-                <p class="box-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
+                <p class="box-desc"><?= $productTerlaris[$i]->short_description?></p>
                 <div class="flex justify-between flex-wrap@md box-product__info">
                   <div class="box-product__info-item">
-                    <p class="product-price">12.000/Kg</p>
-                    <p class="product-stock">stok : <span class="text-primary">tersedia</span></p>
+                    <p class="product-price"><?= number_format($productTerlaris[$i]->price, 0, '.', '.').' /'.$productTerlaris[$i]->satuan?></p>
+                    <p class="product-stock flex items-center">
+                      stok :
+                      <?php if ($productTerlaris[$i]->stock > 0) { ?>
+                        <span class="text-primary">tersedia</span>
+                      <?php } else {?>
+                        <span class="text-secondary">habis</span>
+                      <?php } ?>
+                    </p>
                   </div>
                   <div class="box-product__info-item">
-                    <a href="" class="btn btn-primary btn-icon">
+                    <?php if ($productTerlaris[$i]->stock > 0) { ?>
+                      <form action="<?= site_url('frontPage/addToCart')?>" method="post">
+                        <input type="hidden" name="id" value="<?= $productTerlaris[$i]->id_product?>">
+                        <input type="hidden" name="qty" value="1">
+                        <button type="submit" href="" class="btn btn-primary btn-icon">
+                          <i class="fa fa-shopping-cart"></i>
+                          AMBIL
+                        </button>
+                      </form>
+                    <?php } else { ?>
+                      <a href="" class="btn btn-primary btn-icon" onclick="alert('Product habis'); return false;">
+                        <i class="fa fa-shopping-cart"></i>
+                        AMBIL
+                      </a>
+                    <?php } ?>
+                    <!-- <a href="" class="btn btn-primary btn-icon">
                       <i class="fa fa-shopping-cart"></i>
                       AMBIL
-                    </a>
+                    </a> -->
                   </div>
                 </div>
               </div>
             </div>
           </div>
         <?php } ?>
+      <?php } else { ?>
+        <div class="col-md-12">
+          <div class="alert alert-danger flex items-baseline justify-center" role="alert">
+            <span>Belum ada product terjual</span>
+          </div>
+        </div>
+      <?php } ?>
       </div>
     </div>
   </div>
